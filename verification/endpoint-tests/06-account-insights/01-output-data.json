@@ -1,0 +1,347 @@
+{
+  "endpoint": "/{ig-user-id}/insights (Account Insights)",
+  "timestamp": "2025-09-09T20:22:20.364879",
+  "検証概要": "毎日収集用アカウントレベルインサイトテスト",
+  "account_tests": [
+    {
+      "page_name": "Ghoona",
+      "page_id": "533679183151841",
+      "ig_account_id": "17841471451691385",
+      "tests": [
+        {
+          "test_name": "combined_account_insights",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "name": "profile_views",
+                "period": "day",
+                "title": "プロフィールへのアクセス",
+                "description": "プロフィールへのアクセス数です。",
+                "total_value": {
+                  "value": 0
+                },
+                "id": "17841471451691385/insights/profile_views/day"
+              },
+              {
+                "name": "website_clicks",
+                "period": "day",
+                "title": "ウェブサイトリンクのタップする",
+                "description": "ウェブサイトへのリンクがタップされた回数です。",
+                "total_value": {
+                  "value": 0
+                },
+                "id": "17841471451691385/insights/website_clicks/day"
+              }
+            ],
+            "paging": {
+              "previous": "https://graph.facebook.com/v23.0/17841471451691385/insights?access_token=EAARrfZCwPTGUBPelK4W6PUS7OSCRcQbg1LhGYyghbPX5TjJ5i5XbxfOvQgARevTBrFLyUuc4tq6ZApAg32bUunLWY5yDFSYvCDuVRbXEuQPbtdG3nRN2X6ZCTCy4H7WZBvrhlhgZBd6iN7EXGSs5MMKRZBxrdc8Rj4ygLhqPeT9XzZC91bUqGKUyR9EDLVAFhMfSAKy&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757071339&until=1757244139",
+              "next": "https://graph.facebook.com/v23.0/17841471451691385/insights?access_token=EAARrfZCwPTGUBPelK4W6PUS7OSCRcQbg1LhGYyghbPX5TjJ5i5XbxfOvQgARevTBrFLyUuc4tq6ZApAg32bUunLWY5yDFSYvCDuVRbXEuQPbtdG3nRN2X6ZCTCy4H7WZBvrhlhgZBd6iN7EXGSs5MMKRZBxrdc8Rj4ygLhqPeT9XzZC91bUqGKUyR9EDLVAFhMfSAKy&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757416941&until=1757589741"
+            }
+          },
+          "notes": "アカウントレベルインサイト一括取得成功"
+        },
+        {
+          "test_name": "individual_metrics",
+          "success": true,
+          "data": {
+            "profile_views": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            },
+            "website_clicks": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            }
+          },
+          "notes": "個別メトリクス検証完了"
+        },
+        {
+          "test_name": "period_validation",
+          "success": true,
+          "data": {
+            "day": {
+              "available": false,
+              "error": "Empty values"
+            }
+          },
+          "notes": "期間パラメータ検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "有限会社カネタケ",
+      "page_id": "221005154431842",
+      "ig_account_id": "17841464830817178",
+      "tests": [
+        {
+          "test_name": "combined_account_insights",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "name": "profile_views",
+                "period": "day",
+                "title": "プロフィールへのアクセス",
+                "description": "プロフィールへのアクセス数です。",
+                "total_value": {
+                  "value": 11
+                },
+                "id": "17841464830817178/insights/profile_views/day"
+              },
+              {
+                "name": "website_clicks",
+                "period": "day",
+                "title": "ウェブサイトリンクのタップする",
+                "description": "ウェブサイトへのリンクがタップされた回数です。",
+                "total_value": {
+                  "value": 0
+                },
+                "id": "17841464830817178/insights/website_clicks/day"
+              }
+            ],
+            "paging": {
+              "previous": "https://graph.facebook.com/v23.0/17841464830817178/insights?access_token=EAARrfZCwPTGUBPQ7TL1ZCfvMnM7ev2nYNKaHeKRD3ISZB2qh2rT51mAKPNfLw2Tvu6aW7VHfehjqqOVvS4lAwTXPk9JK2oKuWkdRGtn1CdwMKAhiTbR5d91kpPYZAjNBYaZCI7GxVJHkw9ibSMEUnDIo5TNrddhuxynomJ5mZB75gXLy8m6lD5ThRH7ijNGQEfncsZD&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757071341&until=1757244141",
+              "next": "https://graph.facebook.com/v23.0/17841464830817178/insights?access_token=EAARrfZCwPTGUBPQ7TL1ZCfvMnM7ev2nYNKaHeKRD3ISZB2qh2rT51mAKPNfLw2Tvu6aW7VHfehjqqOVvS4lAwTXPk9JK2oKuWkdRGtn1CdwMKAhiTbR5d91kpPYZAjNBYaZCI7GxVJHkw9ibSMEUnDIo5TNrddhuxynomJ5mZB75gXLy8m6lD5ThRH7ijNGQEfncsZD&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757416943&until=1757589743"
+            }
+          },
+          "notes": "アカウントレベルインサイト一括取得成功"
+        },
+        {
+          "test_name": "individual_metrics",
+          "success": true,
+          "data": {
+            "profile_views": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            },
+            "website_clicks": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            }
+          },
+          "notes": "個別メトリクス検証完了"
+        },
+        {
+          "test_name": "period_validation",
+          "success": true,
+          "data": {
+            "day": {
+              "available": false,
+              "error": "Empty values"
+            }
+          },
+          "notes": "期間パラメータ検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "Shota Yamashita",
+      "page_id": "109494364279579",
+      "ig_account_id": "17841408533767014",
+      "tests": [
+        {
+          "test_name": "combined_account_insights",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "name": "profile_views",
+                "period": "day",
+                "title": "プロフィールへのアクセス",
+                "description": "プロフィールへのアクセス数です。",
+                "total_value": {
+                  "value": 14
+                },
+                "id": "17841408533767014/insights/profile_views/day"
+              },
+              {
+                "name": "website_clicks",
+                "period": "day",
+                "title": "ウェブサイトリンクのタップする",
+                "description": "ウェブサイトへのリンクがタップされた回数です。",
+                "total_value": {
+                  "value": 1
+                },
+                "id": "17841408533767014/insights/website_clicks/day"
+              }
+            ],
+            "paging": {
+              "previous": "https://graph.facebook.com/v23.0/17841408533767014/insights?access_token=EAARrfZCwPTGUBPXQAkLOxLINeKSrQUnEZCwZBH7LaleZBQIeplCZC5ManyFUgZCcALWPrmXEgYn9itc6UxSI1YtDFqcT2w9pHGsLlyjUQLyG4oteuRYnydQL9QepgGDdCb5jVrOA5HSEjnUkURRhHGeFDhll3ZCnjCSNpnqPHPIhvV5BfPIXDUfIcrZABi0MVY5Qd2bEXRcZD&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757071344&until=1757244144",
+              "next": "https://graph.facebook.com/v23.0/17841408533767014/insights?access_token=EAARrfZCwPTGUBPXQAkLOxLINeKSrQUnEZCwZBH7LaleZBQIeplCZC5ManyFUgZCcALWPrmXEgYn9itc6UxSI1YtDFqcT2w9pHGsLlyjUQLyG4oteuRYnydQL9QepgGDdCb5jVrOA5HSEjnUkURRhHGeFDhll3ZCnjCSNpnqPHPIhvV5BfPIXDUfIcrZABi0MVY5Qd2bEXRcZD&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757416946&until=1757589746"
+            }
+          },
+          "notes": "アカウントレベルインサイト一括取得成功"
+        },
+        {
+          "test_name": "individual_metrics",
+          "success": true,
+          "data": {
+            "profile_views": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            },
+            "website_clicks": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            }
+          },
+          "notes": "個別メトリクス検証完了"
+        },
+        {
+          "test_name": "period_validation",
+          "success": true,
+          "data": {
+            "day": {
+              "available": false,
+              "error": "Empty values"
+            }
+          },
+          "notes": "期間パラメータ検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "ヤマサリノベ",
+      "page_id": "103295771313100",
+      "ig_account_id": "17841455808057230",
+      "tests": [
+        {
+          "test_name": "combined_account_insights",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "name": "profile_views",
+                "period": "day",
+                "title": "プロフィールへのアクセス",
+                "description": "プロフィールへのアクセス数です。",
+                "total_value": {
+                  "value": 10
+                },
+                "id": "17841455808057230/insights/profile_views/day"
+              },
+              {
+                "name": "website_clicks",
+                "period": "day",
+                "title": "ウェブサイトリンクのタップする",
+                "description": "ウェブサイトへのリンクがタップされた回数です。",
+                "total_value": {
+                  "value": 0
+                },
+                "id": "17841455808057230/insights/website_clicks/day"
+              }
+            ],
+            "paging": {
+              "previous": "https://graph.facebook.com/v23.0/17841455808057230/insights?access_token=EAARrfZCwPTGUBPeAvZC2PZBkA197EbNY448cZAYfao4x2vj2zLyy6Ir1QtsXtOwYdXmcEnCXbdZBlWHmQvYyA7ZCrQ1gRAGs0FCxaHrFSwcxkleq85UwZCZA06gqL5qsbV5joBzlsVtbZAfMQ0B8c7vJrhZAAE0xGYL3k9ZApvCpmeoZBajIN3I7ERgSZBepVSLlzKWizC7otMOkZD&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757071346&until=1757244146",
+              "next": "https://graph.facebook.com/v23.0/17841455808057230/insights?access_token=EAARrfZCwPTGUBPeAvZC2PZBkA197EbNY448cZAYfao4x2vj2zLyy6Ir1QtsXtOwYdXmcEnCXbdZBlWHmQvYyA7ZCrQ1gRAGs0FCxaHrFSwcxkleq85UwZCZA06gqL5qsbV5joBzlsVtbZAfMQ0B8c7vJrhZAAE0xGYL3k9ZApvCpmeoZBajIN3I7ERgSZBepVSLlzKWizC7otMOkZD&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757416948&until=1757589748"
+            }
+          },
+          "notes": "アカウントレベルインサイト一括取得成功"
+        },
+        {
+          "test_name": "individual_metrics",
+          "success": true,
+          "data": {
+            "profile_views": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            },
+            "website_clicks": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            }
+          },
+          "notes": "個別メトリクス検証完了"
+        },
+        {
+          "test_name": "period_validation",
+          "success": true,
+          "data": {
+            "day": {
+              "available": false,
+              "error": "Empty values"
+            }
+          },
+          "notes": "期間パラメータ検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "時と共に価値の出る家づくり ホルツバウハウス",
+      "page_id": "726815370789294",
+      "ig_account_id": "17841402015304577",
+      "tests": [
+        {
+          "test_name": "combined_account_insights",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "name": "profile_views",
+                "period": "day",
+                "title": "プロフィールへのアクセス",
+                "description": "プロフィールへのアクセス数です。",
+                "total_value": {
+                  "value": 12
+                },
+                "id": "17841402015304577/insights/profile_views/day"
+              },
+              {
+                "name": "website_clicks",
+                "period": "day",
+                "title": "ウェブサイトリンクのタップする",
+                "description": "ウェブサイトへのリンクがタップされた回数です。",
+                "total_value": {
+                  "value": 0
+                },
+                "id": "17841402015304577/insights/website_clicks/day"
+              }
+            ],
+            "paging": {
+              "previous": "https://graph.facebook.com/v23.0/17841402015304577/insights?access_token=EAARrfZCwPTGUBPe4Oniu3ZBib0mHaQVVd0f6qCVL3i8UTNl4WtmODpFvbZAvnIr8q0PUF6tjVa5DeUnAl7nQ93xBU9wlwm7NfNvbLEopErZCAQX6uRVSoJQIyq2zN5E0IZB7PlI0gsRO6rz0D0YI5ZBmry92Kz0negz4jR7ATFIbcPAIyRSHY1hBZAZBqWzg6lNJXOk1UZAYd&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757071348&until=1757244148",
+              "next": "https://graph.facebook.com/v23.0/17841402015304577/insights?access_token=EAARrfZCwPTGUBPe4Oniu3ZBib0mHaQVVd0f6qCVL3i8UTNl4WtmODpFvbZAvnIr8q0PUF6tjVa5DeUnAl7nQ93xBU9wlwm7NfNvbLEopErZCAQX6uRVSoJQIyq2zN5E0IZB7PlI0gsRO6rz0D0YI5ZBmry92Kz0negz4jR7ATFIbcPAIyRSHY1hBZAZBqWzg6lNJXOk1UZAYd&metric=profile_views%2Cwebsite_clicks&metric_type=total_value&period=day&since=1757416950&until=1757589750"
+            }
+          },
+          "notes": "アカウントレベルインサイト一括取得成功"
+        },
+        {
+          "test_name": "individual_metrics",
+          "success": true,
+          "data": {
+            "profile_views": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            },
+            "website_clicks": {
+              "available": false,
+              "value": null,
+              "error": "Empty values array"
+            }
+          },
+          "notes": "個別メトリクス検証完了"
+        },
+        {
+          "test_name": "period_validation",
+          "success": true,
+          "data": {
+            "day": {
+              "available": false,
+              "error": "Empty values"
+            }
+          },
+          "notes": "期間パラメータ検証完了"
+        }
+      ]
+    }
+  ]
+}

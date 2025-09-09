@@ -18,6 +18,8 @@ GET /{ig-media-id}/insights?metric=video_views # 廃止（2025年4月）
 
 **検証項目:**
 - リーチ数 (`metric=reach`) - 全投稿タイプ対象
+- シェア数 (`metric=shares`) - 全投稿タイプ対象
+- 保存数 (`metric=saved`) - 全投稿タイプ対象
 - 動画視聴数 (`metric=video_views`) - VIDEO投稿のみ対象（廃止メトリクス）
 - メディアタイプ別の対応確認
 - インサイトデータの取得可用性
@@ -69,9 +71,14 @@ python endpoint-tests/05-media-insights/03-views-metric.py    # 新メトリク�
 - CAROUSEL_ALBUM投稿: リーチ数取得成功  
 - VIDEO投稿: リーチ数取得成功
 
+#### シェア・保存メトリクス
+- IMAGE投稿: シェア数・保存数取得テスト
+- CAROUSEL_ALBUM投稿: シェア数・保存数取得テスト
+- VIDEO投稿: シェア数・保存数取得テスト
+
 #### 動画視聴数メトリクス（統一版）
-- VIDEO投稿: **統一視聴数 (`views`) 取得成功** 🎉
-- IMAGE/CAROUSEL投稿: 統一視聴数 (`views`) 取得成功
+- VIDEO投稿: **統一視聴数 (`views`) 取得成功** 🎉 (03-views-metric.pyで検証済み)
+- IMAGE/CAROUSEL投稿: 統一視聴数 (`views`) 取得成功 (03-views-metric.pyで検証済み)
 - 旧メトリクス (`video_views`): 廃止のため取得失敗（正常）
 
 ## 📊 投稿分析ページ対応状況
@@ -81,6 +88,8 @@ python endpoint-tests/05-media-insights/03-views-metric.py    # 新メトリク�
 - ✅ リーチ: 全投稿タイプで取得成功
 - ✅ いいね・コメント: 取得済み
 - ✅ **視聴数: 統一メトリクスで取得成功**
+- 🔶 **シェア数: テスト実行中**
+- 🔶 **保存数: テスト実行中**
 - ✅ エンゲージメント率: 計算可能
 
 ## 出力ファイル

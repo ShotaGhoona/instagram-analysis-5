@@ -28,9 +28,10 @@
 | データ項目 | エンドポイント | 必須パラメータ | 頻度 | 検証状況 | 検証ファイル |
 |-----------|-------------|------------|-----|---------|-------------|
 | リーチ | `/{ig-media-id}/insights` | `metric=reach` | 日1回 | 🎉 検証済み | `05-media-insights/01-media-insights.py` |
-| インプレッション | `/{ig-user-id}/insights` | `metric=impressions&period=day` | 日1回 | ❌ 未検証 | - |
-| プロフィールアクセス | `/{ig-user-id}/insights` | `metric=profile_views&period=day` | 日1回 | ❌ 未検証 | - |
-| ウェブサイトクリック | `/{ig-user-id}/insights` | `metric=website_clicks&period=day` | 日1回 | ❌ 未検証 | - |
+| シェア数 | `/{ig-media-id}/insights` | `metric=shares` | 日1回 | 🎉 **検証済み** | `05-media-insights/01-media-insights.py` |
+| 保存数 | `/{ig-media-id}/insights` | `metric=saved` | 日1回 | 🎉 **検証済み** | `05-media-insights/01-media-insights.py` |
+| プロフィールアクセス | `/{ig-user-id}/insights` | `metric=profile_views&period=day&metric_type=total_value` | 日1回 | 🎉 **検証済み** | `06-account-insights/01-account-insights.py` |
+| ウェブサイトクリック | `/{ig-user-id}/insights` | `metric=website_clicks&period=day&metric_type=total_value` | 日1回 | 🎉 **検証済み** | `06-account-insights/01-account-insights.py` |
 
 ### 動画視聴数メトリクス（全投稿タイプ対応）
 
@@ -55,12 +56,15 @@ GET /{ig-user-id}/media?fields=id,timestamp,media_type,caption,like_count,commen
 ```
 GET /{ig-media-id}/insights?metric=reach 🎉 検証済み
 GET /{ig-media-id}/insights?metric=views 🎉 完全検証済み (統一メトリクス・全投稿タイプ対応)
+GET /{ig-media-id}/insights?metric=shares 🎉 検証済み
+GET /{ig-media-id}/insights?metric=saved 🎉 検証済み
 GET /{ig-media-id}/insights?metric=video_views ❌ 廃止確認済み (2025年4月廃止)
 ```
 
-### 4. アカウントレベルインサイト取得 ❌ 未検証
+### 4. アカウントレベルインサイト取得 🎉 検証済み
 ```
-GET /{ig-user-id}/insights?metric=impressions,profile_views,website_clicks&period=day
+GET /{ig-user-id}/insights?metric=profile_views,website_clicks&period=day&metric_type=total_value 🎉 検証済み
+GET /{ig-user-id}/insights?metric=impressions&period=day ❌ API存在せず（Instagram Graph APIで利用不可）
 ```
 
 ## 保存データ構造
@@ -74,9 +78,9 @@ GET /{ig-user-id}/insights?metric=impressions,profile_views,website_clicks&perio
 - `followers_count`: フォロワー数 🎉
 - `follows_count`: フォロー数 🎉
 - `media_count`: 投稿数 🎉
-- `impressions`: インプレッション数 ❌
-- `profile_views`: プロフィールアクセス数 ❌
-- `website_clicks`: ウェブサイトクリック数 ❌
+- `impressions`: インプレッション数 ❌ **API存在せず**
+- `profile_views`: プロフィールアクセス数 🎉
+- `website_clicks`: ウェブサイトクリック数 🎉
 
 ### media_posts テーブル
 - `ig_media_id`: Instagram Media ID 🎉
@@ -95,3 +99,5 @@ GET /{ig-user-id}/insights?metric=impressions,profile_views,website_clicks&perio
 - `comments_count`: コメント数 🎉
 - `reach`: リーチ数 🎉
 - `views`: 統一視聴数（全投稿タイプ対応） 🎉
+- `shares`: シェア数 🎉
+- `saved`: 保存数 🎉

@@ -184,9 +184,89 @@ def test_media_insights():
                     }
                     print(f"         ❌ リーチ: 例外 - {e}")
                 
-                # Test 2: Video views (only for VIDEO media)
+                # Test 2: Shares (for all media types)
+                print(f"      📤 テスト: シェア数取得...")
+                try:
+                    shares_params = {
+                        'metric': 'shares',
+                        'access_token': page_token
+                    }
+                    
+                    shares_response = client.graph_api_request(f'/{media_id}/insights', params=shares_params)
+                    
+                    if shares_response and 'data' in shares_response:
+                        shares_data = shares_response['data']
+                        if shares_data and len(shares_data) > 0:
+                            shares_value = shares_data[0].get('values', [{}])[0].get('value', 0)
+                            media_insights["insights"]["shares"] = {
+                                "success": True,
+                                "value": shares_value,
+                                "raw_data": shares_data[0]
+                            }
+                            print(f"         ✅ シェア数: {shares_value:,} 回")
+                        else:
+                            media_insights["insights"]["shares"] = {
+                                "success": False,
+                                "error": "Empty data array"
+                            }
+                            print(f"         ❌ シェア数: データが空")
+                    else:
+                        media_insights["insights"]["shares"] = {
+                            "success": False,
+                            "error": "No response or missing data key"
+                        }
+                        print(f"         ❌ シェア数: レスポンスなし")
+                        
+                except Exception as e:
+                    media_insights["insights"]["shares"] = {
+                        "success": False,
+                        "error": str(e)
+                    }
+                    print(f"         ❌ シェア数: 例外 - {e}")
+                
+                # Test 3: Saves (for all media types)
+                print(f"      💾 テスト: 保存数取得...")
+                try:
+                    saves_params = {
+                        'metric': 'saved',
+                        'access_token': page_token
+                    }
+                    
+                    saves_response = client.graph_api_request(f'/{media_id}/insights', params=saves_params)
+                    
+                    if saves_response and 'data' in saves_response:
+                        saves_data = saves_response['data']
+                        if saves_data and len(saves_data) > 0:
+                            saves_value = saves_data[0].get('values', [{}])[0].get('value', 0)
+                            media_insights["insights"]["saved"] = {
+                                "success": True,
+                                "value": saves_value,
+                                "raw_data": saves_data[0]
+                            }
+                            print(f"         ✅ 保存数: {saves_value:,} 回")
+                        else:
+                            media_insights["insights"]["saved"] = {
+                                "success": False,
+                                "error": "Empty data array"
+                            }
+                            print(f"         ❌ 保存数: データが空")
+                    else:
+                        media_insights["insights"]["saved"] = {
+                            "success": False,
+                            "error": "No response or missing data key"
+                        }
+                        print(f"         ❌ 保存数: レスポンスなし")
+                        
+                except Exception as e:
+                    media_insights["insights"]["saved"] = {
+                        "success": False,
+                        "error": str(e)
+                    }
+                    print(f"         ❌ 保存数: 例外 - {e}")
+
+                # Test 4: Video views (only for VIDEO media) - Legacy test for deprecated metric
                 if media_type == 'VIDEO':
-                    print(f"      🎬 テスト: 動画視聴数取得...")
+                    print(f"      🎬 テスト: 動画視聴数取得（廃止メトリクス）...")
                     try:
                         video_params = {
                             'metric': 'video_views',
@@ -225,7 +305,7 @@ def test_media_insights():
                         }
                         print(f"         ❌ 動画視聴数: 例外 - {e}")
                 else:
-                    print(f"      ⏭️  動画視聴数: {media_type}のためスキップ")
+                    print(f"      ⏭️  動画視聴数: {media_type}のためスキップ（廃止メトリクス）")
                     media_insights["insights"]["video_views"] = {
                         "success": False,
                         "error": f"Not applicable for {media_type}"
@@ -269,6 +349,10 @@ def test_media_insights():
     successful_accounts = 0
     total_reach_tests = 0
     successful_reach_tests = 0
+    total_shares_tests = 0
+    successful_shares_tests = 0
+    total_saves_tests = 0
+    successful_saves_tests = 0
     total_video_tests = 0
     successful_video_tests = 0
     
@@ -287,7 +371,21 @@ def test_media_insights():
                         if reach_insight.get("success"):
                             successful_reach_tests += 1
                     
-                    # Count video tests
+                    # Count shares tests
+                    shares_insight = media.get("insights", {}).get("shares")
+                    if shares_insight:
+                        total_shares_tests += 1
+                        if shares_insight.get("success"):
+                            successful_shares_tests += 1
+                    
+                    # Count saves tests
+                    saves_insight = media.get("insights", {}).get("saved")
+                    if saves_insight:
+                        total_saves_tests += 1
+                        if saves_insight.get("success"):
+                            successful_saves_tests += 1
+                    
+                    # Count video tests (deprecated)
                     video_insight = media.get("insights", {}).get("video_views")
                     if video_insight and media.get("media_type") == "VIDEO":
                         total_video_tests += 1
@@ -303,6 +401,8 @@ def test_media_insights():
     print(f"✅ 成功したアカウント: {successful_accounts}")
     print(f"❌ 失敗したアカウント: {total_accounts - successful_accounts}")
     print(f"📈 リーチ取得: {successful_reach_tests}/{total_reach_tests} 件成功")
+    print(f"📤 シェア数取得: {successful_shares_tests}/{total_shares_tests} 件成功")
+    print(f"💾 保存数取得: {successful_saves_tests}/{total_saves_tests} 件成功")
     print(f"🎬 動画視聴数取得: {successful_video_tests}/{total_video_tests} 件成功")
     
     if successful_accounts > 0:

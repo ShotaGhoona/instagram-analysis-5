@@ -1,6 +1,6 @@
 {
   "endpoint": "/{ig-media-id}/insights (Media Insights)",
-  "timestamp": "2025-09-09T19:47:06.326012",
+  "timestamp": "2025-09-09T20:35:46.995748",
   "検証概要": "投稿別インサイトメトリクス取得テスト",
   "account_tests": [
     {
@@ -35,6 +35,38 @@
                       "id": "18474298093044270/insights/reach/lifetime"
                     }
                   },
+                  "shares": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "shares",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "シェア数",
+                      "description": "投稿のシェア数です。",
+                      "id": "18474298093044270/insights/shares/lifetime"
+                    }
+                  },
+                  "saved": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "saved",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "保存数",
+                      "description": "投稿が保存された数です。",
+                      "id": "18474298093044270/insights/saved/lifetime"
+                    }
+                  },
                   "video_views": {
                     "success": false,
                     "error": "Not applicable for IMAGE"
@@ -62,6 +94,38 @@
                       "id": "17992499405729789/insights/reach/lifetime"
                     }
                   },
+                  "shares": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "shares",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "シェア数",
+                      "description": "投稿のシェア数です。",
+                      "id": "17992499405729789/insights/shares/lifetime"
+                    }
+                  },
+                  "saved": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "saved",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "保存数",
+                      "description": "投稿が保存された数です。",
+                      "id": "17992499405729789/insights/saved/lifetime"
+                    }
+                  },
                   "video_views": {
                     "success": false,
                     "error": "Not applicable for IMAGE"
@@ -87,6 +151,38 @@
                       "title": "リーチしたアカウント数",
                       "description": "この投稿を最低1回見たユニークアカウントの数です。リーチは、同じアカウントが投稿を複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
                       "id": "18028728827404709/insights/reach/lifetime"
+                    }
+                  },
+                  "shares": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "shares",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "シェア数",
+                      "description": "投稿のシェア数です。",
+                      "id": "18028728827404709/insights/shares/lifetime"
+                    }
+                  },
+                  "saved": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "saved",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "保存数",
+                      "description": "投稿が保存された数です。",
+                      "id": "18028728827404709/insights/saved/lifetime"
                     }
                   },
                   "video_views": {
@@ -119,18 +215,50 @@
                 "insights": {
                   "reach": {
                     "success": true,
-                    "value": 10,
+                    "value": 13,
                     "raw_data": {
                       "name": "reach",
                       "period": "lifetime",
                       "values": [
                         {
-                          "value": 10
+                          "value": 13
                         }
                       ],
                       "title": "リーチしたアカウント数",
                       "description": "このカルーセルコンテナを最低1回見たユニークアカウントの数です。リーチは、同じアカウントがカルーセルコンテナを複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
                       "id": "18070319719916172/insights/reach/lifetime"
+                    }
+                  },
+                  "shares": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "shares",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "シェア数",
+                      "description": "投稿のシェア数です。",
+                      "id": "18070319719916172/insights/shares/lifetime"
+                    }
+                  },
+                  "saved": {
+                    "success": true,
+                    "value": 1,
+                    "raw_data": {
+                      "name": "saved",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 1
+                        }
+                      ],
+                      "title": "保存数",
+                      "description": "投稿が保存された数です。",
+                      "id": "18070319719916172/insights/saved/lifetime"
                     }
                   },
                   "video_views": {
@@ -160,6 +288,38 @@
                       "id": "18094076704590410/insights/reach/lifetime"
                     }
                   },
+                  "shares": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "shares",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "シェア数",
+                      "description": "投稿のシェア数です。",
+                      "id": "18094076704590410/insights/shares/lifetime"
+                    }
+                  },
+                  "saved": {
+                    "success": true,
+                    "value": 1,
+                    "raw_data": {
+                      "name": "saved",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 1
+                        }
+                      ],
+                      "title": "保存数",
+                      "description": "投稿が保存された数です。",
+                      "id": "18094076704590410/insights/saved/lifetime"
+                    }
+                  },
                   "video_views": {
                     "success": false,
                     "error": "Not applicable for CAROUSEL_ALBUM"
@@ -173,18 +333,50 @@
                 "insights": {
                   "reach": {
                     "success": true,
-                    "value": 66,
+                    "value": 67,
                     "raw_data": {
                       "name": "reach",
                       "period": "lifetime",
                       "values": [
                         {
-                          "value": 66
+                          "value": 67
                         }
                       ],
                       "title": "リーチしたアカウント数",
                       "description": "このカルーセルコンテナを最低1回見たユニークアカウントの数です。リーチは、同じアカウントがカルーセルコンテナを複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
                       "id": "17869863546344502/insights/reach/lifetime"
+                    }
+                  },
+                  "shares": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "shares",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "シェア数",
+                      "description": "投稿のシェア数です。",
+                      "id": "17869863546344502/insights/shares/lifetime"
+                    }
+                  },
+                  "saved": {
+                    "success": true,
+                    "value": 1,
+                    "raw_data": {
+                      "name": "saved",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 1
+                        }
+                      ],
+                      "title": "保存数",
+                      "description": "投稿が保存された数です。",
+                      "id": "17869863546344502/insights/saved/lifetime"
                     }
                   },
                   "video_views": {
