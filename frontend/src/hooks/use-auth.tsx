@@ -22,7 +22,9 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
     const token = localStorage.getItem('auth_token')
     if (token) {
       apiClient.setToken(token)
-      // TODO: Verify token and get user info
+      // TODO: Verify token and get user info from backend
+      // For now, set a dummy user to indicate authenticated state
+      setUser({ id: 1, username: 'user', created_at: new Date().toISOString() })
     }
     setIsLoading(false)
   }, [])
