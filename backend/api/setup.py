@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from models.instagram import TokenRefreshRequest, TokenRefreshResponse
 from services.instagram_service import InstagramService
 from repositories.instagram_repository import instagram_repository
-from auth.simple_auth import get_current_user, User
+from middleware.auth.simple_auth import get_current_user, User
 
 router = APIRouter(prefix="/setup", tags=["setup"])
 

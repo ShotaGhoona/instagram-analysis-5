@@ -9,7 +9,7 @@ class Settings:
     
     # Database
     SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
-    SUPABASE_KEY: str = os.getenv("SUPABASE_ANON_KEY", "")
+    SUPABASE_ANON_KEY: str = os.getenv("SUPABASE_ANON_KEY", "")
     
     # Instagram API
     INSTAGRAM_APP_ID: str = os.getenv("INSTAGRAM_APP_ID", "")
@@ -27,7 +27,7 @@ class Settings:
     def __init__(self):
         """Validate required settings - PoC level validation"""
         # PoC: Only warn about missing settings, don't raise error
-        if not self.SUPABASE_URL or not self.SUPABASE_KEY:
+        if not self.SUPABASE_URL or not self.SUPABASE_ANON_KEY:
             print("⚠️  Warning: SUPABASE_URL and SUPABASE_ANON_KEY not set")
             print("   Set these environment variables for full functionality")
 

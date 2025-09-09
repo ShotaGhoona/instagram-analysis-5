@@ -7,7 +7,7 @@ from api.accounts import router as accounts_router
 from api.analytics import router as analytics_router
 from api.media import router as media_router
 from api.setup import router as setup_router
-from auth.simple_auth import router as auth_router
+from middleware.auth.simple_auth import router as auth_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

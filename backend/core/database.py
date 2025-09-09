@@ -11,12 +11,12 @@ class DatabaseConnection:
     def client(self) -> Client:
         """Get Supabase client instance"""
         if self._client is None:
-            if not settings.SUPABASE_URL or not settings.SUPABASE_KEY:
+            if not settings.SUPABASE_URL or not settings.SUPABASE_ANON_KEY:
                 print("❌ Error: Cannot create Supabase client - missing environment variables")
                 return None
             self._client = create_client(
                 settings.SUPABASE_URL,
-                settings.SUPABASE_KEY
+                settings.SUPABASE_ANON_KEY
             )
         return self._client
 

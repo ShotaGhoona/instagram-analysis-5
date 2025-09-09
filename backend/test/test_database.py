@@ -4,7 +4,7 @@
 B0102: テーブル作成の確認用
 """
 
-from utils.supabase_client import supabase_client
+from core.database import database
 
 def test_table_existence():
     """テーブル作成確認"""
@@ -19,7 +19,7 @@ def test_table_existence():
     ]
     
     try:
-        client = supabase_client.client
+        client = database.client
         
         for table in tables:
             # テーブルの存在確認（レコード数取得）
@@ -38,7 +38,7 @@ def test_sample_data():
     print("\n🔍 サンプルデータ確認開始...")
     
     try:
-        client = supabase_client.client
+        client = database.client
         
         # 各テーブルからサンプルデータ1件取得
         tables_data = {
@@ -68,7 +68,7 @@ def test_crud_operations():
     print("\n🔍 CRUD操作テスト開始...")
     
     try:
-        client = supabase_client.client
+        client = database.client
         
         # テスト用ユーザー作成
         test_user_data = {

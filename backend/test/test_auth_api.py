@@ -1,6 +1,5 @@
 import requests
 import asyncio
-from models.database import db_manager
 
 async def test_auth_flow():
     base_url = "http://localhost:8000"

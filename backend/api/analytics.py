@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from datetime import datetime, date
 from models.user import User
 from repositories.instagram_repository import instagram_repository
-from auth.simple_auth import get_current_user
+from middleware.auth.simple_auth import get_current_user
 
 router = APIRouter()
 
