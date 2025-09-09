@@ -34,10 +34,10 @@ async def get_accounts(current_user: User = Depends(get_current_user)):
         ) for account in accounts
     ]
 
-@router.get("/{account_id}", response_model=InstagramAccountResponse)
-async def get_account(account_id: str, current_user: User = Depends(get_current_user)):
+@router.get("/{ig_user_id}", response_model=InstagramAccountResponse)
+async def get_account(ig_user_id: str, current_user: User = Depends(get_current_user)):
     """特定のInstagramアカウント詳細を取得"""
-    account = await db_manager.get_instagram_account(account_id)
+    account = await db_manager.get_instagram_account(ig_user_id)
     if not account:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
