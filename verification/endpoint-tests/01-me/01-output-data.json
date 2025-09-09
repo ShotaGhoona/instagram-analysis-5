@@ -1,0 +1,109 @@
+{
+  "endpoint": "/me",
+  "timestamp": "2025-09-09T18:29:48.838497",
+  "検証概要": "現在のユーザー情報取得とInstagram Business Account特定",
+  "tests": [
+    {
+      "test_name": "basic_user_info",
+      "success": true,
+      "data": {
+        "id": "1917706765699148",
+        "name": "山下翔大"
+      },
+      "notes": "基本ユーザー情報の取得に成功"
+    },
+    {
+      "test_name": "user_accounts",
+      "success": true,
+      "data": {
+        "data": [
+          {
+            "id": "533679183151841",
+            "name": "Ghoona",
+            "access_token": "EAARrfZCwPTGUBPZA5ZB479JiAyiyvogh7dq1YMWrZA3jWlwZCrouta8H3Bc3ZBQZAzNPCv7xZBfarXtTR8zUzx2XdHrB8N5rLa11M1sRXk9S1QDrZCZCZBaIG0XE6ZAZBzPkmYNt4H7zWYGfM7asl2r3uZAmYRKiQ4qGuh4UNHOtZCSANd8YcvtHjNVVZCI1z0FttSCGaL4CZBZBnJ60SZCGHQ5ptSVnZCoUQUVndGpgFtELTCNXsKYQ9ZAMZD",
+            "instagram_business_account": {
+              "id": "17841471451691385"
+            }
+          },
+          {
+            "id": "221005154431842",
+            "name": "有限会社カネタケ",
+            "access_token": "EAARrfZCwPTGUBPU3h3DZCaygsfHEz2GEG8T6cqTa9Dq6GELgjWXwTtNCqmEZBz3SQKFoGZCitMCkhKvCVB6djLxsbZBopJhR66Jk7oM9wDBMHjDiRb8qHiGeJ1KBl8drbZAg9KYktk7BxpCj6ECQORyM8ZBXb6ysLAezxK7kbsR9I6dxRruh0Q2SwRNDeCC9mtuktTqlLlGmCzZB74eLihACXanika0wqnIo4UnKUVonSAZDZD",
+            "instagram_business_account": {
+              "id": "17841464830817178"
+            }
+          },
+          {
+            "id": "109494364279579",
+            "name": "Shota Yamashita",
+            "access_token": "EAARrfZCwPTGUBPR0L0E7JhjncszNeCjIHGKjBfdP20qZAsMfBTFhEOGJhSM0axVHO8cUdc2J8U1cXnZAuoBObwiS03xbJ6CzvFfTQy1kMSzmYJdkaoXnqHjp73ZBj0JsVbdriNPyVQZASYpKsGWgNgl4UAiKaFfKrWhwFWtZAc3fHlenppAog2y6ZC4mkZCbMZCAsxrcEgo4HxuMZBXyxmhilQu7gwnbhUo4rDBww6CFBWHAZDZD",
+            "instagram_business_account": {
+              "id": "17841408533767014"
+            }
+          },
+          {
+            "id": "103295771313100",
+            "name": "ヤマサリノベ",
+            "access_token": "EAARrfZCwPTGUBPWg1Rrtc8R6CREPblaTVRnXo6K2MucBkwZBEA4psAwOqDsjVDGMPnwG1zENklOzZAoyCVPo1dK5BjL9eLivIhkuITdQ1Jn2gpj7UWrE9eKTpbNIsRzE0bSUZC5cvYxu6IQCUZBWoHnJ4hck03bG6U7gVxTZAfHUDguGkolkIkHseewUKjGkrRugynjFSmV9hvyTK3kYZAQCl3ydTbnPaZAFutML17JkOQZDZD",
+            "instagram_business_account": {
+              "id": "17841455808057230"
+            }
+          },
+          {
+            "id": "726815370789294",
+            "name": "時と共に価値の出る家づくり ホルツバウハウス",
+            "access_token": "EAARrfZCwPTGUBPdKqGR1SdbiZAMCfUluS9ye2ZBD4hEaO54YJCvP7zhhK0pxjdr3SucmerZBISUjRg1VtyEmmvUCMBb0C7bei1pSkNfZBb4cWRowBV6PhGkW4SrP4whfqCRym9ZAWU3n7ntZBO0Q1rz0o6xccvnwn2Ma50h23mXALW7ZAr9H5NBFv5g6kwTsbeTLITheNsKrrDqtdynhHGzW3lgiY7OIZBhGfqdBoJaADq8EZD",
+            "instagram_business_account": {
+              "id": "17841402015304577"
+            }
+          }
+        ],
+        "paging": {
+          "cursors": {
+            "before": "QVFIU0poTG1QNm5EYV9ydVpnS21RQ181aFd0UmZA6TURCcXBuLWtCenRpLXMyTEREYVdVOXQ0X3VPNjZAtZA2syZAXNOcmdKbzg4aV9jYnc3QVlsWDNSTUllRGRB",
+            "after": "QVFIUzEwYkVfNEpKSWcxSUczamVJNVpHZA0FTLTNGeExsM1VCb2ZAkSEk5YzB5bEZAnLUhLMzByT2RaVlhySlAwbWw2czBSVzlmTE1ibWw5TG1tUVhCN2lKWWh3"
+          }
+        }
+      },
+      "notes": "管理ページ・アカウント一覧の取得に成功",
+      "instagram_accounts": [
+        {
+          "page_id": "533679183151841",
+          "page_name": "Ghoona",
+          "ig_account": {
+            "id": "17841471451691385"
+          }
+        },
+        {
+          "page_id": "221005154431842",
+          "page_name": "有限会社カネタケ",
+          "ig_account": {
+            "id": "17841464830817178"
+          }
+        },
+        {
+          "page_id": "109494364279579",
+          "page_name": "Shota Yamashita",
+          "ig_account": {
+            "id": "17841408533767014"
+          }
+        },
+        {
+          "page_id": "103295771313100",
+          "page_name": "ヤマサリノベ",
+          "ig_account": {
+            "id": "17841455808057230"
+          }
+        },
+        {
+          "page_id": "726815370789294",
+          "page_name": "時と共に価値の出る家づくり ホルツバウハウス",
+          "ig_account": {
+            "id": "17841402015304577"
+          }
+        }
+      ],
+      "instagram_account_count": 5
+    }
+  ]
+}

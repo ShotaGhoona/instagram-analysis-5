@@ -1,0 +1,112 @@
+{
+  "endpoint": "/access_token (Instagram Long-lived)",
+  "timestamp": "2025-09-09T12:31:28.568067",
+  "検証概要": "Instagram専用長期トークン生成テスト",
+  "token_conversions": [
+    {
+      "page_name": "保坂建設",
+      "page_id": "749700058232833",
+      "ig_account_id": "17841422840022010",
+      "conversion_attempts": [
+        {
+          "method": "ig_exchange_token",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "Invalid OAuth access token - Cannot parse access token",
+              "type": "OAuthException",
+              "code": 190,
+              "fbtrace_id": "AL0rTg7BgIALhTqqEB-6DXm"
+            }
+          },
+          "status_code": 400,
+          "notes": "ig_exchange_token方式でのトークン変換失敗"
+        },
+        {
+          "method": "ig_refresh_token",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "Invalid OAuth access token - Cannot parse access token",
+              "type": "OAuthException",
+              "code": 190,
+              "fbtrace_id": "AdZfBKMVzb-I3DMHVIRAJWV"
+            }
+          },
+          "status_code": 400,
+          "notes": "ig_refresh_token方式でのトークン更新失敗（想定内）"
+        }
+      ]
+    },
+    {
+      "page_name": "Sumai",
+      "page_id": "663735196829840",
+      "ig_account_id": "17841400595556322",
+      "conversion_attempts": [
+        {
+          "method": "ig_exchange_token",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "Invalid OAuth access token - Cannot parse access token",
+              "type": "OAuthException",
+              "code": 190,
+              "fbtrace_id": "A7UiMQlMFSkxt9DjF2jnr-E"
+            }
+          },
+          "status_code": 400,
+          "notes": "ig_exchange_token方式でのトークン変換失敗"
+        },
+        {
+          "method": "ig_refresh_token",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "Invalid OAuth access token - Cannot parse access token",
+              "type": "OAuthException",
+              "code": 190,
+              "fbtrace_id": "A7iQbR0pVmroghh55lQhrID"
+            }
+          },
+          "status_code": 400,
+          "notes": "ig_refresh_token方式でのトークン更新失敗（想定内）"
+        }
+      ]
+    },
+    {
+      "page_name": "吉田産業ドルフィン八戸店",
+      "page_id": "534707539723084",
+      "ig_account_id": "17841426142742891",
+      "conversion_attempts": [
+        {
+          "method": "ig_exchange_token",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "Invalid OAuth access token - Cannot parse access token",
+              "type": "OAuthException",
+              "code": 190,
+              "fbtrace_id": "Ayi88aHjbnUqIksgIOyCdJt"
+            }
+          },
+          "status_code": 400,
+          "notes": "ig_exchange_token方式でのトークン変換失敗"
+        },
+        {
+          "method": "ig_refresh_token",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "Invalid OAuth access token - Cannot parse access token",
+              "type": "OAuthException",
+              "code": 190,
+              "fbtrace_id": "A1vSjqNGpxr_-6BBveP-HBS"
+            }
+          },
+          "status_code": 400,
+          "notes": "ig_refresh_token方式でのトークン更新失敗（想定内）"
+        }
+      ]
+    }
+  ]
+}

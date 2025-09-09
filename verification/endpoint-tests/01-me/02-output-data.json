@@ -1,0 +1,67 @@
+{
+  "endpoint": "/debug_token",
+  "timestamp": "2025-09-09T18:31:06.370247",
+  "検証概要": "Page Access Token有効期限確認",
+  "token_checks": [
+    {
+      "page_name": "Ghoona",
+      "page_id": "533679183151841",
+      "token_info": {
+        "is_valid": true,
+        "expires_at": 1757415600,
+        "issued_at": null,
+        "scopes": [
+          "pages_show_list",
+          "business_management",
+          "instagram_basic",
+          "instagram_manage_insights",
+          "pages_read_engagement",
+          "pages_read_user_content",
+          "public_profile"
+        ],
+        "type": "PAGE"
+      },
+      "success": true
+    },
+    {
+      "page_name": "有限会社カネタケ",
+      "page_id": "221005154431842",
+      "token_info": {
+        "is_valid": true,
+        "expires_at": 1757415600,
+        "issued_at": null,
+        "scopes": [
+          "pages_show_list",
+          "business_management",
+          "instagram_basic",
+          "instagram_manage_insights",
+          "pages_read_engagement",
+          "pages_read_user_content",
+          "public_profile"
+        ],
+        "type": "PAGE"
+      },
+      "success": true
+    },
+    {
+      "page_name": "Shota Yamashita",
+      "page_id": "109494364279579",
+      "token_info": {
+        "is_valid": true,
+        "expires_at": 1757415600,
+        "issued_at": null,
+        "scopes": [
+          "pages_show_list",
+          "business_management",
+          "instagram_basic",
+          "instagram_manage_insights",
+          "pages_read_engagement",
+          "pages_read_user_content",
+          "public_profile"
+        ],
+        "type": "PAGE"
+      },
+      "success": true
+    }
+  ]
+}

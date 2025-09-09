@@ -1,0 +1,112 @@
+{
+  "endpoint": "Instagram Business Account Token",
+  "timestamp": "2025-09-09T12:37:38.538589",
+  "検証概要": "Instagram Business Account専用アクセストークン取得",
+  "token_retrievals": [
+    {
+      "page_name": "保坂建設",
+      "page_id": "749700058232833",
+      "ig_account_id": "17841422840022010",
+      "retrieval_attempts": [
+        {
+          "method": "ig_account_details",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "(#100) Tried accessing nonexisting field (access_token) on node type (IGUser)",
+              "type": "OAuthException",
+              "code": 100,
+              "fbtrace_id": "AUldgy7rJFxw87flrGGmY4J"
+            }
+          },
+          "status_code": 400,
+          "notes": "Instagram Business Account詳細情報取得失敗"
+        },
+        {
+          "method": "page_ig_account",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "(#100) Tried accessing nonexisting field (access_token) on node type (IGUser)",
+              "type": "OAuthException",
+              "code": 100,
+              "fbtrace_id": "A4YRa1YQUoeC2UywiVAynBQ"
+            }
+          },
+          "status_code": 400,
+          "notes": "Page経由Instagram Business Account取得失敗"
+        }
+      ]
+    },
+    {
+      "page_name": "Sumai",
+      "page_id": "663735196829840",
+      "ig_account_id": "17841400595556322",
+      "retrieval_attempts": [
+        {
+          "method": "ig_account_details",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "(#100) Tried accessing nonexisting field (access_token) on node type (IGUser)",
+              "type": "OAuthException",
+              "code": 100,
+              "fbtrace_id": "AFYEVUfjJTjvWWHzLnEBsfR"
+            }
+          },
+          "status_code": 400,
+          "notes": "Instagram Business Account詳細情報取得失敗"
+        },
+        {
+          "method": "page_ig_account",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "(#100) Tried accessing nonexisting field (access_token) on node type (IGUser)",
+              "type": "OAuthException",
+              "code": 100,
+              "fbtrace_id": "ACQbC8dVpiH6IcAWomPHevG"
+            }
+          },
+          "status_code": 400,
+          "notes": "Page経由Instagram Business Account取得失敗"
+        }
+      ]
+    },
+    {
+      "page_name": "吉田産業ドルフィン八戸店",
+      "page_id": "534707539723084",
+      "ig_account_id": "17841426142742891",
+      "retrieval_attempts": [
+        {
+          "method": "ig_account_details",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "(#100) Tried accessing nonexisting field (access_token) on node type (IGUser)",
+              "type": "OAuthException",
+              "code": 100,
+              "fbtrace_id": "ASVTLbkrAPg4BX_GWAcGVCn"
+            }
+          },
+          "status_code": 400,
+          "notes": "Instagram Business Account詳細情報取得失敗"
+        },
+        {
+          "method": "page_ig_account",
+          "success": false,
+          "error": {
+            "error": {
+              "message": "(#100) Tried accessing nonexisting field (access_token) on node type (IGUser)",
+              "type": "OAuthException",
+              "code": 100,
+              "fbtrace_id": "AMXidbqb8DhyPX3ijsOL0gP"
+            }
+          },
+          "status_code": 400,
+          "notes": "Page経由Instagram Business Account取得失敗"
+        }
+      ]
+    }
+  ]
+}

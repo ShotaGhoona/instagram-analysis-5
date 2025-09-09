@@ -1,0 +1,91 @@
+{
+  "endpoint": "Instagram Media & Insights",
+  "timestamp": "2025-09-09T18:31:44.017588",
+  "検証概要": "投稿分析ページ用データ取得テスト",
+  "test_account": {
+    "page_name": "Ghoona",
+    "page_id": "533679183151841",
+    "ig_account_id": "17841471451691385"
+  },
+  "tests": [
+    {
+      "test_name": "ig_user_info",
+      "success": false,
+      "error": "400 Client Error: Bad Request for url: https://graph.facebook.com/v23.0/17841471451691385?fields=id%2Cusername%2Caccount_type%2Cmedia_count%2Cfollowers_count&access_token=EAARrfZCwPTGUBPZA5ZB479JiAyiyvogh7dq1YMWrZA3jWlwZCrouta8H3Bc3ZBQZAzNPCv7xZBfarXtTR8zUzx2XdHrB8N5rLa11M1sRXk9S1QDrZCZCZBaIG0XE6ZAZBzPkmYNt4H7zWYGfM7asl2r3uZAmYRKiQ4qGuh4UNHOtZCSANd8YcvtHjNVVZCI1z0FttSCGaL4CZBZBnJ60SZCGHQ5ptSVnZCoUQUVndGpgFtELTCNXsKYQ9ZAMZD",
+      "notes": "Instagram Business Account基本情報取得失敗"
+    },
+    {
+      "test_name": "media_list",
+      "success": true,
+      "data": {
+        "data": [
+          {
+            "id": "18474298093044270",
+            "media_type": "IMAGE",
+            "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469735219_1115490826947241_3802012805318922670_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=1-7&_nc_sid=18de74&_nc_ohc=SOHrMoqHuSUQ7kNvwHpGOYD&_nc_oc=Adk77vY5ileCUVrzSSfEAipulFeKs98rYX-ei_Neyd3PPLZoA2f14eLv6q__03SRSgU&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfbsWwoaMjyEuWWsvgOnKZGum2vCgDkBLtwZPxzQLMwDFw&oe=68C5CCE5",
+            "caption": "・",
+            "timestamp": "2024-12-11T17:40:59+0000",
+            "like_count": 0,
+            "comments_count": 0,
+            "permalink": "https://www.instagram.com/p/DDcmJU5JfeR/"
+          },
+          {
+            "id": "17992499405729789",
+            "media_type": "IMAGE",
+            "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469908803_1121284986267008_8685786773150852508_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=1-7&_nc_sid=18de74&_nc_ohc=v2dJw0qbp8IQ7kNvwE8oLqk&_nc_oc=AdmKEivnEzcZKOsU-cVlmViW-kBXrNY-bpZWuq6paSSAWalAuvHgtMlZsLRz2b1j1ME&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_Afaa_cSxdF_BuqzmsZZZUWF8bpXwEpKmJGZcyQaIsDiLnw&oe=68C5C59D",
+            "caption": "・",
+            "timestamp": "2024-12-11T17:40:59+0000",
+            "like_count": 0,
+            "comments_count": 0,
+            "permalink": "https://www.instagram.com/p/DDcmJSRJdNg/"
+          },
+          {
+            "id": "18028728827404709",
+            "media_type": "IMAGE",
+            "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469740778_1125013812467717_2077970186212338707_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=1-7&_nc_sid=18de74&_nc_ohc=9LVxuxfog5oQ7kNvwGawcV2&_nc_oc=AdmIgPAU_wE94N0HGmL0y-SPZOsGrVEPul44i0NIqiOd9xfBBPTQzfb2JwAHZXDFCdI&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_Afb5Q5JaAKDpKs_Uw6pKe4FZUP2iakLi7U6d5Haxz3jwmA&oe=68C5DCD0",
+            "caption": "・",
+            "timestamp": "2024-12-11T17:40:57+0000",
+            "like_count": 0,
+            "comments_count": 0,
+            "permalink": "https://www.instagram.com/p/DDcmJF2pQIU/"
+          },
+          {
+            "id": "18010382759662020",
+            "media_type": "IMAGE",
+            "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469309175_1663892391191098_8087760222901608466_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=1-7&_nc_sid=18de74&_nc_ohc=jXnUx_bLrAkQ7kNvwHtv08r&_nc_oc=Adkb-mCRKiphVUtTkhRyzTGylJww-jQYIipQ7J8ci1Jq1tt9mjWu0WLggCv2a67N1Oc&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfblcfNL7bvg3iGoBDJTb5cyW2yB-zPfi6mXba5CBiq5hw&oe=68C5CDBA",
+            "caption": "・",
+            "timestamp": "2024-12-11T17:40:46+0000",
+            "like_count": 0,
+            "comments_count": 0,
+            "permalink": "https://www.instagram.com/p/DDcmHwwpgGL/"
+          },
+          {
+            "id": "17973308399665734",
+            "media_type": "IMAGE",
+            "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469719316_1107470567791287_7279039161999824770_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=1-7&_nc_sid=18de74&_nc_ohc=UKv8F7RKWeMQ7kNvwGqvoYe&_nc_oc=AdmSmNkWMwbkCtk2LwS8m-Ba4Do02MxZjLBFWdFoSbn2GIh3Y9P925VwAvQsIK4MViY&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfZfbii5QsRoinuSZG_aML4jo_9oOGdzMGQpNSaV1S5DrQ&oe=68C5AC56",
+            "caption": "・",
+            "timestamp": "2024-12-11T17:40:07+0000",
+            "like_count": 0,
+            "comments_count": 0,
+            "permalink": "https://www.instagram.com/p/DDcmDHdpBF4/"
+          }
+        ],
+        "paging": {
+          "cursors": {
+            "before": "QVFIU2p6ZAHVEUUZATWUlQQjFJem9HamwtLXhGVW1SUG92QmRycXQ4UFhMd0tKT1czTElfU2F3bW5GRzFhbFdoZAlUyZA3JrOWVjbEF5dThYaXdiOVF1RDMxbmZA3",
+            "after": "QVFIUzBqQ1JFeVBsWVhlTGVCYWZARdTQ4LWhoUEZAmNTZAxZA2NyVkpjeTV3NG8zeHhzWGRKZAGxwUUhOWVJucE8xQllFTXVISWMycUdHaEFNMDhrS0hwd09QUE9n"
+          },
+          "next": "https://graph.facebook.com/v23.0/17841471451691385/media?fields=id%2Cmedia_type%2Cmedia_url%2Cthumbnail_url%2Ccaption%2Ctimestamp%2Clike_count%2Ccomments_count%2Cpermalink&limit=5&access_token=EAARrfZCwPTGUBPZA5ZB479JiAyiyvogh7dq1YMWrZA3jWlwZCrouta8H3Bc3ZBQZAzNPCv7xZBfarXtTR8zUzx2XdHrB8N5rLa11M1sRXk9S1QDrZCZCZBaIG0XE6ZAZBzPkmYNt4H7zWYGfM7asl2r3uZAmYRKiQ4qGuh4UNHOtZCSANd8YcvtHjNVVZCI1z0FttSCGaL4CZBZBnJ60SZCGHQ5ptSVnZCoUQUVndGpgFtELTCNXsKYQ9ZAMZD&after=QVFIUzBqQ1JFeVBsWVhlTGVCYWZARdTQ4LWhoUEZAmNTZAxZA2NyVkpjeTV3NG8zeHhzWGRKZAGxwUUhOWVJucE8xQllFTXVISWMycUdHaEFNMDhrS0hwd09QUE9n"
+        }
+      },
+      "notes": "最新メディア5件を取得成功"
+    },
+    {
+      "test_name": "media_insights",
+      "success": false,
+      "error": "400 Client Error: Bad Request for url: https://graph.facebook.com/v23.0/18474298093044270/insights?metric=reach%2Cimpressions%2Clikes%2Ccomments%2Cshares%2Csaved&access_token=EAARrfZCwPTGUBPZA5ZB479JiAyiyvogh7dq1YMWrZA3jWlwZCrouta8H3Bc3ZBQZAzNPCv7xZBfarXtTR8zUzx2XdHrB8N5rLa11M1sRXk9S1QDrZCZCZBaIG0XE6ZAZBzPkmYNt4H7zWYGfM7asl2r3uZAmYRKiQ4qGuh4UNHOtZCSANd8YcvtHjNVVZCI1z0FttSCGaL4CZBZBnJ60SZCGHQ5ptSVnZCoUQUVndGpgFtELTCNXsKYQ9ZAMZD",
+      "test_media_id": "18474298093044270",
+      "notes": "メディアインサイト取得失敗"
+    }
+  ]
+}
