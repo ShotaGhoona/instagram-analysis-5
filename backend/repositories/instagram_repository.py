@@ -263,6 +263,75 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
         except Exception as e:
             print(f"Error getting latest media stats: {e}")
             return {}
+    
+    async def save_daily_account_insights(self, account_insights: List[Dict]) -> int:
+        """Save daily account insights to daily_account_stats table"""
+        try:
+            saved_count = 0
+            today = datetime.now().date().isoformat()
+            
+            for insights_data in account_insights:
+                ig_user_id = insights_data['ig_user_id']
+                
+                # Check if account stats already exist for today
+                existing = self.client.table('daily_account_stats').select('id').eq('ig_user_id', ig_user_id).eq('date', today).execute()
+                
+                # Prepare account stats record with default values for required fields
+                stats_record = {
+                    'date': today,
+                    'ig_user_id': ig_user_id,
+                    'followers_count': insights_data.get('followers_count', 0),  # Default to 0
+                    'follows_count': insights_data.get('follows_count', 0),      # Default to 0
+                    'media_count': insights_data.get('media_count', 0),          # Default to 0
+                    'profile_views': insights_data.get('profile_views'),
+                    'website_clicks': insights_data.get('website_clicks')
+                }
+                
+                if existing.data:
+                    # Update existing account stats (only update provided fields)
+                    update_data = {}
+                    if 'profile_views' in insights_data:
+                        update_data['profile_views'] = insights_data['profile_views']
+                    if 'website_clicks' in insights_data:
+                        update_data['website_clicks'] = insights_data['website_clicks']
+                    
+                    if update_data:  # Only update if there's data to update
+                        self.client.table('daily_account_stats').update(update_data).eq('ig_user_id', ig_user_id).eq('date', today).execute()
+                else:
+                    # Insert new account stats
+                    self.client.table('daily_account_stats').insert(stats_record).execute()
+                
+                saved_count += 1
+            
+            return saved_count
+        except Exception as e:
+            print(f"Error saving daily account insights: {e}")
+            return 0
+    
+    async def get_latest_account_insights(self, ig_user_ids: List[str]) -> Dict[str, Dict]:
+        """Get latest account insights for multiple accounts"""
+        try:
+            latest_insights = {}
+            
+            for ig_user_id in ig_user_ids:
+                result = self.client.table('daily_account_stats').select('*').eq('ig_user_id', ig_user_id).order('date', desc=True).limit(1).execute()
+                
+                if result.data:
+                    latest_insights[ig_user_id] = result.data[0]
+                else:
+                    # Default empty insights
+                    latest_insights[ig_user_id] = {
+                        'profile_views': None,
+                        'website_clicks': None,
+                        'followers_count': None,
+                        'follows_count': None,
+                        'media_count': None
+                    }
+            
+            return latest_insights
+        except Exception as e:
+            print(f"Error getting latest account insights: {e}")
+            return {}
 
 # Repository instance
 instagram_repository = InstagramAccountRepository()

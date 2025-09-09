@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
 from models.instagram import TokenRefreshResponse
 from repositories.instagram_repository import InstagramAccountRepository
 from external.instagram_client import InstagramAPIClient
@@ -242,6 +242,119 @@ class InstagramService:
                 "success": False,
                 "error": str(e),
                 "processed_media": 0
+            }
+    
+    async def collect_account_insights(self, ig_user_id: str, access_token: str) -> Dict[str, Any]:
+        """Collect account insights from Instagram API and save to database"""
+        try:
+            print(f"🚀 Account Insights Collection開始: {ig_user_id}")
+            
+            # Get account insights from Instagram API
+            client = InstagramAPIClient()
+            api_result = client.get_account_insights(ig_user_id, access_token)
+            
+            if not api_result.get("success"):
+                return {
+                    "success": False,
+                    "error": api_result.get("error", "Failed to get account insights"),
+                    "collected_metrics": 0
+                }
+            
+            insights_data = api_result.get("data", {})
+            
+            # Prepare account insights data for database
+            account_data = {
+                'ig_user_id': ig_user_id
+            }
+            
+            # Add insights metrics
+            for metric, result in insights_data.items():
+                if result.get("success"):
+                    account_data[metric] = result.get("value")
+                else:
+                    account_data[metric] = None
+            
+            # Save to database
+            if self.repository:
+                saved_count = await self.repository.save_daily_account_insights([account_data])
+            else:
+                # Fallback to direct repository access
+                from repositories.instagram_repository import instagram_repository
+                saved_count = await instagram_repository.save_daily_account_insights([account_data])
+            
+            successful_metrics = api_result.get("successful_metrics", 0)
+            total_metrics = api_result.get("total_metrics", 0)
+            
+            print(f"✅ Account Insights Collection完了: {successful_metrics}/{total_metrics} メトリクス成功, {saved_count}件保存")
+            
+            return {
+                "success": True,
+                "collected_metrics": successful_metrics,
+                "total_metrics": total_metrics,
+                "saved_records": saved_count,
+                "insights_data": insights_data
+            }
+            
+        except Exception as e:
+            print(f"❌ Account Insights Collection失敗: {str(e)}")
+            return {
+                "success": False,
+                "error": str(e),
+                "collected_metrics": 0
+            }
+    
+    async def collect_all_account_insights(self, accounts: List[Dict]) -> Dict[str, Any]:
+        """Collect insights for all accounts"""
+        try:
+            print(f"🚀 All Account Insights Collection開始: {len(accounts)}アカウント")
+            
+            insights_results = []
+            successful_accounts = 0
+            
+            for account in accounts:
+                ig_user_id = account.get('ig_user_id')
+                access_token = account.get('access_token')
+                account_name = account.get('name', ig_user_id)
+                
+                if not ig_user_id or not access_token:
+                    print(f"   ⚠️ スキップ: {account_name} - 必要な情報が不足")
+                    insights_results.append({
+                        "account_name": account_name,
+                        "ig_user_id": ig_user_id,
+                        "result": {
+                            "success": False,
+                            "error": "Missing ig_user_id or access_token",
+                            "collected_metrics": 0
+                        }
+                    })
+                    continue
+                
+                insights_result = await self.collect_account_insights(ig_user_id, access_token)
+                
+                if insights_result.get("success"):
+                    successful_accounts += 1
+                
+                insights_results.append({
+                    "account_name": account_name,
+                    "ig_user_id": ig_user_id,
+                    "result": insights_result
+                })
+            
+            print(f"✅ All Account Insights Collection完了: {successful_accounts}/{len(accounts)} アカウント成功")
+            
+            return {
+                "success": True,
+                "processed_accounts": len(accounts),
+                "successful_accounts": successful_accounts,
+                "insights_results": insights_results
+            }
+            
+        except Exception as e:
+            print(f"❌ All Account Insights Collection失敗: {str(e)}")
+            return {
+                "success": False,
+                "error": str(e),
+                "processed_accounts": 0
             }
 
 # Service instance

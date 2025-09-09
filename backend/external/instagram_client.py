@@ -309,6 +309,94 @@ class InstagramAPIClient:
         except Exception as e:
             print(f"❌ Type-specific insights取得例外: {str(e)}")
             return {"success": False, "error": str(e)}
+    
+    def get_account_insights(self, ig_user_id: str, access_token: str, metrics: List[str] = None) -> Dict[str, Any]:
+        """Get account-level insights"""
+        try:
+            if metrics is None:
+                metrics = ['profile_views', 'website_clicks']  # 検証済みメトリクス
+            
+            print(f"🔍 Account Insights取得開始: {ig_user_id}")
+            print(f"   📊 対象メトリクス: {', '.join(metrics)}")
+            
+            params = {
+                'metric': ','.join(metrics),
+                'period': 'day',
+                'metric_type': 'total_value',  # 必須パラメータ
+                'access_token': access_token
+            }
+            
+            result = self.graph_api_request(f'/{ig_user_id}/insights', params)
+            
+            if result.get("success") and "data" in result:
+                insights_data = result["data"]
+                
+                # Instagram Account Insights の構造: {"data": [insights...]}
+                if "data" in insights_data:
+                    actual_insights = insights_data["data"]
+                else:
+                    actual_insights = insights_data
+                
+                # レスポンスデータを解析
+                insights_result = {}
+                for insight in actual_insights:
+                    metric_name = insight.get('name')
+                    
+                    # Account Insights の場合、データ構造が異なる
+                    if 'total_value' in insight:
+                        # Account insights format: {"total_value": {"value": 0}}
+                        value = insight['total_value'].get('value', 0)
+                        insights_result[metric_name] = {
+                            "success": True,
+                            "value": value,
+                            "raw_data": insight
+                        }
+                        print(f"      ✅ {metric_name}: {value:,}")
+                    elif 'values' in insight:
+                        # Media insights format: {"values": [{"value": 0}]}
+                        values = insight.get('values', [])
+                        if values and len(values) > 0:
+                            value = values[0].get('value', 0)
+                            end_time = values[0].get('end_time', 'N/A')
+                            insights_result[metric_name] = {
+                                "success": True,
+                                "value": value,
+                                "end_time": end_time,
+                                "raw_data": insight
+                            }
+                            print(f"      ✅ {metric_name}: {value:,}")
+                        else:
+                            insights_result[metric_name] = {
+                                "success": False,
+                                "error": "Empty values array"
+                            }
+                            print(f"      ❌ {metric_name}: データが空")
+                    else:
+                        insights_result[metric_name] = {
+                            "success": False,
+                            "error": "Unknown data format"
+                        }
+                        print(f"      ❌ {metric_name}: 不明なデータ形式")
+                
+                success_count = sum(1 for result in insights_result.values() if result.get("success"))
+                print(f"✅ Account Insights完了: {success_count}/{len(metrics)} メトリクス成功")
+                
+                return {
+                    "success": success_count > 0,
+                    "data": insights_result,
+                    "total_metrics": len(metrics),
+                    "successful_metrics": success_count
+                }
+            else:
+                print(f"❌ Account Insights失敗: {result.get('error', 'No data in response')}")
+                return {"success": False, "error": result.get("error", "No data in response")}
+                
+        except Exception as e:
+            print(f"❌ Account Insights取得例外: {str(e)}")
+            print(f"   🔍 詳細: {type(e).__name__} - {str(e)}")
+            import traceback
+            traceback.print_exc()
+            return {"success": False, "error": str(e)}
 
 # Create instance for easy import
 instagram_client = InstagramAPIClient()
