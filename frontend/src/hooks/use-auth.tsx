@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { apiClient } from '@/lib/api'
 import type { User } from '@/lib/types'
 
@@ -13,7 +13,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null)
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { children: ReactNode }): JSX.Element {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -33,6 +33,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       apiClient.setToken(response.access_token)
       // TODO: Get user info after login
       setUser({ id: 1, username, created_at: new Date().toISOString() })
+      
+      // ログイン成功後はトップページへ
+      window.location.href = '/'
     } catch (error) {
       throw error
     }

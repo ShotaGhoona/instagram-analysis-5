@@ -50,7 +50,7 @@ class ApiClient {
   }
 
   // Auth endpoints
-  async login(username: string, password: string) {
+  async login(username: string, password: string): Promise<{ access_token: string; token_type: string }> {
     return this.request('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
