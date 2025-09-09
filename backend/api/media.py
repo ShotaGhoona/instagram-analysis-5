@@ -2,7 +2,8 @@ from fastapi import APIRouter, HTTPException, Depends, status, Query
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime
-from models.database import db_manager, User
+from models.user import User
+from repositories.instagram_repository import instagram_repository
 from auth.simple_auth import get_current_user
 
 router = APIRouter()
@@ -45,7 +46,7 @@ async def get_media_posts(
 ):
     """アカウントの投稿一覧を取得"""
     # Verify account exists
-    account = await db_manager.get_instagram_account(account_id)
+    account = await instagram_repository.get_by_id(account_id)
     if not account:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -74,7 +75,7 @@ async def get_media_with_stats(
 ):
     """統計データ付きの投稿一覧を取得（投稿分析ページ用）"""
     # Verify account exists
-    account = await db_manager.get_instagram_account(account_id)
+    account = await instagram_repository.get_by_id(account_id)
     if not account:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

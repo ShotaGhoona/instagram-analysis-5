@@ -1,7 +1,9 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from typing import List
 from pydantic import BaseModel
-from models.database import db_manager, InstagramAccount, User
+from models.instagram import InstagramAccount
+from models.user import User
+from repositories.instagram_repository import instagram_repository
 from auth.simple_auth import get_current_user
 
 router = APIRouter()
@@ -23,7 +25,7 @@ class InstagramAccountResponse(BaseModel):
 @router.get("/", response_model=List[InstagramAccountResponse])
 async def get_accounts(current_user: User = Depends(get_current_user)):
     """全てのInstagramアカウント一覧を取得"""
-    accounts = await db_manager.get_instagram_accounts()
+    accounts = await instagram_repository.get_all()
     return [
         InstagramAccountResponse(
             id=account.id,
@@ -37,7 +39,7 @@ async def get_accounts(current_user: User = Depends(get_current_user)):
 @router.get("/{ig_user_id}", response_model=InstagramAccountResponse)
 async def get_account(ig_user_id: str, current_user: User = Depends(get_current_user)):
     """特定のInstagramアカウント詳細を取得"""
-    account = await db_manager.get_instagram_account(ig_user_id)
+    account = await instagram_repository.get_by_id(ig_user_id)
     if not account:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -66,7 +68,7 @@ async def create_account(
         profile_picture_url=account_data.profile_picture_url
     )
     
-    created_account = await db_manager.create_instagram_account(account)
+    created_account = await instagram_repository.create(account)
     if not created_account:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

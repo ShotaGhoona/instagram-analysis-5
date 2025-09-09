@@ -6,7 +6,8 @@ from datetime import datetime, timedelta
 from typing import Optional
 import jwt
 import os
-from models.database import db_manager, User
+from models.user import User
+from repositories.user_repository import user_repository
 
 router = APIRouter()
 security = HTTPBearer()
@@ -59,7 +60,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     except jwt.PyJWTError:
         raise credentials_exception
     
-    user = await db_manager.get_user_by_username(username=username)
+    user = await user_repository.get_by_username(username=username)
     if user is None:
         raise credentials_exception
     return user
@@ -67,7 +68,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 @router.post("/register", response_model=TokenResponse)
 async def register(request: RegisterRequest):
     # Check if user already exists
-    existing_user = await db_manager.get_user_by_username(request.username)
+    existing_user = await user_repository.get_by_username(request.username)
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -77,7 +78,7 @@ async def register(request: RegisterRequest):
     # Create new user
     hashed_password = get_password_hash(request.password)
     user = User(username=request.username, password_hash=hashed_password)
-    created_user = await db_manager.create_user(user)
+    created_user = await user_repository.create(user)
     
     if not created_user:
         raise HTTPException(
@@ -91,7 +92,7 @@ async def register(request: RegisterRequest):
 
 @router.post("/login", response_model=TokenResponse)
 async def login(request: LoginRequest):
-    user = await db_manager.get_user_by_username(request.username)
+    user = await user_repository.get_by_username(request.username)
     if not user or not verify_password(request.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
