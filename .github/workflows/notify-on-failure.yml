@@ -1,0 +1,133 @@
+name: Collection Failure Notification
+
+on:
+  workflow_run:
+    workflows: ["Instagram Daily Data Collection"]
+    types:
+      - completed
+
+jobs:
+  notify-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    
+    permissions:
+      issues: write
+      contents: read
+    
+    steps:
+    - name: Get workflow run details
+      id: workflow_details
+      run: |
+        echo "workflow_url=${{ github.event.workflow_run.html_url }}" >> $GITHUB_OUTPUT
+        echo "run_id=${{ github.event.workflow_run.id }}" >> $GITHUB_OUTPUT
+        echo "run_number=${{ github.event.workflow_run.run_number }}" >> $GITHUB_OUTPUT
+        echo "created_at=${{ github.event.workflow_run.created_at }}" >> $GITHUB_OUTPUT
+        
+        # Format date in JST
+        CREATED_JST=$(date -d "${{ github.event.workflow_run.created_at }}" '+%Y年%m月%d日 %H:%M:%S JST' 2>/dev/null || echo "${{ github.event.workflow_run.created_at }}")
+        echo "created_jst=$CREATED_JST" >> $GITHUB_OUTPUT
+    
+    - name: Create failure issue
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const title = `🚨 Daily Data Collection Failed - ${new Date().toISOString().split('T')[0]}`;
+          const workflowUrl = '${{ steps.workflow_details.outputs.workflow_url }}';
+          const runId = '${{ steps.workflow_details.outputs.run_id }}';
+          const runNumber = '${{ steps.workflow_details.outputs.run_number }}';
+          const createdJst = '${{ steps.workflow_details.outputs.created_jst }}';
+          
+          const body = `## 🚨 Instagram データ収集失敗アラート
+          
+          **実行日時**: ${createdJst}
+          **実行番号**: #${runNumber}
+          **ワークフローURL**: ${workflowUrl}
+          
+          ### 📋 確認事項
+          - [ ] Instagram API トークンの有効性を確認
+          - [ ] Supabase データベース接続状況を確認
+          - [ ] GitHub Secrets の環境変数設定を確認
+          - [ ] Instagram API制限（レート制限）の確認
+          - [ ] 各アカウントのアクセストークンの期限を確認
+          
+          ### 🔍 調査手順
+          1. **ログ確認**: 上記ワークフローのログを詳しく確認
+          2. **エラー特定**: 失敗したステップとエラーメッセージを特定
+          3. **アカウント状況**: Instagram Business Accounts の状況を確認
+          4. **API制限**: Instagram Graph API の制限状況を確認
+          5. **トークン更新**: 必要に応じてアクセストークンの更新
+          
+          ### 🛠️ 対応アクション
+          - [ ] エラーの原因を特定し修正
+          - [ ] 必要に応じて手動でデータ収集を実行
+          - [ ] トークンの更新が必要な場合は \`/settings/setup\` で更新
+          - [ ] 修正後、手動でワークフローを再実行
+          
+          ### 📊 影響範囲
+          - 本日のデータ収集が失敗
+          - 以下のデータが未収集の可能性:
+            - 投稿データ (新規投稿の検出・保存)
+            - 投稿インサイト (リーチ、エンゲージメント等)
+            - アカウントインサイト (プロフィールアクセス、ウェブサイトクリック)
+          
+          ### 🔄 復旧方法
+          1. **手動実行**: Actions タブから "Instagram Daily Data Collection" を手動実行
+          2. **デバッグモード**: 問題調査のため、デバッグモードでの手動実行を推奨
+          3. **次回実行**: 問題が解決されれば明日の定期実行は正常に動作予定
+          
+          ---
+          
+          **⚡ クイックアクション**
+          - [ワークフローを手動実行](../../actions/workflows/daily-data-collection.yml)
+          - [Instagram アカウント設定](/settings/setup)
+          - [Supabase ダッシュボード](https://supabase.com/dashboard)
+          
+          ---
+          *このissueは自動生成されました (Run ID: ${runId})*
+          `;
+          
+          // Check if an issue for today already exists
+          const today = new Date().toISOString().split('T')[0];
+          const existingIssues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: 'automated,data-collection-failure',
+            state: 'open'
+          });
+          
+          const todayIssue = existingIssues.data.find(issue => 
+            issue.title.includes(today)
+          );
+          
+          if (todayIssue) {
+            // Update existing issue with additional run information
+            const updateBody = todayIssue.body + `\n\n---\n\n**🔄 追加失敗 (${createdJst})**\n- 実行番号: #${runNumber}\n- URL: ${workflowUrl}`;
+            
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: todayIssue.number,
+              body: updateBody
+            });
+            
+            console.log(`Updated existing issue #${todayIssue.number}`);
+          } else {
+            // Create new issue
+            const newIssue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['bug', 'automated', 'data-collection-failure', 'high-priority']
+            });
+            
+            console.log(`Created new issue #${newIssue.data.number}`);
+          }
+    
+    - name: Log notification completion
+      run: |
+        echo "🔔 通知処理完了"
+        echo "📅 失敗日時: ${{ steps.workflow_details.outputs.created_jst }}"
+        echo "🔗 ワークフローURL: ${{ steps.workflow_details.outputs.workflow_url }}"
+        echo "📋 GitHub Issue が自動作成されました"

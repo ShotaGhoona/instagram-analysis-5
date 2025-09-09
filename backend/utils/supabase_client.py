@@ -17,10 +17,10 @@ class SupabaseClient:
     def __init__(self):
         if self._client is None:
             url = os.getenv("SUPABASE_URL")
-            key = os.getenv("SUPABASE_KEY")
+            key = os.getenv("SUPABASE_ANON_KEY")
             
             if not url or not key:
-                raise ValueError("SUPABASE_URL and SUPABASE_KEY must be set in environment variables")
+                raise ValueError("SUPABASE_URL and SUPABASE_ANON_KEY must be set in environment variables")
             
             self._client = create_client(url, key)
     

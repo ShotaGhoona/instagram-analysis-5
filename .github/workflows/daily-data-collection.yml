@@ -1,0 +1,140 @@
+name: Instagram Daily Data Collection
+
+on:
+  schedule:
+    # 毎日 JST 09:00 (UTC 00:00) に実行
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # 手動実行も可能
+    inputs:
+      debug:
+        description: 'Enable debug mode'
+        required: false
+        default: 'false'
+        type: boolean
+      test_mode:
+        description: 'Run in test mode (dry run)'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  # Set timezone for consistent logging
+  TZ: 'Asia/Tokyo'
+
+jobs:
+  collect-instagram-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30  # 30分でタイムアウト
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Cache Python dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('scripts/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r scripts/requirements.txt
+    
+    - name: Set up environment variables
+      run: |
+        echo "DEBUG_MODE=${{ inputs.debug || 'false' }}" >> $GITHUB_ENV
+        echo "TEST_MODE=${{ inputs.test_mode || 'false' }}" >> $GITHUB_ENV
+        echo "GITHUB_RUN_URL=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
+    
+    - name: Verify environment setup
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        INSTAGRAM_APP_ID: ${{ secrets.INSTAGRAM_APP_ID }}
+        INSTAGRAM_APP_SECRET: ${{ secrets.INSTAGRAM_APP_SECRET }}
+      run: |
+        echo "🔧 環境変数検証開始..."
+        python scripts/setup_environment.py
+    
+    - name: Run Instagram data collection
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        INSTAGRAM_APP_ID: ${{ secrets.INSTAGRAM_APP_ID }}
+        INSTAGRAM_APP_SECRET: ${{ secrets.INSTAGRAM_APP_SECRET }}
+      run: |
+        echo "🚀 Instagram データ収集開始..."
+        echo "📅 実行日時: $(date '+%Y年%m月%d日 %H:%M:%S %Z')"
+        echo "🔧 デバッグモード: ${{ env.DEBUG_MODE }}"
+        echo "🧪 テストモード: ${{ env.TEST_MODE }}"
+        echo ""
+        
+        # Run the main data collection script
+        python scripts/daily_data_collection.py
+    
+    - name: Generate collection report
+      if: always()  # 成功・失敗に関わらず実行
+      run: |
+        echo "📄 収集レポート生成中..."
+        
+        # Find the most recent results file
+        RESULTS_FILE=$(find scripts/ -name "collection_results_*.json" -type f -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -n1 | cut -d' ' -f2- || echo "")
+        
+        if [ -n "$RESULTS_FILE" ] && [ -f "$RESULTS_FILE" ]; then
+          echo "📊 結果ファイル発見: $RESULTS_FILE"
+          python scripts/report_generator.py "$RESULTS_FILE"
+        else
+          echo "⚠️ 結果ファイルが見つかりません"
+        fi
+        
+        echo "✅ レポート生成完了"
+    
+    - name: Upload collection results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: collection-results-${{ github.run_id }}
+        path: |
+          scripts/collection_results_*.json
+          scripts/collection_report_*.md
+          scripts/local_test_report.md
+        retention-days: 30
+        if-no-files-found: warn
+    
+    - name: Upload logs on failure
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: error-logs-${{ github.run_id }}
+        path: |
+          scripts/*.log
+          logs/
+        retention-days: 7
+        if-no-files-found: ignore
+    
+    - name: Collection summary
+      if: always()
+      run: |
+        echo "🏁 Instagram Data Collection 完了"
+        echo "📊 実行サマリー:"
+        echo "   🕐 実行時間: $(date '+%Y年%m月%d日 %H:%M:%S %Z')"
+        echo "   🔗 実行URL: ${{ env.GITHUB_RUN_URL }}"
+        echo "   📁 リポジトリ: ${{ github.repository }}"
+        echo "   🔀 コミット: ${{ github.sha }}"
+        echo ""
+        
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "✅ データ収集が正常に完了しました"
+        else
+          echo "❌ データ収集中にエラーが発生しました"
+          echo "🔍 詳細なログは上記のステップを確認してください"
+        fi

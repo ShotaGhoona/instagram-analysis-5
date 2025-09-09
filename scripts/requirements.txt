@@ -1,0 +1,23 @@
+# GitHub Actions用の最小限の依存関係
+# Instagram分析アプリ - データ収集スクリプト用
+
+# Supabase Python Client
+supabase==2.7.4
+
+# HTTP requests for Instagram API
+requests==2.31.0
+
+# Environment variables management  
+python-dotenv==1.0.0
+
+# JSON handling (built-in, but explicit for clarity)
+# json - built-in module
+
+# Async support (built-in in Python 3.7+)
+# asyncio - built-in module
+
+# Date/time handling (built-in)
+# datetime - built-in module
+
+# Type hints support (built-in in Python 3.5+)
+# typing - built-in module
