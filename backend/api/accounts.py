@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 from models.instagram import InstagramAccount
 from models.user import User
@@ -13,14 +13,14 @@ class InstagramAccountCreate(BaseModel):
     ig_user_id: str
     access_token: str
     username: str
-    profile_picture_url: str = None
+    profile_picture_url: Optional[str] = None
 
 class InstagramAccountResponse(BaseModel):
     id: int
     name: str
     ig_user_id: str
     username: str
-    profile_picture_url: str = None
+    profile_picture_url: Optional[str] = None
 
 @router.get("/", response_model=List[InstagramAccountResponse])
 async def get_accounts(current_user: User = Depends(get_current_user)):

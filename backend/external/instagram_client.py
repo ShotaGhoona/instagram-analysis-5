@@ -192,7 +192,7 @@ class InstagramAPIClient:
         """Get Instagram account basic info"""
         try:
             result = self.graph_api_request(f'/{ig_account_id}', {
-                'fields': 'id,username,account_type,media_count,followers_count,follows_count,profile_picture_url',
+                'fields': 'id,username,name,profile_picture_url,followers_count,follows_count,media_count',
                 'access_token': access_token
             })
             
