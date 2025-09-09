@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { AccountSelector } from '@/components/account/account-selector'
 
 interface HeaderProps {
   accountId?: string
@@ -50,11 +51,7 @@ export function Header({ accountId = "1" }: HeaderProps) {
             </div>
             
             {/* アカウント切り替え */}
-            <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
-              <span>👤</span>
-              <span className="text-sm">@username</span>
-              <span className="text-xs">▼</span>
-            </div>
+            <AccountSelector />
           </div>
         </div>
       </div>

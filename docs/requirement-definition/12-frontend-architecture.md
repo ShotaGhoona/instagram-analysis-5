@@ -60,12 +60,13 @@ frontend/
 │   └── filters/
 │       ├── date-filter.tsx      # 日付フィルター
 │       └── media-type-filter.tsx # 投稿タイプフィルター
+├── contexts/                     # React Context
+│   └── account-context.tsx      # アカウント管理Context
 ├── lib/
-│   ├── api.ts                   # FastAPI クライアント
+│   ├── api-client.ts            # FastAPI クライアント
 │   ├── types.ts                 # TypeScript 型定義
 │   └── utils.ts                 # ユーティリティ関数
 └── hooks/
-    ├── use-accounts.ts          # アカウント管理
     ├── use-analytics.ts         # 分析データ
     └── use-auth.ts              # 認証管理
 ```
@@ -89,8 +90,10 @@ export default function RootLayout() {
     <html>
       <body>
         <AuthProvider>
-          <Header />
-          {children}
+          <AccountProvider>
+            <Header />
+            {children}
+          </AccountProvider>
         </AuthProvider>
       </body>
     </html>
@@ -355,11 +358,65 @@ export function usePostsAnalytics(accountId: string) {
 }
 ```
 
-## ⚡ 状態管理（シンプル）
+## ⚡ 状態管理（Context）
 
 ```tsx
 // PoCレベルなのでuseStateとuseContextで十分
 // 複雑になったらZustandやTanStack Queryを検討
+
+// contexts/account-context.tsx
+interface AccountContextType {
+  currentAccount: InstagramAccount | null
+  accounts: InstagramAccount[]
+  loading: boolean
+  switchAccount: (accountId: string) => void
+}
+
+const AccountContext = createContext<AccountContextType | null>(null)
+
+export function AccountProvider({ children }: { children: React.ReactNode }) {
+  const [accounts, setAccounts] = useState<InstagramAccount[]>([])
+  const [currentAccount, setCurrentAccount] = useState<InstagramAccount | null>(null)
+  const [loading, setLoading] = useState(true)
+  const params = useParams()
+  const router = useRouter()
+
+  // アカウント一覧取得
+  useEffect(() => {
+    fetchAccounts()
+  }, [])
+
+  // URL変更時の現在アカウント更新
+  useEffect(() => {
+    if (params.accountId && accounts.length > 0) {
+      const account = accounts.find(acc => acc.ig_user_id === params.accountId)
+      setCurrentAccount(account || null)
+    }
+  }, [params.accountId, accounts])
+
+  const switchAccount = (accountId: string) => {
+    const path = window.location.pathname
+    const newPath = path.replace(/\/account\/[^\/]+/, `/account/${accountId}`)
+    router.push(newPath)
+  }
+
+  return (
+    <AccountContext.Provider value={{
+      currentAccount,
+      accounts,
+      loading,
+      switchAccount
+    }}>
+      {children}
+    </AccountContext.Provider>
+  )
+}
+
+export function useAccount() {
+  const context = useContext(AccountContext)
+  if (!context) throw new Error('useAccount must be used within AccountProvider')
+  return context
+}
 
 // hooks/use-auth.ts
 const AuthContext = createContext<AuthContextType | null>(null)

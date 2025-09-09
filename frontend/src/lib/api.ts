@@ -1,3 +1,5 @@
+import { InstagramAccount } from './types'
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
 class ApiClient {
@@ -65,12 +67,12 @@ class ApiClient {
   }
 
   // Account endpoints
-  async getAccounts() {
+  async getAccounts(): Promise<InstagramAccount[]> {
     return this.request('/accounts/')
   }
 
-  async getAccount(accountId: string) {
-    return this.request(`/accounts/${accountId}`)
+  async getAccount(igUserId: string): Promise<InstagramAccount> {
+    return this.request(`/accounts/${igUserId}`)
   }
 
   // Analytics endpoints
