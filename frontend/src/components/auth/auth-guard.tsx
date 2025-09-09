@@ -23,8 +23,8 @@ export function AuthGuard({
       if (requireAuth && !user) {
         router.push(fallbackUrl)
       } else if (!requireAuth && user) {
-        // 認証済み時はトップページにリダイレクト
-        router.push('/')
+        // 認証済み時は年間分析ページにリダイレクト（仮のaccountId: 1を使用）
+        router.push('/analytics/account/1/yearly')
       }
     }
   }, [user, isLoading, requireAuth, fallbackUrl, router])

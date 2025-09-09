@@ -36,8 +36,8 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
       // TODO: Get user info after login
       setUser({ id: 1, username, created_at: new Date().toISOString() })
       
-      // ログイン成功後はトップページへ
-      window.location.href = '/'
+      // ログイン成功後は年間分析ページへ（仮のaccountId: 1を使用）
+      window.location.href = '/analytics/account/1/yearly'
     } catch (error) {
       throw error
     }
