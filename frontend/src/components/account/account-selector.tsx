@@ -1,7 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import { Check, ChevronsUpDown } from 'lucide-react'
+import { Check, ChevronsUpDown, User } from 'lucide-react'
+import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -20,6 +21,39 @@ import {
 } from '@/components/ui/popover'
 import { useAccount } from '@/contexts/account-context'
 
+// Account avatar component
+function AccountAvatar({ account, size = 'sm' }: { account: any; size?: 'sm' | 'md' }) {
+  const sizeClasses = {
+    sm: 'w-6 h-6',
+    md: 'w-8 h-8'
+  }
+
+  if (account?.profile_picture_url) {
+    return (
+      <Image
+        src={account.profile_picture_url}
+        alt={`@${account.username}`}
+        width={size === 'sm' ? 24 : 32}
+        height={size === 'sm' ? 24 : 32}
+        className={cn(
+          "rounded-full object-cover border",
+          sizeClasses[size]
+        )}
+        unoptimized
+      />
+    )
+  }
+
+  return (
+    <div className={cn(
+      "rounded-full bg-gray-200 flex items-center justify-center",
+      sizeClasses[size]
+    )}>
+      <User className={size === 'sm' ? 'h-3 w-3' : 'h-4 w-4'} />
+    </div>
+  )
+}
+
 export function AccountSelector() {
   const { currentAccount, accounts, loading, switchAccount } = useAccount()
   const [open, setOpen] = React.useState(false)
@@ -27,7 +61,7 @@ export function AccountSelector() {
   if (loading) {
     return (
       <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
-        <span>👤</span>
+        <div className="w-6 h-6 rounded-full bg-gray-300 animate-pulse" />
         <span className="text-sm">読み込み中...</span>
       </div>
     )
@@ -36,7 +70,7 @@ export function AccountSelector() {
   if (!currentAccount) {
     return (
       <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
-        <span>👤</span>
+        <User className="h-4 w-4 text-gray-500" />
         <span className="text-sm">アカウントなし</span>
       </div>
     )
@@ -51,7 +85,7 @@ export function AccountSelector() {
           aria-expanded={open}
           className="w-auto justify-between gap-2"
         >
-          <span>👤</span>
+          <AccountAvatar account={currentAccount} size="sm" />
           <span className="text-sm">
             {currentAccount.name} (@{currentAccount.username})
           </span>
@@ -74,7 +108,7 @@ export function AccountSelector() {
                   }}
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <span>👤</span>
+                    <AccountAvatar account={account} size="md" />
                     <div className="flex flex-col">
                       <span className="font-medium">{account.name}</span>
                       <span className="text-sm text-muted-foreground">

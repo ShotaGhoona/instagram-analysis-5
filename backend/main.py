@@ -11,9 +11,9 @@ from auth.simple_auth import router as auth_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("🚀 Instagram Analytics API Starting...")
+    print("🚀 インスタグラムアナリティクスAPI Starting...")
     yield
-    print("📊 Instagram Analytics API Shutting down...")
+    print("📊 インスタグラムアナリティクスAPI Shutting down...")
 
 app = FastAPI(
     title="Instagram Analytics API",
