@@ -37,7 +37,7 @@ export function calculateEngagementRate(post: {
     (post.saved || 0)
   
   const reach = post.reach || 1
-  return Math.round((totalEngagements / reach) * 100 * 100) / 100
+  return Math.round((totalEngagements / reach) * 100 * 10) / 10
 }
 
 export function formatNumber(num: number): string {
