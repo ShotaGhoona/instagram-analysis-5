@@ -125,6 +125,124 @@ class InstagramService:
                 "error": str(e),
                 "collected_posts": 0
             }
+    
+    async def collect_media_insights(self, ig_media_id: str, media_type: str, access_token: str, like_count: int = 0, comments_count: int = 0) -> Dict[str, Any]:
+        """Collect media insights from Instagram API and save to database"""
+        try:
+            print(f"🚀 Media Insights Collection開始: {ig_media_id[:15]}...")
+            
+            # Get insights from Instagram API
+            client = InstagramAPIClient()
+            api_result = client.get_media_insights_with_type(ig_media_id, media_type, access_token)
+            
+            if not api_result.get("success"):
+                return {
+                    "success": False,
+                    "error": api_result.get("error", "Failed to get media insights"),
+                    "collected_metrics": 0
+                }
+            
+            insights_data = api_result.get("data", {})
+            
+            # Prepare stats data for database
+            stats_data = {
+                'ig_media_id': ig_media_id,
+                'like_count': like_count,
+                'comments_count': comments_count
+            }
+            
+            # Add insights metrics
+            for metric, result in insights_data.items():
+                if result.get("success"):
+                    stats_data[metric] = result.get("value")
+                else:
+                    stats_data[metric] = None
+            
+            # Save to database
+            if self.repository:
+                saved_count = await self.repository.save_daily_media_stats([stats_data])
+            else:
+                # Fallback to direct repository access
+                from repositories.instagram_repository import instagram_repository
+                saved_count = await instagram_repository.save_daily_media_stats([stats_data])
+            
+            successful_metrics = api_result.get("successful_metrics", 0)
+            total_metrics = api_result.get("total_metrics", 0)
+            
+            print(f"✅ Media Insights Collection完了: {successful_metrics}/{total_metrics} メトリクス成功, {saved_count}件保存")
+            
+            return {
+                "success": True,
+                "collected_metrics": successful_metrics,
+                "total_metrics": total_metrics,
+                "saved_records": saved_count,
+                "insights_data": insights_data
+            }
+            
+        except Exception as e:
+            print(f"❌ Media Insights Collection失敗: {str(e)}")
+            return {
+                "success": False,
+                "error": str(e),
+                "collected_metrics": 0
+            }
+    
+    async def collect_all_media_insights(self, ig_user_id: str, access_token: str, limit: int = 25) -> Dict[str, Any]:
+        """Collect insights for all media posts of an account"""
+        try:
+            print(f"🚀 All Media Insights Collection開始: {ig_user_id}")
+            
+            # Get media posts first
+            media_result = await self.collect_media_posts(ig_user_id, access_token, limit)
+            
+            if not media_result.get("success"):
+                return {
+                    "success": False,
+                    "error": "Failed to get media posts: " + media_result.get("error", "Unknown error"),
+                    "processed_media": 0
+                }
+            
+            media_list = media_result.get("data", [])
+            
+            # Collect insights for each media
+            insights_results = []
+            successful_media = 0
+            
+            for media in media_list:
+                media_id = media.get("id")
+                media_type = media.get("media_type", "IMAGE")
+                like_count = media.get("like_count", 0)
+                comments_count = media.get("comments_count", 0)
+                
+                insights_result = await self.collect_media_insights(
+                    media_id, media_type, access_token, like_count, comments_count
+                )
+                
+                if insights_result.get("success"):
+                    successful_media += 1
+                
+                insights_results.append({
+                    "media_id": media_id,
+                    "media_type": media_type,
+                    "result": insights_result
+                })
+            
+            print(f"✅ All Media Insights Collection完了: {successful_media}/{len(media_list)} メディア成功")
+            
+            return {
+                "success": True,
+                "processed_media": len(media_list),
+                "successful_media": successful_media,
+                "insights_results": insights_results
+            }
+            
+        except Exception as e:
+            print(f"❌ All Media Insights Collection失敗: {str(e)}")
+            return {
+                "success": False,
+                "error": str(e),
+                "processed_media": 0
+            }
 
 # Service instance
 instagram_service = InstagramService()

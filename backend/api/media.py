@@ -78,8 +78,120 @@ async def get_media_insights(
     current_user: User = Depends(get_current_user)
 ):
     """特定投稿のインサイトデータを取得"""
-    # TODO: B0204 インサイトデータ取得後に実装
-    return []
+    # Get latest stats from database
+    media_stats = await instagram_repository.get_media_stats(media_id)
+    
+    if not media_stats:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Media insights not found"
+        )
+    
+    # Get latest stats (most recent entry)
+    latest_stats = media_stats[0]
+    
+    # Convert to response model
+    insights = []
+    
+    # Add available metrics
+    if latest_stats.get('reach') is not None:
+        insights.append(MediaInsight(metric="reach", value=latest_stats['reach']))
+    if latest_stats.get('views') is not None:
+        insights.append(MediaInsight(metric="views", value=latest_stats['views']))
+    if latest_stats.get('shares') is not None:
+        insights.append(MediaInsight(metric="shares", value=latest_stats['shares']))
+    if latest_stats.get('saved') is not None:
+        insights.append(MediaInsight(metric="saved", value=latest_stats['saved']))
+    
+    return insights
+
+@router.post("/{media_id}/collect-insights")
+async def collect_media_insights(
+    media_id: str,
+    current_user: User = Depends(get_current_user)
+):
+    """特定投稿のインサイトデータをInstagram APIから収集"""
+    # Get media post info first
+    media_posts = await instagram_repository.get_media_posts("", 100)  # Get all posts
+    target_media = None
+    
+    for post in media_posts:
+        if post['ig_media_id'] == media_id:
+            target_media = post
+            break
+    
+    if not target_media:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Media post not found"
+        )
+    
+    # Get account info for access token
+    account = await instagram_repository.get_by_id(target_media['ig_user_id'])
+    if not account:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Instagram account not found"
+        )
+    
+    # Collect insights using service
+    from services.instagram_service import instagram_service
+    result = await instagram_service.collect_media_insights(
+        media_id,
+        target_media['media_type'],
+        account.access_token,
+        target_media.get('like_count', 0),
+        target_media.get('comments_count', 0)
+    )
+    
+    if not result.get("success"):
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to collect insights: {result.get('error', 'Unknown error')}"
+        )
+    
+    return {
+        "success": True,
+        "message": "Insights collected successfully",
+        "collected_metrics": result.get("collected_metrics", 0),
+        "total_metrics": result.get("total_metrics", 0)
+    }
+
+@router.post("/collect-all-insights/{account_id}")
+async def collect_all_media_insights(
+    account_id: str,
+    limit: Optional[int] = Query(10, ge=1, le=25),
+    current_user: User = Depends(get_current_user)
+):
+    """アカウントの全投稿のインサイトデータを収集"""
+    # Verify account exists
+    account = await instagram_repository.get_by_id(account_id)
+    if not account:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Instagram account not found"
+        )
+    
+    # Collect all media insights using service
+    from services.instagram_service import instagram_service
+    result = await instagram_service.collect_all_media_insights(
+        account_id,
+        account.access_token,
+        limit
+    )
+    
+    if not result.get("success"):
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to collect insights: {result.get('error', 'Unknown error')}"
+        )
+    
+    return {
+        "success": True,
+        "message": "All insights collected successfully",
+        "processed_media": result.get("processed_media", 0),
+        "successful_media": result.get("successful_media", 0)
+    }
 
 @router.get("/stats/{account_id}", response_model=List[MediaPostWithStats])
 async def get_media_with_stats(

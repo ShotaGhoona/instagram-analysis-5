@@ -228,6 +228,87 @@ class InstagramAPIClient:
         except Exception as e:
             print(f"   ⚠️ Media posts取得例外: {str(e)}")
             return {"success": False, "error": str(e)}
+    
+    def get_media_insights(self, ig_media_id: str, access_token: str, metrics: List[str] = None) -> Dict[str, Any]:
+        """Get insights for specific media post"""
+        try:
+            if metrics is None:
+                metrics = ['reach', 'shares', 'saved']  # 検証済み基本メトリクス
+            
+            print(f"🔍 Media Insights取得開始: {ig_media_id[:15]}...")
+            insights_result = {}
+            
+            for metric in metrics:
+                print(f"   📊 {metric} メトリクス取得中...")
+                try:
+                    params = {
+                        'metric': metric,
+                        'access_token': access_token
+                    }
+                    
+                    result = self.graph_api_request(f'/{ig_media_id}/insights', params)
+                    
+                    if result["success"] and "data" in result and "data" in result["data"] and len(result["data"]["data"]) > 0:
+                        metric_data = result["data"]["data"][0]
+                        values = metric_data.get("values", [])
+                        if values and len(values) > 0:
+                            value = values[0].get("value", 0)
+                            insights_result[metric] = {
+                                "success": True,
+                                "value": value,
+                                "raw_data": metric_data
+                            }
+                            print(f"      ✅ {metric}: {value:,}")
+                        else:
+                            insights_result[metric] = {
+                                "success": False,
+                                "error": "Empty values array"
+                            }
+                            print(f"      ❌ {metric}: データが空")
+                    else:
+                        insights_result[metric] = {
+                            "success": False,
+                            "error": result.get("error", "No data in response")
+                        }
+                        print(f"      ❌ {metric}: {result.get('error', 'レスポンスなし')}")
+                        
+                except Exception as e:
+                    insights_result[metric] = {
+                        "success": False,
+                        "error": str(e)
+                    }
+                    print(f"      ❌ {metric}: 例外 - {str(e)}")
+            
+            success_count = sum(1 for result in insights_result.values() if result.get("success"))
+            print(f"✅ Media Insights完了: {success_count}/{len(metrics)} メトリクス成功")
+            
+            return {
+                "success": success_count > 0,
+                "data": insights_result,
+                "total_metrics": len(metrics),
+                "successful_metrics": success_count
+            }
+            
+        except Exception as e:
+            print(f"❌ Media Insights取得例外: {str(e)}")
+            return {"success": False, "error": str(e)}
+    
+    def get_media_insights_with_type(self, ig_media_id: str, media_type: str, access_token: str) -> Dict[str, Any]:
+        """Get insights for media with type-specific metrics"""
+        try:
+            # 基本メトリクス
+            metrics = ['reach', 'shares', 'saved']
+            
+            # VIDEO投稿には views メトリクス追加
+            if media_type == 'VIDEO':
+                metrics.append('views')
+            
+            print(f"🎬 {media_type}投稿のインサイト取得: {len(metrics)}メトリクス")
+            return self.get_media_insights(ig_media_id, access_token, metrics)
+            
+        except Exception as e:
+            print(f"❌ Type-specific insights取得例外: {str(e)}")
+            return {"success": False, "error": str(e)}
 
 # Create instance for easy import
 instagram_client = InstagramAPIClient()
