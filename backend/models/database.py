@@ -180,5 +180,45 @@ class DatabaseManager:
         except Exception as e:
             print(f"Error getting Instagram account: {e}")
             return None
+    
+    async def update_instagram_account_token(self, ig_user_id: str, access_token: str) -> bool:
+        """Update access token for existing Instagram account"""
+        try:
+            result = self.client.table('instagram_accounts').update({
+                'access_token': access_token
+            }).eq('ig_user_id', ig_user_id).execute()
+            return len(result.data) > 0
+        except Exception as e:
+            print(f"Error updating Instagram account token: {e}")
+            return False
+    
+    async def upsert_instagram_account(self, account_data: dict) -> Optional[InstagramAccount]:
+        """Insert new account or update existing account"""
+        try:
+            # Try to get existing account
+            existing = await self.get_instagram_account(account_data['ig_user_id'])
+            
+            if existing:
+                # Update existing account
+                result = self.client.table('instagram_accounts').update({
+                    'name': account_data['page_name'],
+                    'access_token': account_data['access_token'],
+                    'username': account_data['username'],
+                    'profile_picture_url': account_data.get('profile_picture_url')
+                }).eq('ig_user_id', account_data['ig_user_id']).execute()
+                return InstagramAccount(**result.data[0]) if result.data else None
+            else:
+                # Create new account
+                new_account = InstagramAccount(
+                    name=account_data['page_name'],
+                    ig_user_id=account_data['ig_user_id'],
+                    access_token=account_data['access_token'],
+                    username=account_data['username'],
+                    profile_picture_url=account_data.get('profile_picture_url')
+                )
+                return await self.create_instagram_account(new_account)
+        except Exception as e:
+            print(f"Error upserting Instagram account: {e}")
+            return None
 
 db_manager = DatabaseManager()

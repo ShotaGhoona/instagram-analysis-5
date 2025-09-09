@@ -92,6 +92,29 @@ class ApiClient {
     const searchParams = new URLSearchParams(params as Record<string, string>)
     return this.request(`/analytics/posts/${accountId}?${searchParams}`)
   }
+
+  // Setup endpoints
+  async refreshTokens(credentials: {
+    app_id: string
+    app_secret: string
+    access_token: string
+  }): Promise<{
+    success: boolean
+    message: string
+    updated_accounts: number
+    new_accounts: number
+    total_processed: number
+    errors: string[]
+  }> {
+    return this.request('/setup/refresh-tokens', {
+      method: 'POST',
+      body: JSON.stringify({
+        app_id: credentials.app_id,
+        app_secret: credentials.app_secret,
+        access_token: credentials.access_token
+      }),
+    })
+  }
 }
 
 export const apiClient = new ApiClient()

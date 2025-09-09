@@ -6,6 +6,7 @@ import uvicorn
 from api.accounts import router as accounts_router
 from api.analytics import router as analytics_router
 from api.media import router as media_router
+from api.setup import router as setup_router
 from auth.simple_auth import router as auth_router
 
 @asynccontextmanager
@@ -33,6 +34,7 @@ app.include_router(auth_router, prefix="/auth", tags=["認証"])
 app.include_router(accounts_router, prefix="/accounts", tags=["アカウント管理"])
 app.include_router(analytics_router, prefix="/analytics", tags=["分析データ"])
 app.include_router(media_router, prefix="/media", tags=["投稿データ"])
+app.include_router(setup_router, tags=["セットアップ"])
 
 @app.get("/")
 async def root():
