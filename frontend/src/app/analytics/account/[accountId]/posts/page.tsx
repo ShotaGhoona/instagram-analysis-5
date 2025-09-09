@@ -1,5 +1,6 @@
 'use client'
 
+import { use } from 'react'
 import { PostsTable } from '@/components/analytics/posts-table'
 import { PostsPerformanceChart } from '@/components/analytics/posts-performance-chart'
 import { DateFilter } from '@/components/filters/date-filter'
@@ -8,10 +9,11 @@ import { useFilterState } from '@/hooks/use-filter-state'
 import { Button } from '@/components/ui/button'
 
 interface PostsAnalyticsPageProps {
-  params: { accountId: string }
+  params: Promise<{ accountId: string }>
 }
 
 export default function PostsAnalyticsPage({ params }: PostsAnalyticsPageProps) {
+  const resolvedParams = use(params)
   const {
     dateRange,
     mediaTypes,
@@ -23,7 +25,7 @@ export default function PostsAnalyticsPage({ params }: PostsAnalyticsPageProps) 
     setDateRange,
     setMediaTypes,
     resetFilters
-  } = useFilterState(params.accountId)
+  } = useFilterState(resolvedParams.accountId)
 
   // エラー状態の表示
   if (error) {

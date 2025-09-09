@@ -40,7 +40,6 @@ export function AccountProvider({ children }: { children: React.ReactNode }) {
         setCurrentAccount(fetchedAccounts[0])
       }
     } catch (err) {
-      console.error('Failed to fetch accounts:', err)
       setError(err instanceof Error ? err.message : 'Failed to fetch accounts')
     } finally {
       setLoading(false)

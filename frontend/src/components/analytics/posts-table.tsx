@@ -61,7 +61,7 @@ export function PostsTable({ posts }: PostsTableProps) {
                   </TableCell>
                   <TableCell>
                     <Thumbnail 
-                      src={post.thumbnail_url} 
+                      src={post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url} 
                       alt={`投稿 ${dateDisplay}`}
                       size={48}
                     />

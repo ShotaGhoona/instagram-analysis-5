@@ -37,7 +37,6 @@ export function useFilterState(accountId: string) {
       setPosts(result as MediaPost[])
       
     } catch (err) {
-      console.error('Failed to fetch posts:', err)
       setError(err instanceof Error ? err.message : 'Failed to fetch posts')
       setPosts([])
     } finally {

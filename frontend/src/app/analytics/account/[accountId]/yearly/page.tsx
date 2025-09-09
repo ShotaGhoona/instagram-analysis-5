@@ -1,12 +1,16 @@
+import { use } from 'react'
+
 interface YearlyAnalyticsPageProps {
-  params: { accountId: string }
+  params: Promise<{ accountId: string }>
 }
 
 export default function YearlyAnalyticsPage({ params }: YearlyAnalyticsPageProps) {
+  const resolvedParams = use(params)
+  
   return (
     <div>
       <h1 className="text-3xl font-bold mb-4">年間分析</h1>
-      <p className="text-gray-600 mb-6">アカウント ID: {params.accountId}</p>
+      <p className="text-gray-600 mb-6">アカウント ID: {resolvedParams.accountId}</p>
       
       <div className="grid gap-6 md:grid-cols-2">
         <div className="bg-white rounded-lg shadow border p-6">
