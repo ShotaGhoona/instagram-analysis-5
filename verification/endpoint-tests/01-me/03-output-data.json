@@ -1,6 +1,6 @@
 {
   "endpoint": "Instagram Media & Insights",
-  "timestamp": "2025-09-09T18:31:44.017588",
+  "timestamp": "2025-09-09T18:37:35.237672",
   "検証概要": "投稿分析ページ用データ取得テスト",
   "test_account": {
     "page_name": "Ghoona",
@@ -10,9 +10,14 @@
   "tests": [
     {
       "test_name": "ig_user_info",
-      "success": false,
-      "error": "400 Client Error: Bad Request for url: https://graph.facebook.com/v23.0/17841471451691385?fields=id%2Cusername%2Caccount_type%2Cmedia_count%2Cfollowers_count&access_token=EAARrfZCwPTGUBPZA5ZB479JiAyiyvogh7dq1YMWrZA3jWlwZCrouta8H3Bc3ZBQZAzNPCv7xZBfarXtTR8zUzx2XdHrB8N5rLa11M1sRXk9S1QDrZCZCZBaIG0XE6ZAZBzPkmYNt4H7zWYGfM7asl2r3uZAmYRKiQ4qGuh4UNHOtZCSANd8YcvtHjNVVZCI1z0FttSCGaL4CZBZBnJ60SZCGHQ5ptSVnZCoUQUVndGpgFtELTCNXsKYQ9ZAMZD",
-      "notes": "Instagram Business Account基本情報取得失敗"
+      "success": true,
+      "data": {
+        "id": "17841471451691385",
+        "username": "ghoona.ai.inc",
+        "media_count": 15,
+        "followers_count": 0
+      },
+      "notes": "Instagram Business Account基本情報取得成功"
     },
     {
       "test_name": "media_list",
@@ -82,10 +87,25 @@
     },
     {
       "test_name": "media_insights",
-      "success": false,
-      "error": "400 Client Error: Bad Request for url: https://graph.facebook.com/v23.0/18474298093044270/insights?metric=reach%2Cimpressions%2Clikes%2Ccomments%2Cshares%2Csaved&access_token=EAARrfZCwPTGUBPZA5ZB479JiAyiyvogh7dq1YMWrZA3jWlwZCrouta8H3Bc3ZBQZAzNPCv7xZBfarXtTR8zUzx2XdHrB8N5rLa11M1sRXk9S1QDrZCZCZBaIG0XE6ZAZBzPkmYNt4H7zWYGfM7asl2r3uZAmYRKiQ4qGuh4UNHOtZCSANd8YcvtHjNVVZCI1z0FttSCGaL4CZBZBnJ60SZCGHQ5ptSVnZCoUQUVndGpgFtELTCNXsKYQ9ZAMZD",
+      "success": true,
+      "data": {
+        "data": [
+          {
+            "name": "reach",
+            "period": "lifetime",
+            "values": [
+              {
+                "value": 0
+              }
+            ],
+            "title": "リーチしたアカウント数",
+            "description": "この投稿を最低1回見たユニークアカウントの数です。リーチは、同じアカウントが投稿を複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
+            "id": "18474298093044270/insights/reach/lifetime"
+          }
+        ]
+      },
       "test_media_id": "18474298093044270",
-      "notes": "メディアインサイト取得失敗"
+      "notes": "メディアインサイト1件を取得成功"
     }
   ]
 }

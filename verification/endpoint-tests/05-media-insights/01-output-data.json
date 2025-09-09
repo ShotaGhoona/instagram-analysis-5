@@ -1,0 +1,203 @@
+{
+  "endpoint": "/{ig-media-id}/insights (Media Insights)",
+  "timestamp": "2025-09-09T19:47:06.326012",
+  "検証概要": "投稿別インサイトメトリクス取得テスト",
+  "account_tests": [
+    {
+      "page_name": "Ghoona",
+      "page_id": "533679183151841",
+      "ig_account_id": "17841471451691385",
+      "tests": [
+        {
+          "test_name": "media_insights",
+          "success": true,
+          "data": {
+            "media_count": 5,
+            "tested_media": [
+              {
+                "media_id": "18474298093044270",
+                "media_type": "IMAGE",
+                "timestamp": "2024-12-11T17:40:59+0000",
+                "insights": {
+                  "reach": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "reach",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "リーチしたアカウント数",
+                      "description": "この投稿を最低1回見たユニークアカウントの数です。リーチは、同じアカウントが投稿を複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
+                      "id": "18474298093044270/insights/reach/lifetime"
+                    }
+                  },
+                  "video_views": {
+                    "success": false,
+                    "error": "Not applicable for IMAGE"
+                  }
+                }
+              },
+              {
+                "media_id": "17992499405729789",
+                "media_type": "IMAGE",
+                "timestamp": "2024-12-11T17:40:59+0000",
+                "insights": {
+                  "reach": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "reach",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "リーチしたアカウント数",
+                      "description": "この投稿を最低1回見たユニークアカウントの数です。リーチは、同じアカウントが投稿を複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
+                      "id": "17992499405729789/insights/reach/lifetime"
+                    }
+                  },
+                  "video_views": {
+                    "success": false,
+                    "error": "Not applicable for IMAGE"
+                  }
+                }
+              },
+              {
+                "media_id": "18028728827404709",
+                "media_type": "IMAGE",
+                "timestamp": "2024-12-11T17:40:57+0000",
+                "insights": {
+                  "reach": {
+                    "success": true,
+                    "value": 0,
+                    "raw_data": {
+                      "name": "reach",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 0
+                        }
+                      ],
+                      "title": "リーチしたアカウント数",
+                      "description": "この投稿を最低1回見たユニークアカウントの数です。リーチは、同じアカウントが投稿を複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
+                      "id": "18028728827404709/insights/reach/lifetime"
+                    }
+                  },
+                  "video_views": {
+                    "success": false,
+                    "error": "Not applicable for IMAGE"
+                  }
+                }
+              }
+            ]
+          },
+          "notes": "3件の投稿でインサイト検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "有限会社カネタケ",
+      "page_id": "221005154431842",
+      "ig_account_id": "17841464830817178",
+      "tests": [
+        {
+          "test_name": "media_insights",
+          "success": true,
+          "data": {
+            "media_count": 5,
+            "tested_media": [
+              {
+                "media_id": "18070319719916172",
+                "media_type": "CAROUSEL_ALBUM",
+                "timestamp": "2025-09-09T10:00:31+0000",
+                "insights": {
+                  "reach": {
+                    "success": true,
+                    "value": 10,
+                    "raw_data": {
+                      "name": "reach",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 10
+                        }
+                      ],
+                      "title": "リーチしたアカウント数",
+                      "description": "このカルーセルコンテナを最低1回見たユニークアカウントの数です。リーチは、同じアカウントがカルーセルコンテナを複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
+                      "id": "18070319719916172/insights/reach/lifetime"
+                    }
+                  },
+                  "video_views": {
+                    "success": false,
+                    "error": "Not applicable for CAROUSEL_ALBUM"
+                  }
+                }
+              },
+              {
+                "media_id": "18094076704590410",
+                "media_type": "CAROUSEL_ALBUM",
+                "timestamp": "2025-09-04T10:01:59+0000",
+                "insights": {
+                  "reach": {
+                    "success": true,
+                    "value": 59,
+                    "raw_data": {
+                      "name": "reach",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 59
+                        }
+                      ],
+                      "title": "リーチしたアカウント数",
+                      "description": "このカルーセルコンテナを最低1回見たユニークアカウントの数です。リーチは、同じアカウントがカルーセルコンテナを複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
+                      "id": "18094076704590410/insights/reach/lifetime"
+                    }
+                  },
+                  "video_views": {
+                    "success": false,
+                    "error": "Not applicable for CAROUSEL_ALBUM"
+                  }
+                }
+              },
+              {
+                "media_id": "17869863546344502",
+                "media_type": "CAROUSEL_ALBUM",
+                "timestamp": "2025-08-29T01:52:27+0000",
+                "insights": {
+                  "reach": {
+                    "success": true,
+                    "value": 66,
+                    "raw_data": {
+                      "name": "reach",
+                      "period": "lifetime",
+                      "values": [
+                        {
+                          "value": 66
+                        }
+                      ],
+                      "title": "リーチしたアカウント数",
+                      "description": "このカルーセルコンテナを最低1回見たユニークアカウントの数です。リーチは、同じアカウントがカルーセルコンテナを複数回見た場合も回数に含まれる可能性があるインプレッションとは異なります。この指標は推定値です。",
+                      "id": "17869863546344502/insights/reach/lifetime"
+                    }
+                  },
+                  "video_views": {
+                    "success": false,
+                    "error": "Not applicable for CAROUSEL_ALBUM"
+                  }
+                }
+              }
+            ]
+          },
+          "notes": "3件の投稿でインサイト検証完了"
+        }
+      ]
+    }
+  ]
+}

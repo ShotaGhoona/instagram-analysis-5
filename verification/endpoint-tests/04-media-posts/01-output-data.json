@@ -1,0 +1,493 @@
+{
+  "endpoint": "/{ig-user-id}/media (Media Posts)",
+  "timestamp": "2025-09-09T19:39:03.683511",
+  "検証概要": "毎日収集用投稿データ取得テスト",
+  "account_tests": [
+    {
+      "page_name": "Ghoona",
+      "page_id": "533679183151841",
+      "ig_account_id": "17841471451691385",
+      "tests": [
+        {
+          "test_name": "full_media_posts",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "id": "18474298093044270",
+                "timestamp": "2024-12-11T17:40:59+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469735219_1115490826947241_3802012805318922670_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=1-7&_nc_sid=18de74&_nc_ohc=SOHrMoqHuSUQ7kNvwHpGOYD&_nc_oc=Adk77vY5ileCUVrzSSfEAipulFeKs98rYX-ei_Neyd3PPLZoA2f14eLv6q__03SRSgU&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfbsWwoaMjyEuWWsvgOnKZGum2vCgDkBLtwZPxzQLMwDFw&oe=68C5CCE5",
+                "permalink": "https://www.instagram.com/p/DDcmJU5JfeR/"
+              },
+              {
+                "id": "17992499405729789",
+                "timestamp": "2024-12-11T17:40:59+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469908803_1121284986267008_8685786773150852508_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=1-7&_nc_sid=18de74&_nc_ohc=v2dJw0qbp8IQ7kNvwE8oLqk&_nc_oc=AdmKEivnEzcZKOsU-cVlmViW-kBXrNY-bpZWuq6paSSAWalAuvHgtMlZsLRz2b1j1ME&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_Afaa_cSxdF_BuqzmsZZZUWF8bpXwEpKmJGZcyQaIsDiLnw&oe=68C5C59D",
+                "permalink": "https://www.instagram.com/p/DDcmJSRJdNg/"
+              },
+              {
+                "id": "18028728827404709",
+                "timestamp": "2024-12-11T17:40:57+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469740778_1125013812467717_2077970186212338707_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=1-7&_nc_sid=18de74&_nc_ohc=9LVxuxfog5oQ7kNvwGawcV2&_nc_oc=AdmIgPAU_wE94N0HGmL0y-SPZOsGrVEPul44i0NIqiOd9xfBBPTQzfb2JwAHZXDFCdI&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_Afb5Q5JaAKDpKs_Uw6pKe4FZUP2iakLi7U6d5Haxz3jwmA&oe=68C5DCD0",
+                "permalink": "https://www.instagram.com/p/DDcmJF2pQIU/"
+              },
+              {
+                "id": "18010382759662020",
+                "timestamp": "2024-12-11T17:40:46+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469309175_1663892391191098_8087760222901608466_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=1-7&_nc_sid=18de74&_nc_ohc=jXnUx_bLrAkQ7kNvwHtv08r&_nc_oc=Adkb-mCRKiphVUtTkhRyzTGylJww-jQYIipQ7J8ci1Jq1tt9mjWu0WLggCv2a67N1Oc&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfblcfNL7bvg3iGoBDJTb5cyW2yB-zPfi6mXba5CBiq5hw&oe=68C5CDBA",
+                "permalink": "https://www.instagram.com/p/DDcmHwwpgGL/"
+              },
+              {
+                "id": "17973308399665734",
+                "timestamp": "2024-12-11T17:40:07+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469719316_1107470567791287_7279039161999824770_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=1-7&_nc_sid=18de74&_nc_ohc=UKv8F7RKWeMQ7kNvwGqvoYe&_nc_oc=AdmSmNkWMwbkCtk2LwS8m-Ba4Do02MxZjLBFWdFoSbn2GIh3Y9P925VwAvQsIK4MViY&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfaeCizOCjYJDBVGh6O_zTRa6qfD8BUThU7MJLnjTWXJnw&oe=68C5E496",
+                "permalink": "https://www.instagram.com/p/DDcmDHdpBF4/"
+              },
+              {
+                "id": "18209204098293231",
+                "timestamp": "2024-12-11T17:39:44+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469731544_895086342742405_3674052952174869947_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=1-7&_nc_sid=18de74&_nc_ohc=QPCLakKQwIIQ7kNvwGFQcgY&_nc_oc=AdlohfCEaya30sUDkEyD8ZhRPC9lgJm3eA2PdKhGyk_d1tpg1Ai5bY76YLyz2zv6DVI&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfaZKE1IKCOz-ippYCN5YEO6-jcoSpCjl9ieHkOf0za2Zw&oe=68C5DD13",
+                "permalink": "https://www.instagram.com/p/DDcmAScJkfb/"
+              },
+              {
+                "id": "18094423666497519",
+                "timestamp": "2024-12-07T06:51:50+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469589713_1685504382014853_2639011464901207302_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ccb=1-7&_nc_sid=18de74&_nc_ohc=o_M3CXu6LRkQ7kNvwGv04hS&_nc_oc=Adm5jib_jom_d89ZhFdbXeiWpvX7NJIWqKFkclOF7O_dhM0lyU5Qxi17PRLuKi0HyrM&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfZTUYHTiTwbQq36C0-4R6IeD2BPGr3-ivvMgPLgEffWKw&oe=68C5ECEB",
+                "permalink": "https://www.instagram.com/p/DDRIranOeo0/"
+              },
+              {
+                "id": "18051694273962474",
+                "timestamp": "2024-12-07T06:51:28+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469583521_1014242044077848_3878847598716513177_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=1-7&_nc_sid=18de74&_nc_ohc=gYZe5RxE79oQ7kNvwHsy6xI&_nc_oc=Adm83Y7tm6Xiw3T7vKr8DQiyDxi7QEDnIKh6dHZG_fVzko7H-Rqx9sM6rdmFYFAOXGo&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfbGd48PLJvmkWR284-aoI6PK7AF5DnjTvdDdZGP6JtNIg&oe=68C5F196",
+                "permalink": "https://www.instagram.com/p/DDRIothOQy2/"
+              },
+              {
+                "id": "18117997090418079",
+                "timestamp": "2024-12-07T05:32:14+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469588716_568876569423897_5970936610901779359_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ccb=1-7&_nc_sid=18de74&_nc_ohc=2QAKGIX2YH0Q7kNvwG2xdx0&_nc_oc=AdnOFU2hQNGBmgkm3DK1O4GqSR2xbGlYiow07jCdMYRX2cNbW7DN7ydY5hBYHUOzK6U&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfaaOc2aO6fj7OcJK_vLjaCE0R2BQZLgAphq1E9boxex8A&oe=68C5E11B",
+                "permalink": "https://www.instagram.com/p/DDQ_kZtOdG6/"
+              },
+              {
+                "id": "17951056562894711",
+                "timestamp": "2024-12-07T05:30:03+0000",
+                "media_type": "IMAGE",
+                "caption": "・",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469418580_9017735341624969_3639015302713830164_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ccb=1-7&_nc_sid=18de74&_nc_ohc=2Txuljsg9SsQ7kNvwG53UKq&_nc_oc=AdmmRDOmRZB6NqXM83FEutZ0VzcmAtZP8_r6x2I8rruWZyI1EIoxco-cZrIH5PwaixY&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfYlLLZDMasMi8jigCLJPkQt_Bous6SLy45edY3jRIgcpA&oe=68C5BF98",
+                "permalink": "https://www.instagram.com/p/DDQ_UUcO9Q4/"
+              }
+            ],
+            "paging": {
+              "cursors": {
+                "before": "QVFIU2p6ZAHVEUUZATWUlQQjFJem9HamwtLXhGVW1SUG92QmRycXQ4UFhMd0tKT1czTElfU2F3bW5GRzFhbFdoZAlUyZA3JrOWVjbEF5dThYaXdiOVF1RDMxbmZA3",
+                "after": "QVFIU2hvaHBPVzZADUmxoRWxVMG4yRDI2YUE2YTVTaWZASaF9PY1FNcFRsUmtOT25rRndObUhVM21BTEo2ek12TDI5Sl9GbHYzWTYyY25iY3B0Y3FLNERoaUFR"
+              },
+              "next": "https://graph.facebook.com/v23.0/17841471451691385/media?fields=id%2Ctimestamp%2Cmedia_type%2Ccaption%2Clike_count%2Ccomments_count%2Cmedia_url%2Cthumbnail_url%2Cpermalink&limit=10&access_token=EAARrfZCwPTGUBPacQKVSZBh1cN8baiaiEXxQvGYGUpSTQjkWSJZBnhFfO71HLc2H33Qv4pcZAPrk0cJaZCY4kvuvuwZBcDYVHx3agMsqB4Wm4XzmZAsKZCxllVIRa7RnCm6Re6mtVLxXe16n3M8UHtKVNL6uebF0iQLC7IvJlHvy48GClZAxmtGKGmemxvLfZBb1kQ97a926sQ4tx7SfVSp8domXvOzLRu9SCyF8ZAvIEAa0wZDZD&after=QVFIU2hvaHBPVzZADUmxoRWxVMG4yRDI2YUE2YTVTaWZASaF9PY1FNcFRsUmtOT25rRndObUhVM21BTEo2ek12TDI5Sl9GbHYzWTYyY25iY3B0Y3FLNERoaUFR"
+            }
+          },
+          "notes": "投稿データ一括取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "id": {
+              "available": true,
+              "value": "18474298093044270"
+            },
+            "timestamp": {
+              "available": true,
+              "value": "2024-12-11T17:40:59+0000"
+            },
+            "media_type": {
+              "available": true,
+              "value": "IMAGE"
+            },
+            "caption": {
+              "available": true,
+              "value": "・"
+            },
+            "like_count": {
+              "available": true,
+              "value": 0
+            },
+            "comments_count": {
+              "available": true,
+              "value": 0
+            },
+            "media_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.cdninstagram.com/v/t51.2885-15/469735219_1115490826947241_3802012805318922670_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=1-7&_nc_sid=18de74&_nc_ohc=SOHrMoqHuSUQ7kNvwHpGOYD&_nc_oc=Adk77vY5ileCUVrzSSfEAipulFeKs98rYX-ei_Neyd3PPLZoA2f14eLv6q__03SRSgU&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&oh=00_AfbsWwoaMjyEuWWsvgOnKZGum2vCgDkBLtwZPxzQLMwDFw&oe=68C5CCE5"
+            },
+            "permalink": {
+              "available": true,
+              "value": "https://www.instagram.com/p/DDcmJU5JfeR/"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "有限会社カネタケ",
+      "page_id": "221005154431842",
+      "ig_account_id": "17841464830817178",
+      "tests": [
+        {
+          "test_name": "full_media_posts",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "id": "18070319719916172",
+                "timestamp": "2025-09-09T10:00:31+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【窓の断熱リフォームで快適に】\n\n「夏の暑さがつらい」「冬場は窓際が寒い」そんなお悩み、窓のリノベでぐっと改善できるかもしれません。\n補助金の対象になる場合もあり、注目が高まっています。\n\n気候が良い秋のうちに工事を済ませれば、この冬、快適に過ごせます。\n窓リノベのご相談は【カネタケ】へおまかせください。\n\n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 0,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/536273638_122252074124207056_1655634117946806147_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=1-7&_nc_sid=18de74&_nc_ohc=-F_6xzNLRtsQ7kNvwE_ggrq&_nc_oc=AdmYOqhXgyP0Mhxf7OcEULZ1AY_cRYGyWx0rbt8bo_tHTczZ_gozd9gm6pjOvyHQY3k&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfaY5kXFbUHklxBDknhEV3_mLZNuB_A5AV357fbLi_pkQw&oe=68C5D6F3",
+                "permalink": "https://www.instagram.com/p/DOYJrGujTaf/"
+              },
+              {
+                "id": "18094076704590410",
+                "timestamp": "2025-09-04T10:01:59+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【風災保険でのリフォームもおまかせ】\n \nヒョウで穴が空いてしまった波板屋根を、張り替えました。\n光を取り込みやすい素材で、見た目も明るく仕上がっています。\n\nこうした修繕では、保険申請に必要な「施工前後の写真」や「被害状況の記録」なども重要です。\n【カネタケ】では現地確認から撮影・修繕まで一貫してサポートしていますので、安心してお任せください！\n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 10,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/536268487_122252073458207056_3647269502991565875_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ccb=1-7&_nc_sid=18de74&_nc_ohc=EO5awlK-0tkQ7kNvwFg3zpO&_nc_oc=Adl8_KHxR2xHKpG2sQBDL4Hhz-l2aF_z5U4Hxk458UoFG-VlsdUghQoBZ0_MMI5p_O4&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfafYTY1rIcicQzXvw5nnwMp3RiXfuUegE7GCAuo-7SKfQ&oe=68C5DEA0",
+                "permalink": "https://www.instagram.com/p/DOLR3h2jCwQ/"
+              },
+              {
+                "id": "17869863546344502",
+                "timestamp": "2025-08-29T01:52:27+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【宅配ボックス設置で、不在時も安心】\n \n不在時の再配達や時間指定のストレス…そんなお悩み、宅配ボックスで解消しませんか。\n共働き世帯や日中不在がちなご家庭でも、安心して荷物を受け取れるのが魅力です。\nポールタイプなら玄関まわりの動線もスッキリ。\n防犯性・デザイン性にも優れたモデルがそろっています。\n \n宅配ボックスの設置をご検討の際は、ぜひ【カネタケ】までご相談ください。\nお住まいやご要望に合わせた最適なタイプをご提案します！\n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 6,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/528351006_122248299512207056_4757039250645828105_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=1-7&_nc_sid=18de74&_nc_ohc=5UfbjJdWndUQ7kNvwF2hVkX&_nc_oc=AdnjLun0nl8hCPYu0zpZ_Z-vvBJXN8l5iGXj-afsk6WvFaW70JV3DkjAVK1zOk_C_gc&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_Afaxda8e9eRCGIK2Z96vUOc13S4SfUR_PN7-wXEhizjN8g&oe=68C5CBAE",
+                "permalink": "https://www.instagram.com/p/DN69E2EDq2I/"
+              },
+              {
+                "id": "17851210290536001",
+                "timestamp": "2025-08-26T10:01:29+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【ショールームも安心同行】\n \n「設備ってどう選べばいいの？」\nそんなお悩みにも、スタッフがしっかりサポート。\n\nカネタケでは、ショールームへ一緒に足を運び、使い勝手や特徴を見ながらご提案しています。\nご希望があれば送迎も対応！\nはじめてのリフォームでも安心しておまかせください。\n\n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n\n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 30,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/530251080_122248306274207056_4287849818283177776_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ccb=1-7&_nc_sid=18de74&_nc_ohc=DsLR29qFOP0Q7kNvwGgb--8&_nc_oc=AdkXkq5xAwl7_GHeYRYA3wemfkG7Aqe-3SRwX0c5TPlrESWXkzEL-_LXEbH-MzlmuWs&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfaaPEE4yynSjVOb0j4VdQGFw_ay8eJm0xn9CBV-N7Fc9Q&oe=68C5C606",
+                "permalink": "https://www.instagram.com/p/DN0Gp_zXHnP/"
+              },
+              {
+                "id": "18078807121764993",
+                "timestamp": "2025-08-21T10:00:55+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【大切な愛車を守る車庫を設置】\n \n大型バイクを所有するNさまからのご相談で、バイク専用の車庫を施工しました。\n盛土があった敷地を整地して、シャッター付き車庫を設置。\n中には棚も設け、メンテナンス道具の収納も備え、走行後のケアもできる、安心で快適な空間になりました。\n雨や風、いたずらからバイクを守れるのも、車庫の大きな魅力です。\n\n【カネタケ】では、お客さまのライフスタイルに合わせた車庫やエクステリア工事のほか、水漏れ工事といった小さなトラブルから大規模リフォーム・リノベーションまで、幅広く対応しています。\n\n住宅リフォームや改修をご検討中の方は、ぜひお気軽にご相談ください。\n \n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 8,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/528744650_122248298864207056_5521797644439940987_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ccb=1-7&_nc_sid=18de74&_nc_ohc=5du76yd_wvEQ7kNvwEEj89Z&_nc_oc=Adn2NwoG77YJTBY9Ew3If-snhYM8JZFLrLrdaWw20j_xZONbMRIQauDN9SXlWJqTXBY&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfYDWgm3RI9jiVW5lqpQrYiUFfRD37EsVsNP2rxjNTeAjg&oe=68C5C265",
+                "permalink": "https://www.instagram.com/p/DNnOncOt5WS/"
+              },
+              {
+                "id": "18525568228010621",
+                "timestamp": "2025-08-19T10:00:43+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【台風前にチェック！家周りのポイント】\n\n台風の被害を受けやすい場所として、屋根、雨どい、フェンス、カーポート、窓まわりなどが挙げられます。\n\n特に、古くなった部材は劣化が進んでおり、強風によって外れたり飛ばされたりするリスクもあるので注意しましょう。\n \nカネタケでは、台風被害の修繕だけでなく、台風前の点検やリフォームのご相談にも対応しています。\n小さな不安のうちに、ぜひお気軽にご相談ください。 \n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 6,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/528732358_122248296938207056_531603280830866127_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=106&ccb=1-7&_nc_sid=18de74&_nc_ohc=e87cTIT9nH8Q7kNvwH_Wi7-&_nc_oc=AdkXb2txo5Vlg5deeFisGHUtAMO2MjrwcfLBWedsm1FreSwMFzUnYI50R86igiVJmNI&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfZIWZ3tOH5HsVQvd0Qsjn40-CdMEVUYF0skfSa_A9CUWQ&oe=68C5CDDC",
+                "permalink": "https://www.instagram.com/p/DNiFAKUs9zl/"
+              },
+              {
+                "id": "18046396262303832",
+                "timestamp": "2025-08-14T10:01:14+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【畳の張り替えも、洋室リフォームも】\n \n古くなった畳の交換や、和室から洋室へのリフォームもおまかせください。\nい草の香りを楽しむ張り替えはもちろん、使いやすさを考えてフローリングにするご相談も増えています。\n\n暮らしに合ったかたちで、心地よく過ごせる住まいへ。\n【カネタケ】が、丁寧にご提案いたします。\n\n \n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 9,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/526317845_122246951450207056_5376032891147590485_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ccb=1-7&_nc_sid=18de74&_nc_ohc=bU8DCoJaOxIQ7kNvwHRunaa&_nc_oc=AdlRwJZ66yR1uXxy73AWC2KXaQ2QNMj8z97IZzWFIqhPTbyofqhf55wodCCLMGcEeyo&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfapbZhLHnwE4ckGUMakhfN7s1YRTqhcFAueTNKU8B4WLQ&oe=68C5F07D",
+                "permalink": "https://www.instagram.com/p/DNVNFnLu9Ay/"
+              },
+              {
+                "id": "18416927392097853",
+                "timestamp": "2025-08-12T10:00:57+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【浴室リフォームで快適ライフ】\n \nタイル貼りでひんやりしていたお風呂を、あたたかみのあるシステムバスにリフォーム。\n寒さがやわらいだバスルームは、手すりやシャワーの位置にも配慮した安心設計に。\n床も滑りにくくなり、掃除のしやすさもアップしています。\n毎日の入浴が、もっと快適で心地よい時間に変わりました。\n\nお風呂や洗面所など水回りのリフォームは、【カネタケ】へお任せください！\n \n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 5,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/525871933_122246951222207056_910339147224254404_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ccb=1-7&_nc_sid=18de74&_nc_ohc=PPMXt10xUvAQ7kNvwGWhbOa&_nc_oc=Adl36Nlzq4C-IQWSObD1Hm1fhgYSlo6mhGg2v0_llkfVgUPMZPOjcHMRMjCxPj3ZbRc&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfbUFELlrQmwaYFu7hbcT6uo5C7B-h_ycuy9TaHMk0UI6w&oe=68C5D29F",
+                "permalink": "https://www.instagram.com/p/DNQDdxjB9jc/"
+              },
+              {
+                "id": "17868420408422695",
+                "timestamp": "2025-08-07T10:00:27+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【暑さ日差し対策に、シェードがおすすめ】\n \nこの夏も、強い日差しと厳しい暑さが続いています。\n \nそんな暑い夏を乗り切るアイテムが、シェード。\nタープタイプなら、手軽に取り入れられます。\n\n【カネタケ】では、シェードの設置はもちろん、取り外しや保管、その後の再設置のご相談もお受けしています。\nタープタイプ以外にも、しっかりとした構造の独立型や、壁に固定するタイプのオーニングの設置もおまかせください。\nご自宅の状況やご希望に合わせて、最適な日除け対策をご提案いたします！\n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 5,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/526753913_122246950496207056_9195398150938245770_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=1-7&_nc_sid=18de74&_nc_ohc=JqYD37Mp0UoQ7kNvwG4Vgp-&_nc_oc=AdlGeRqJOukx4Hj-tkz7tcNNP-sjuR9kWcAMqFULDub2CuFnz3uR32rw3wZ5lNoones&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfYOBZP2fHfcHc1a_KW4iCXiJPFc7NYoIMF5-5hZ3QI6zg&oe=68C5C401",
+                "permalink": "https://www.instagram.com/p/DNDLbu0B3o-/"
+              },
+              {
+                "id": "17919759372014452",
+                "timestamp": "2025-08-05T10:00:23+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "【地域密着で安心サポート】\n \n水まわりのトラブルや使い勝手のご相談、急なリフォームのご依頼もお任せください。\n【カネタケ】は地域に根ざしたリフォーム専門店。\n「すぐに来てくれる安心感」を大切にしています。\n\nしつこい営業はせず、本当に必要なリフォームだけをご提案。\n暮らしの変化に寄り添いながら、これからも頼れる存在であり続けます。\n\n風通しの良い、心地よい住まいづくりを【カネタケ】がサポートいたします。\n \n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム",
+                "like_count": 23,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/527022104_122246948678207056_1566033608705043166_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=1-7&_nc_sid=18de74&_nc_ohc=-P6Eyu1VDboQ7kNvwERKOUD&_nc_oc=AdkGCopkINJhauFDe1KVvDYRraSfaCqVpH9uZRdFrILy6WG8_LJ049kEJU8ZEGqBGZ8&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=zJyJ_oy3y0C2J1Bv_W8nOA&oh=00_AfZ3u4JRfXVHb9UFxpGp8B5ayEtbPtyM6N00FErJ2surGQ&oe=68C5D00C",
+                "permalink": "https://www.instagram.com/p/DM-B1eHpDpm/"
+              }
+            ],
+            "paging": {
+              "cursors": {
+                "before": "QVFIUzlMd29xbGt5bFZA0RkhLSUxnMXczMXFmRzJsRk5ZATFo1R3o1dG1yRUkzU1lpYXNXOXY0c3dFcnN2WGRYYk5LZA3Rsc1ZAuZAU1ZAM3FQdEE2S2h3UzBtR1NB",
+                "after": "QVFIU0VnRS1QM3F2NmZAMdTlnRnRsSjlYeVdreTBvUE9scjE2NTA3cG1BYnptd1FSMTVpX2VKb2ViZA1VJRk5IeU1teVBDT08xT2wyVnM3TWhUcUdsUVY0bV9B"
+              },
+              "next": "https://graph.facebook.com/v23.0/17841464830817178/media?fields=id%2Ctimestamp%2Cmedia_type%2Ccaption%2Clike_count%2Ccomments_count%2Cmedia_url%2Cthumbnail_url%2Cpermalink&limit=10&access_token=EAARrfZCwPTGUBPacQKVSZBh1cN8baiaiEXxQvGYGUpSTQjkWSJZBnhFfO71HLc2H33Qv4pcZAPrk0cJaZCY4kvuvuwZBcDYVHx3agMsqB4Wm4XzmZAsKZCxllVIRa7RnCm6Re6mtVLxXe16n3M8UHtKVNL6uebF0iQLC7IvJlHvy48GClZAxmtGKGmemxvLfZBb1kQ97a926sQ4tx7SfVSp8domXvOzLRu9SCyF8ZAvIEAa0wZDZD&after=QVFIU0VnRS1QM3F2NmZAMdTlnRnRsSjlYeVdreTBvUE9scjE2NTA3cG1BYnptd1FSMTVpX2VKb2ViZA1VJRk5IeU1teVBDT08xT2wyVnM3TWhUcUdsUVY0bV9B"
+            }
+          },
+          "notes": "投稿データ一括取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "id": {
+              "available": true,
+              "value": "18070319719916172"
+            },
+            "timestamp": {
+              "available": true,
+              "value": "2025-09-09T10:00:31+0000"
+            },
+            "media_type": {
+              "available": true,
+              "value": "CAROUSEL_ALBUM"
+            },
+            "caption": {
+              "available": true,
+              "value": "【窓の断熱リフォームで快適に】\n\n「夏の暑さがつらい」「冬場は窓際が寒い」そんなお悩み、窓のリノベでぐっと改善できるかもしれません。\n補助金の対象になる場合もあり、注目が高まっています。\n\n気候が良い秋のうちに工事を済ませれば、この冬、快適に過ごせます。\n窓リノベのご相談は【カネタケ】へおまかせください。\n\n---------------------------------------------\n \n一緒に「家族の幸せ」をつくるリフォーム・リノベーションをしませんか？\n▽お申し込みはプロフィールのリンクから▽\n@kanetake_net\n \n \n「住宅リフォームや改修という仕事は「家族の幸せ」をつくる仕事だと考えています」\nお問い合わせは、お電話・HPお問い合わせフォーム・DMからお気軽に♪\n \n---------------------------------------------\n \n*対応エリア*\n#北九州 #八幡西区 #八幡東区 #中間市 #遠賀郡 #水巻町\nお気軽にまずはお問い合わせください。\n \n*特徴*\n#使いやすさと安心価格を優先\n#頭の痛いトラブルを解決するお手伝い\n#スピード施工\n#家族という視点からのご提案\n \n*サービス*\n#リフォーム #リノベーション #戸建リフォーム #リノベーション住宅 #リフォーム事例 #リノベーション事例 #デザインリフォーム #暮らしのアイデア #介護リフォーム #バリアフリー #バリアフリー住宅 #バリアフリーリフォーム #外構リフォーム #お風呂リフォーム #バスルームリフォーム #水回りリフォーム #マンションリフォーム"
+            },
+            "like_count": {
+              "available": true,
+              "value": 0
+            },
+            "comments_count": {
+              "available": true,
+              "value": 0
+            },
+            "media_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.cdninstagram.com/v/t39.30808-6/536273638_122252074124207056_1655634117946806147_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=1-7&_nc_sid=18de74&_nc_ohc=-F_6xzNLRtsQ7kNvwE_ggrq&_nc_oc=AdmYOqhXgyP0Mhxf7OcEULZ1AY_cRYGyWx0rbt8bo_tHTczZ_gozd9gm6pjOvyHQY3k&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=hzzGudl35l7jPoU2I3HT_g&oh=00_AfZJczyci0DZl3sFa8IM8cbHvJbY1onHXemuNjLcWzjMoQ&oe=68C5D6F3"
+            },
+            "permalink": {
+              "available": true,
+              "value": "https://www.instagram.com/p/DOYJrGujTaf/"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "Shota Yamashita",
+      "page_id": "109494364279579",
+      "ig_account_id": "17841408533767014",
+      "tests": [
+        {
+          "test_name": "full_media_posts",
+          "success": true,
+          "data": {
+            "data": [
+              {
+                "id": "17867848632202928",
+                "timestamp": "2024-12-31T15:55:24+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "2024",
+                "like_count": 119,
+                "comments_count": 2,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/472310479_1312195796588012_1024307145268087333_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=1-7&_nc_sid=18de74&_nc_ohc=Q9BbdZSdCYAQ7kNvwG5lRuN&_nc_oc=Adk3oHF7vBN9nFhlIoRvhQWLBV19i4AYgHj34m8J6GeB9Jjbk6XR-nknf-3Ct_dxPEM&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfbHmYO-8BojK16sCf0dilZvKpLOfXUPvnGxIWezYnmABQ&oe=68C5CC63",
+                "permalink": "https://www.instagram.com/p/DEP5957v0TU/"
+              },
+              {
+                "id": "17962738220786293",
+                "timestamp": "2024-07-13T17:38:06+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "first friend 🧘",
+                "like_count": 103,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/450492113_1723135051761226_3147927681288801690_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=106&ccb=1-7&_nc_sid=18de74&_nc_ohc=kc7ao3O2lk8Q7kNvwGoN9kN&_nc_oc=Admfp0nIBz4Di_zbSgdPJjNkEaiFjsznkOUpVZTy9MExcyhJETcvWe8ok-Up7uCF1W4&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_Afa64LpGDCxMAlSRd64wuFGzCh6ssC1PWeGIq73IcmxAHA&oe=68C5D8B2",
+                "permalink": "https://www.instagram.com/p/C9XxygCtAz2/"
+              },
+              {
+                "id": "18022936199200314",
+                "timestamp": "2024-07-12T16:36:08+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "Jaipur → Jaisalmer → Udaipur\nBig love to everyone ive met on this journey",
+                "like_count": 139,
+                "comments_count": 3,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/450483208_1026399525870457_7192923784415009361_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ccb=1-7&_nc_sid=18de74&_nc_ohc=Yh14mH-Vim0Q7kNvwHD8D0_&_nc_oc=AdlAisR1zhc7hoV4EWoUParezq_nL7WEor_IIu059NU2qFuPLeVZ8DpfPGqLuD7bckI&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfY5Prhu3EdnFWltTayYvz5xd3COcBWb4C2rFofp3CvhEg&oe=68C5BFFB",
+                "permalink": "https://www.instagram.com/p/C9VF5wGsx2C/"
+              },
+              {
+                "id": "18105338386407901",
+                "timestamp": "2024-07-12T16:20:38+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "next",
+                "like_count": 161,
+                "comments_count": 1,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/450848889_443164458536955_1288382634548064161_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=1-7&_nc_sid=18de74&_nc_ohc=FUJxY3O5Z1MQ7kNvwE-JWaC&_nc_oc=Adkh01i3qp865jMwqpLCj3Zzxx_iyDvor4XQfpMEeCHpAKT-zEc4v7BbYkt5dqIj8VU&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfbYJtFAa4GBHd6ntbbM3RkC4wecRgtxjZ8xIWAKhhp3PQ&oe=68C5DEF1",
+                "permalink": "https://www.instagram.com/p/C9VEIN1MX16/"
+              },
+              {
+                "id": "18024427742220556",
+                "timestamp": "2024-07-12T16:03:01+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "・ようやく投稿",
+                "like_count": 105,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/450480860_2205314879829079_614537874306536983_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ccb=1-7&_nc_sid=18de74&_nc_ohc=xDgzmK0NIuUQ7kNvwH1QlVh&_nc_oc=AdlHSl5afJp6Y4P6zRcm0ViVjE_lKLVhpSvG8aID8Xscim3emKvB6Gm8Yk9hTKnsanw&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfYymIYTg1nLvC-J2-PyIYaczNIM64IQUA-6TLl0eclb1Q&oe=68C5EAE3",
+                "permalink": "https://www.instagram.com/p/C9VCHHXMc4Y/"
+              },
+              {
+                "id": "18096464830397230",
+                "timestamp": "2024-03-18T11:07:38+0000",
+                "media_type": "IMAGE",
+                "caption": "YES WERE OPEN",
+                "like_count": 47,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/433846895_1440640633203389_6299296146758217787_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ccb=1-7&_nc_sid=18de74&_nc_ohc=eNqSV10SyHEQ7kNvwEmiVsJ&_nc_oc=Adml4AY-5-fhtvWLPlAGWWfF96K3-GmMUarorqFsJR94RWykWA9CZwzpRFg4SH_XhUU&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfYIahn4H9HOKC9AEDjsWXSEHKK0e82S6hC_p9nJa9zIcg&oe=68C5E099",
+                "permalink": "https://www.instagram.com/p/C4p0GMHvyi-/"
+              },
+              {
+                "id": "18256683340170526",
+                "timestamp": "2024-03-13T04:20:41+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "まだ卒業せんけども",
+                "like_count": 135,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/432548844_1784760275379204_5985515660211802084_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ccb=1-7&_nc_sid=18de74&_nc_ohc=rRolKWiEsogQ7kNvwGm2pKb&_nc_oc=AdkvnIzP38TL_D7w1-hzzxiIc8KpU_oNvwtit07pl52FPwtapsJKVKJBaWLKRvjIl6U&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_Afa4YFFUzexL8rh3maxeNlxQA8JD2Fpv1hH0TwIVTwZQEQ&oe=68C5D29D",
+                "permalink": "https://www.instagram.com/p/C4cNjL8vN90/"
+              },
+              {
+                "id": "17995540040532798",
+                "timestamp": "2024-03-07T12:17:34+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "集合写真いっぱいあげよ〜〜😳🥰　みんなラブい",
+                "like_count": 198,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/431456985_1364790397511760_1022136934440428400_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=1-7&_nc_sid=18de74&_nc_ohc=jpe84tMdGoMQ7kNvwGCmf6y&_nc_oc=AdnJqXltUlRyV0PRPymDldihzEv36B_cqMLwPnMvCGPn9b7EsNqxWUSbJcAuzvd23oA&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfYkasLQ9aAEbJ0XikotxWY2-z-n1k7a1N7UyCm1d7twKg&oe=68C5E17E",
+                "permalink": "https://www.instagram.com/p/C4NnWwzvHL-/"
+              },
+              {
+                "id": "18013835855038459",
+                "timestamp": "2023-12-31T14:29:32+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "ラストキャンプ終了🥋",
+                "like_count": 150,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/414727776_309460404783302_9152500426727676195_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ccb=1-7&_nc_sid=18de74&_nc_ohc=WfYvAhMZrn0Q7kNvwH6nH76&_nc_oc=AdnIoneEYLm1nAUzj1dbNB2Jdo17XzKpGMPp948jhY_Tlu5hc9A-OT5Zr_0hc1xmV9k&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfaHpcysJFznUklnKYVBzEScwzO1xhp1ghVuTyg4x9l8Wg&oe=68C5C67A",
+                "permalink": "https://www.instagram.com/p/C1hVMvwv0Di/"
+              },
+              {
+                "id": "18238765480235614",
+                "timestamp": "2023-11-05T06:54:52+0000",
+                "media_type": "CAROUSEL_ALBUM",
+                "caption": "🏕️🏕️🏕️",
+                "like_count": 76,
+                "comments_count": 0,
+                "media_url": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/398741239_1093479381818009_4582959160341261801_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=1-7&_nc_sid=18de74&_nc_ohc=FjSTp3Y1HaEQ7kNvwEWcEER&_nc_oc=AdnXcFyJBHjucVSZgmouUlET5WuhTuoJd5ZjeLL4VFuoCtKaMDzScXEtynEZVXXoSxo&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=SjNIBYC-2hw8cogNu1Mp2w&oh=00_AfZdcjv14gb8IXuvteUAo-j63mDc18A6zbH_vqSKDdPfoQ&oe=68C5DBBD",
+                "permalink": "https://www.instagram.com/p/CzQUpqlvPYx/"
+              }
+            ],
+            "paging": {
+              "cursors": {
+                "before": "QVFIU1A1eEtJZAUJKbkJkNUE4TE1TcGlVV18ybWRka2MzSFVzWHNIdzNwOE14dW1hdGVJdTN3QWhFRXN6SW5RLUUxWkpFQXlLWGRCdXMwMENVNDJFZAHlVVi13",
+                "after": "QVFIU1E5Sy1UcWRnanBNZAWd6UWZAjd2gxMDZA6MUtlSVBtbWJmWjZAobUtjeFV0VDJLMTRYZAFlLekN5S2dYTjItSFJFRVJ2SUYyU2ZA3VDNOc0tXWFpObURCNHpB"
+              },
+              "next": "https://graph.facebook.com/v23.0/17841408533767014/media?fields=id%2Ctimestamp%2Cmedia_type%2Ccaption%2Clike_count%2Ccomments_count%2Cmedia_url%2Cthumbnail_url%2Cpermalink&limit=10&access_token=EAARrfZCwPTGUBPacQKVSZBh1cN8baiaiEXxQvGYGUpSTQjkWSJZBnhFfO71HLc2H33Qv4pcZAPrk0cJaZCY4kvuvuwZBcDYVHx3agMsqB4Wm4XzmZAsKZCxllVIRa7RnCm6Re6mtVLxXe16n3M8UHtKVNL6uebF0iQLC7IvJlHvy48GClZAxmtGKGmemxvLfZBb1kQ97a926sQ4tx7SfVSp8domXvOzLRu9SCyF8ZAvIEAa0wZDZD&after=QVFIU1E5Sy1UcWRnanBNZAWd6UWZAjd2gxMDZA6MUtlSVBtbWJmWjZAobUtjeFV0VDJLMTRYZAFlLekN5S2dYTjItSFJFRVJ2SUYyU2ZA3VDNOc0tXWFpObURCNHpB"
+            }
+          },
+          "notes": "投稿データ一括取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "id": {
+              "available": true,
+              "value": "17867848632202928"
+            },
+            "timestamp": {
+              "available": true,
+              "value": "2024-12-31T15:55:24+0000"
+            },
+            "media_type": {
+              "available": true,
+              "value": "CAROUSEL_ALBUM"
+            },
+            "caption": {
+              "available": true,
+              "value": "2024"
+            },
+            "like_count": {
+              "available": true,
+              "value": 119
+            },
+            "comments_count": {
+              "available": true,
+              "value": 2
+            },
+            "media_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.cdninstagram.com/v/t51.29350-15/472310479_1312195796588012_1024307145268087333_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=1-7&_nc_sid=18de74&_nc_ohc=Q9BbdZSdCYAQ7kNvwG5lRuN&_nc_oc=Adk3oHF7vBN9nFhlIoRvhQWLBV19i4AYgHj34m8J6GeB9Jjbk6XR-nknf-3Ct_dxPEM&_nc_zt=23&_nc_ht=scontent-itm1-1.cdninstagram.com&edm=AM6HXa8EAAAA&_nc_gid=Ef-DAlr4w5uc12CqV8qHEQ&oh=00_AfY5ScyX1yXIOB1aUvtswfs-cp2aYfC5rgomwQ9QDZrHNg&oe=68C5CC63"
+            },
+            "permalink": {
+              "available": true,
+              "value": "https://www.instagram.com/p/DEP5957v0TU/"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    }
+  ]
+}

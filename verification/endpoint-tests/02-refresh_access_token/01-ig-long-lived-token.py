@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Instagram Long-lived Token Generation Script
+Page Access Token Long-lived Conversion Script
 
-Convert Page Access Tokens to Instagram-specific long-lived tokens
-for accessing Instagram insights and detailed analytics data.
+Convert short-lived Page Access Tokens to long-lived Page Access Tokens
+for stable Instagram Business Account access.
 """
 
 import sys
@@ -17,10 +17,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from utils.api_client import InstagramAPIClient
 
-def generate_ig_long_lived_tokens():
-    """Generate Instagram-specific long-lived tokens from Page Access Tokens"""
+def convert_page_tokens_to_long_lived():
+    """Convert short-lived Page Access Tokens to long-lived Page Access Tokens"""
     
-    print("🚀 Instagram専用長期トークン生成を開始します")
+    print("🚀 Page Access Token長期化変換を開始します")
     print(f"📅 実行日時: {datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}")
     print()
     
@@ -47,24 +47,27 @@ def generate_ig_long_lived_tokens():
         return False
     
     print(f"🔍 処理対象: {len(accounts_data)}件のPage Access Token")
-    print("   📝 注: 最初の3件をサンプルとして処理します")
+    print("   📝 注: 全てのアカウントを処理します")
     print()
     
     # Results structure
     results = {
-        "endpoint": "/access_token (Instagram Long-lived)",
+        "endpoint": "/oauth/access_token (Page Long-lived)",
         "timestamp": datetime.now().isoformat(),
-        "検証概要": "Instagram専用長期トークン生成テスト",
+        "検証概要": "Page Access Token長期化変換テスト",
         "token_conversions": []
     }
     
-    # Process first 3 accounts as sample
-    sample_count = min(3, len(accounts_data))
-    instagram_app_secret = os.getenv('INSTAGRAM_APP_SECRET')
+    # Process all accounts
+    sample_count = len(accounts_data)
     
-    if not instagram_app_secret:
-        print("❌ エラー: INSTAGRAM_APP_SECRET が設定されていません")
-        print("   🔧 対策: .env ファイルにINSTAGRAM_APP_SECRETを追加してください")
+    # Get necessary credentials for token exchange
+    app_id = os.getenv('INSTAGRAM_APP_ID')
+    app_secret = os.getenv('INSTAGRAM_APP_SECRET')
+    
+    if not app_id or not app_secret:
+        print("❌ エラー: INSTAGRAM_APP_ID または INSTAGRAM_APP_SECRET が設定されていません")
+        print("   🔧 対策: .env ファイルに両方の値を設定してください")
         return False
     
     for i in range(sample_count):
@@ -89,26 +92,27 @@ def generate_ig_long_lived_tokens():
             "conversion_attempts": []
         }
         
-        # Method 1: Try ig_exchange_token (Instagram Graph API)
-        print(f"   🔄 方法1: ig_exchange_token でトークン変換を試行...")
+        # Method 1: Try fb_exchange_token (Facebook Graph API)
+        print(f"   🔄 方法1: fb_exchange_token でPage Access Token長期化を試行...")
         try:
-            exchange_url = "https://graph.instagram.com/access_token"
+            exchange_url = "https://graph.facebook.com/v23.0/oauth/access_token"
             exchange_params = {
-                'grant_type': 'ig_exchange_token',
-                'client_secret': instagram_app_secret,
-                'access_token': page_token
+                'grant_type': 'fb_exchange_token',
+                'client_id': app_id,
+                'client_secret': app_secret,
+                'fb_exchange_token': page_token
             }
             
-            response = requests.post(exchange_url, params=exchange_params)
+            response = requests.get(exchange_url, params=exchange_params)
             
             if response.status_code == 200:
                 token_data = response.json()
                 
                 attempt_result = {
-                    "method": "ig_exchange_token",
+                    "method": "fb_exchange_token",
                     "success": True,
                     "data": token_data,
-                    "notes": "Instagram専用長期トークン生成成功"
+                    "notes": "Page Access Token長期化変換成功"
                 }
                 
                 expires_in = token_data.get('expires_in', 0)
@@ -117,11 +121,11 @@ def generate_ig_long_lived_tokens():
                 # Convert seconds to days
                 expires_days = expires_in // 86400 if expires_in > 0 else 0
                 
-                print(f"   ✅ 成功: Instagram専用トークンを生成しました")
+                print(f"   ✅ 成功: Page Access Tokenを長期化しました")
                 print(f"      🔑 新トークン: {new_token[:50]}...")
-                print(f"      ⏰ 有効期限: {expires_days}日間")
+                print(f"      ⏰ 有効期限: {expires_days}日間 (約{expires_days//30}ヶ月)")
                 
-                conversion_result["ig_long_lived_token"] = {
+                conversion_result["page_long_lived_token"] = {
                     "token": new_token,
                     "expires_in": expires_in,
                     "expires_days": expires_days,
@@ -131,70 +135,23 @@ def generate_ig_long_lived_tokens():
             else:
                 error_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {"error": response.text}
                 attempt_result = {
-                    "method": "ig_exchange_token",
+                    "method": "fb_exchange_token",
                     "success": False,
                     "error": error_data,
                     "status_code": response.status_code,
-                    "notes": "ig_exchange_token方式でのトークン変換失敗"
+                    "notes": "fb_exchange_token方式でのトークン変換失敗"
                 }
                 
-                print(f"   ❌ 失敗: ig_exchange_token方式")
+                print(f"   ❌ 失敗: fb_exchange_token方式")
                 print(f"      🔍 ステータス: {response.status_code}")
                 print(f"      🔍 エラー: {error_data.get('error', {}).get('message', 'Unknown error')}")
         
         except Exception as e:
             attempt_result = {
-                "method": "ig_exchange_token",
+                "method": "fb_exchange_token",
                 "success": False,
                 "error": str(e),
-                "notes": "ig_exchange_token方式で例外発生"
-            }
-            print(f"   ❌ 例外: {e}")
-        
-        conversion_result["conversion_attempts"].append(attempt_result)
-        
-        # Method 2: Try ig_refresh_token (if we have an IG token already)
-        print(f"   🔄 方法2: ig_refresh_token でトークン更新を試行...")
-        try:
-            refresh_url = "https://graph.instagram.com/refresh_access_token"
-            refresh_params = {
-                'grant_type': 'ig_refresh_token',
-                'access_token': page_token
-            }
-            
-            response = requests.get(refresh_url, params=refresh_params)
-            
-            if response.status_code == 200:
-                refresh_data = response.json()
-                
-                attempt_result = {
-                    "method": "ig_refresh_token",
-                    "success": True,
-                    "data": refresh_data,
-                    "notes": "ig_refresh_token方式でトークン更新成功"
-                }
-                
-                print(f"   ✅ 成功: ig_refresh_token方式でトークン更新")
-                
-            else:
-                error_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {"error": response.text}
-                attempt_result = {
-                    "method": "ig_refresh_token",
-                    "success": False,
-                    "error": error_data,
-                    "status_code": response.status_code,
-                    "notes": "ig_refresh_token方式でのトークン更新失敗（想定内）"
-                }
-                
-                print(f"   ⚠️ 失敗: ig_refresh_token方式（想定内）")
-                print(f"      🔍 理由: Page Access TokenはInstagram専用トークンではない")
-        
-        except Exception as e:
-            attempt_result = {
-                "method": "ig_refresh_token",
-                "success": False,
-                "error": str(e),
-                "notes": "ig_refresh_token方式で例外発生"
+                "notes": "fb_exchange_token方式で例外発生"
             }
             print(f"   ❌ 例外: {e}")
         
@@ -215,10 +172,8 @@ def generate_ig_long_lived_tokens():
     successful_conversions = 0
     
     for conversion in results["token_conversions"]:
-        for attempt in conversion.get("conversion_attempts", []):
-            if attempt.get("success"):
-                successful_conversions += 1
-                break
+        if conversion.get("page_long_lived_token"):
+            successful_conversions += 1
     
     print(f"\n🏁 変換完了 - 実行結果サマリー")
     print(f"📊 総アカウント数: {total_accounts}")
@@ -226,14 +181,14 @@ def generate_ig_long_lived_tokens():
     print(f"❌ 失敗した変換: {total_accounts - successful_conversions}")
     
     if successful_conversions > 0:
-        print("🎉 Instagram専用長期トークンの生成に成功しました！")
-        print("🔍 次のステップ: 新しいトークンでインサイトデータ取得テストが可能です")
+        print("🎉 Page Access Tokenの長期化に成功しました！")
+        print("🔍 次のステップ: 新しい長期トークンでInstagramデータ取得の安定運用が可能です")
         return True
     else:
-        print("⚠️ Instagram専用トークンの生成に失敗しました")
-        print("🔧 対策: アプリの設定とINSTAGRAM_APP_SECRETを確認してください")
+        print("⚠️ Page Access Tokenの長期化に失敗しました")
+        print("🔧 対策: アプリの設定とINSTAGRAM_APP_ID、INSTAGRAM_APP_SECRETを確認してください")
         return False
 
 if __name__ == "__main__":
-    success = generate_ig_long_lived_tokens()
+    success = convert_page_tokens_to_long_lived()
     sys.exit(0 if success else 1)

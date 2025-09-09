@@ -1,112 +1,117 @@
 {
-  "endpoint": "/access_token (Instagram Long-lived)",
-  "timestamp": "2025-09-09T12:31:28.568067",
-  "検証概要": "Instagram専用長期トークン生成テスト",
+  "endpoint": "/oauth/access_token (Page Long-lived)",
+  "timestamp": "2025-09-09T20:06:00.830889",
+  "検証概要": "Page Access Token長期化変換テスト",
   "token_conversions": [
     {
-      "page_name": "保坂建設",
-      "page_id": "749700058232833",
-      "ig_account_id": "17841422840022010",
+      "page_name": "Ghoona",
+      "page_id": "533679183151841",
+      "ig_account_id": "17841471451691385",
       "conversion_attempts": [
         {
-          "method": "ig_exchange_token",
-          "success": false,
-          "error": {
-            "error": {
-              "message": "Invalid OAuth access token - Cannot parse access token",
-              "type": "OAuthException",
-              "code": 190,
-              "fbtrace_id": "AL0rTg7BgIALhTqqEB-6DXm"
-            }
+          "method": "fb_exchange_token",
+          "success": true,
+          "data": {
+            "access_token": "EAARrfZCwPTGUBPelK4W6PUS7OSCRcQbg1LhGYyghbPX5TjJ5i5XbxfOvQgARevTBrFLyUuc4tq6ZApAg32bUunLWY5yDFSYvCDuVRbXEuQPbtdG3nRN2X6ZCTCy4H7WZBvrhlhgZBd6iN7EXGSs5MMKRZBxrdc8Rj4ygLhqPeT9XzZC91bUqGKUyR9EDLVAFhMfSAKy",
+            "token_type": "bearer"
           },
-          "status_code": 400,
-          "notes": "ig_exchange_token方式でのトークン変換失敗"
-        },
-        {
-          "method": "ig_refresh_token",
-          "success": false,
-          "error": {
-            "error": {
-              "message": "Invalid OAuth access token - Cannot parse access token",
-              "type": "OAuthException",
-              "code": 190,
-              "fbtrace_id": "AdZfBKMVzb-I3DMHVIRAJWV"
-            }
-          },
-          "status_code": 400,
-          "notes": "ig_refresh_token方式でのトークン更新失敗（想定内）"
+          "notes": "Page Access Token長期化変換成功"
         }
-      ]
+      ],
+      "page_long_lived_token": {
+        "token": "EAARrfZCwPTGUBPelK4W6PUS7OSCRcQbg1LhGYyghbPX5TjJ5i5XbxfOvQgARevTBrFLyUuc4tq6ZApAg32bUunLWY5yDFSYvCDuVRbXEuQPbtdG3nRN2X6ZCTCy4H7WZBvrhlhgZBd6iN7EXGSs5MMKRZBxrdc8Rj4ygLhqPeT9XzZC91bUqGKUyR9EDLVAFhMfSAKy",
+        "expires_in": 0,
+        "expires_days": 0,
+        "generated_at": "2025-09-09T20:06:01.123276"
+      }
     },
     {
-      "page_name": "Sumai",
-      "page_id": "663735196829840",
-      "ig_account_id": "17841400595556322",
+      "page_name": "有限会社カネタケ",
+      "page_id": "221005154431842",
+      "ig_account_id": "17841464830817178",
       "conversion_attempts": [
         {
-          "method": "ig_exchange_token",
-          "success": false,
-          "error": {
-            "error": {
-              "message": "Invalid OAuth access token - Cannot parse access token",
-              "type": "OAuthException",
-              "code": 190,
-              "fbtrace_id": "A7UiMQlMFSkxt9DjF2jnr-E"
-            }
+          "method": "fb_exchange_token",
+          "success": true,
+          "data": {
+            "access_token": "EAARrfZCwPTGUBPQ7TL1ZCfvMnM7ev2nYNKaHeKRD3ISZB2qh2rT51mAKPNfLw2Tvu6aW7VHfehjqqOVvS4lAwTXPk9JK2oKuWkdRGtn1CdwMKAhiTbR5d91kpPYZAjNBYaZCI7GxVJHkw9ibSMEUnDIo5TNrddhuxynomJ5mZB75gXLy8m6lD5ThRH7ijNGQEfncsZD",
+            "token_type": "bearer"
           },
-          "status_code": 400,
-          "notes": "ig_exchange_token方式でのトークン変換失敗"
-        },
-        {
-          "method": "ig_refresh_token",
-          "success": false,
-          "error": {
-            "error": {
-              "message": "Invalid OAuth access token - Cannot parse access token",
-              "type": "OAuthException",
-              "code": 190,
-              "fbtrace_id": "A7iQbR0pVmroghh55lQhrID"
-            }
-          },
-          "status_code": 400,
-          "notes": "ig_refresh_token方式でのトークン更新失敗（想定内）"
+          "notes": "Page Access Token長期化変換成功"
         }
-      ]
+      ],
+      "page_long_lived_token": {
+        "token": "EAARrfZCwPTGUBPQ7TL1ZCfvMnM7ev2nYNKaHeKRD3ISZB2qh2rT51mAKPNfLw2Tvu6aW7VHfehjqqOVvS4lAwTXPk9JK2oKuWkdRGtn1CdwMKAhiTbR5d91kpPYZAjNBYaZCI7GxVJHkw9ibSMEUnDIo5TNrddhuxynomJ5mZB75gXLy8m6lD5ThRH7ijNGQEfncsZD",
+        "expires_in": 0,
+        "expires_days": 0,
+        "generated_at": "2025-09-09T20:06:01.403543"
+      }
     },
     {
-      "page_name": "吉田産業ドルフィン八戸店",
-      "page_id": "534707539723084",
-      "ig_account_id": "17841426142742891",
+      "page_name": "Shota Yamashita",
+      "page_id": "109494364279579",
+      "ig_account_id": "17841408533767014",
       "conversion_attempts": [
         {
-          "method": "ig_exchange_token",
-          "success": false,
-          "error": {
-            "error": {
-              "message": "Invalid OAuth access token - Cannot parse access token",
-              "type": "OAuthException",
-              "code": 190,
-              "fbtrace_id": "Ayi88aHjbnUqIksgIOyCdJt"
-            }
+          "method": "fb_exchange_token",
+          "success": true,
+          "data": {
+            "access_token": "EAARrfZCwPTGUBPXQAkLOxLINeKSrQUnEZCwZBH7LaleZBQIeplCZC5ManyFUgZCcALWPrmXEgYn9itc6UxSI1YtDFqcT2w9pHGsLlyjUQLyG4oteuRYnydQL9QepgGDdCb5jVrOA5HSEjnUkURRhHGeFDhll3ZCnjCSNpnqPHPIhvV5BfPIXDUfIcrZABi0MVY5Qd2bEXRcZD",
+            "token_type": "bearer"
           },
-          "status_code": 400,
-          "notes": "ig_exchange_token方式でのトークン変換失敗"
-        },
-        {
-          "method": "ig_refresh_token",
-          "success": false,
-          "error": {
-            "error": {
-              "message": "Invalid OAuth access token - Cannot parse access token",
-              "type": "OAuthException",
-              "code": 190,
-              "fbtrace_id": "A1vSjqNGpxr_-6BBveP-HBS"
-            }
-          },
-          "status_code": 400,
-          "notes": "ig_refresh_token方式でのトークン更新失敗（想定内）"
+          "notes": "Page Access Token長期化変換成功"
         }
-      ]
+      ],
+      "page_long_lived_token": {
+        "token": "EAARrfZCwPTGUBPXQAkLOxLINeKSrQUnEZCwZBH7LaleZBQIeplCZC5ManyFUgZCcALWPrmXEgYn9itc6UxSI1YtDFqcT2w9pHGsLlyjUQLyG4oteuRYnydQL9QepgGDdCb5jVrOA5HSEjnUkURRhHGeFDhll3ZCnjCSNpnqPHPIhvV5BfPIXDUfIcrZABi0MVY5Qd2bEXRcZD",
+        "expires_in": 0,
+        "expires_days": 0,
+        "generated_at": "2025-09-09T20:06:01.677324"
+      }
+    },
+    {
+      "page_name": "ヤマサリノベ",
+      "page_id": "103295771313100",
+      "ig_account_id": "17841455808057230",
+      "conversion_attempts": [
+        {
+          "method": "fb_exchange_token",
+          "success": true,
+          "data": {
+            "access_token": "EAARrfZCwPTGUBPeAvZC2PZBkA197EbNY448cZAYfao4x2vj2zLyy6Ir1QtsXtOwYdXmcEnCXbdZBlWHmQvYyA7ZCrQ1gRAGs0FCxaHrFSwcxkleq85UwZCZA06gqL5qsbV5joBzlsVtbZAfMQ0B8c7vJrhZAAE0xGYL3k9ZApvCpmeoZBajIN3I7ERgSZBepVSLlzKWizC7otMOkZD",
+            "token_type": "bearer"
+          },
+          "notes": "Page Access Token長期化変換成功"
+        }
+      ],
+      "page_long_lived_token": {
+        "token": "EAARrfZCwPTGUBPeAvZC2PZBkA197EbNY448cZAYfao4x2vj2zLyy6Ir1QtsXtOwYdXmcEnCXbdZBlWHmQvYyA7ZCrQ1gRAGs0FCxaHrFSwcxkleq85UwZCZA06gqL5qsbV5joBzlsVtbZAfMQ0B8c7vJrhZAAE0xGYL3k9ZApvCpmeoZBajIN3I7ERgSZBepVSLlzKWizC7otMOkZD",
+        "expires_in": 0,
+        "expires_days": 0,
+        "generated_at": "2025-09-09T20:06:02.155284"
+      }
+    },
+    {
+      "page_name": "時と共に価値の出る家づくり ホルツバウハウス",
+      "page_id": "726815370789294",
+      "ig_account_id": "17841402015304577",
+      "conversion_attempts": [
+        {
+          "method": "fb_exchange_token",
+          "success": true,
+          "data": {
+            "access_token": "EAARrfZCwPTGUBPe4Oniu3ZBib0mHaQVVd0f6qCVL3i8UTNl4WtmODpFvbZAvnIr8q0PUF6tjVa5DeUnAl7nQ93xBU9wlwm7NfNvbLEopErZCAQX6uRVSoJQIyq2zN5E0IZB7PlI0gsRO6rz0D0YI5ZBmry92Kz0negz4jR7ATFIbcPAIyRSHY1hBZAZBqWzg6lNJXOk1UZAYd",
+            "token_type": "bearer"
+          },
+          "notes": "Page Access Token長期化変換成功"
+        }
+      ],
+      "page_long_lived_token": {
+        "token": "EAARrfZCwPTGUBPe4Oniu3ZBib0mHaQVVd0f6qCVL3i8UTNl4WtmODpFvbZAvnIr8q0PUF6tjVa5DeUnAl7nQ93xBU9wlwm7NfNvbLEopErZCAQX6uRVSoJQIyq2zN5E0IZB7PlI0gsRO6rz0D0YI5ZBmry92Kz0negz4jR7ATFIbcPAIyRSHY1hBZAZBqWzg6lNJXOk1UZAYd",
+        "expires_in": 0,
+        "expires_days": 0,
+        "generated_at": "2025-09-09T20:06:02.540774"
+      }
     }
   ]
 }

@@ -1,0 +1,179 @@
+{
+  "endpoint": "/{ig-media-id}/insights?metric=views (New Unified Metric)",
+  "timestamp": "2025-09-09T20:06:11.026053",
+  "検証概要": "2025年4月導入の統一viewsメトリクス検証",
+  "account_info": {
+    "page_name": "ヤマサリノベ",
+    "page_id": "103295771313100",
+    "ig_account_id": "17841455808057230"
+  },
+  "views_test_results": [
+    {
+      "test_name": "views_metric_validation",
+      "success": true,
+      "data": {
+        "videos_tested": 5,
+        "successful_views": 5,
+        "successful_reach": 5,
+        "video_results": [
+          {
+            "video_id": "18090918394741273",
+            "timestamp": "2025-09-06T10:02:19+0000",
+            "caption": "【建て替え or リノベーション徹底比較！個別相談会】\n9/13(土)～14(日)\n建て替えとリノベ...",
+            "metrics": {
+              "views": {
+                "success": true,
+                "value": 242,
+                "raw_data": {
+                  "name": "views",
+                  "period": "lifetime",
+                  "values": [
+                    {
+                      "value": 242
+                    }
+                  ],
+                  "title": "閲覧数",
+                  "description": "あなたのリール動画が再生または表示された回数です",
+                  "id": "18090918394741273/insights/views/lifetime"
+                }
+              },
+              "reach": {
+                "success": true,
+                "value": 178
+              },
+              "video_views_old": {
+                "success": false,
+                "error": "No response or missing data key"
+              }
+            }
+          },
+          {
+            "video_id": "18068564645170741",
+            "timestamp": "2025-08-29T10:02:46+0000",
+            "caption": "これまでの多くのリノベーションを手\n掛けてきた中から、ヤマサリノベが導き出した「暮らし\nやすい間取り...",
+            "metrics": {
+              "views": {
+                "success": true,
+                "value": 292,
+                "raw_data": {
+                  "name": "views",
+                  "period": "lifetime",
+                  "values": [
+                    {
+                      "value": 292
+                    }
+                  ],
+                  "title": "閲覧数",
+                  "description": "あなたのリール動画が再生または表示された回数です",
+                  "id": "18068564645170741/insights/views/lifetime"
+                }
+              },
+              "reach": {
+                "success": true,
+                "value": 184
+              },
+              "video_views_old": {
+                "success": false,
+                "error": "No response or missing data key"
+              }
+            }
+          },
+          {
+            "video_id": "18056016191412971",
+            "timestamp": "2025-08-25T10:02:21+0000",
+            "caption": "自然素材と北欧デザインがつくる愛犬との心地よい暮らし\nすっきりシンプルに暮らしたいご夫婦と愛犬の 2...",
+            "metrics": {
+              "views": {
+                "success": true,
+                "value": 284,
+                "raw_data": {
+                  "name": "views",
+                  "period": "lifetime",
+                  "values": [
+                    {
+                      "value": 284
+                    }
+                  ],
+                  "title": "閲覧数",
+                  "description": "あなたのリール動画が再生または表示された回数です",
+                  "id": "18056016191412971/insights/views/lifetime"
+                }
+              },
+              "reach": {
+                "success": true,
+                "value": 211
+              },
+              "video_views_old": {
+                "success": false,
+                "error": "No response or missing data key"
+              }
+            }
+          },
+          {
+            "video_id": "18043902674655671",
+            "timestamp": "2025-08-22T10:01:22+0000",
+            "caption": "これまでの多くのリノベーションを手\n掛けてきた中から、ヤマサリノベが導き出した「暮らし\nやすい間取り...",
+            "metrics": {
+              "views": {
+                "success": true,
+                "value": 622,
+                "raw_data": {
+                  "name": "views",
+                  "period": "lifetime",
+                  "values": [
+                    {
+                      "value": 622
+                    }
+                  ],
+                  "title": "閲覧数",
+                  "description": "あなたのリール動画が再生または表示された回数です",
+                  "id": "18043902674655671/insights/views/lifetime"
+                }
+              },
+              "reach": {
+                "success": true,
+                "value": 374
+              },
+              "video_views_old": {
+                "success": false,
+                "error": "No response or missing data key"
+              }
+            }
+          },
+          {
+            "video_id": "18101468461584671",
+            "timestamp": "2025-08-13T12:01:48+0000",
+            "caption": "祖父母が住んでいた築40年以上の住まいを受け継ぎ、\n当初は建て替えとリノベーションのどちらにするかで...",
+            "metrics": {
+              "views": {
+                "success": true,
+                "value": 527,
+                "raw_data": {
+                  "name": "views",
+                  "period": "lifetime",
+                  "values": [
+                    {
+                      "value": 527
+                    }
+                  ],
+                  "title": "閲覧数",
+                  "description": "あなたのリール動画が再生または表示された回数です",
+                  "id": "18101468461584671/insights/views/lifetime"
+                }
+              },
+              "reach": {
+                "success": true,
+                "value": 357
+              },
+              "video_views_old": {
+                "success": false,
+                "error": "No response or missing data key"
+              }
+            }
+          }
+        ]
+      },
+      "notes": "5件のVIDEO投稿でviews メトリクス取得成功"
+    }
+  ]
+}

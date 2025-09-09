@@ -1,0 +1,74 @@
+{
+  "endpoint": "/{ig-media-id}/insights?metric=video_views (Video Focus)",
+  "timestamp": "2025-09-09T19:54:57.198621",
+  "検証概要": "Reels（VIDEO投稿）の動画視聴数メトリクス検証",
+  "account_info": {
+    "page_name": "ヤマサリノベ",
+    "page_id": "103295771313100",
+    "ig_account_id": "17841455808057230"
+  },
+  "video_search_results": [
+    {
+      "test_name": "video_insights",
+      "success": false,
+      "data": {
+        "videos_found": 17,
+        "videos_tested": 3,
+        "successful_video_views": 0,
+        "video_insights": [
+          {
+            "video_id": "18090918394741273",
+            "timestamp": "2025-09-06T10:02:19+0000",
+            "caption": "【建て替え or リノベーション徹底比較！個別相談会】\n9/13(土)～14(日)\n建て替えとリノベ...",
+            "insights": {
+              "video_views": {
+                "success": false,
+                "error": "No response or missing data key"
+              },
+              "reach": {
+                "success": true,
+                "value": 177
+              }
+            }
+          },
+          {
+            "video_id": "18068564645170741",
+            "timestamp": "2025-08-29T10:02:46+0000",
+            "caption": "これまでの多くのリノベーションを手\n掛けてきた中から、ヤマサリノベが導き出した「暮らし\nやすい間取り...",
+            "insights": {
+              "video_views": {
+                "success": false,
+                "error": "No response or missing data key"
+              },
+              "reach": {
+                "success": true,
+                "value": 184
+              }
+            }
+          },
+          {
+            "video_id": "18056016191412971",
+            "timestamp": "2025-08-25T10:02:21+0000",
+            "caption": "自然素材と北欧デザインがつくる愛犬との心地よい暮らし\nすっきりシンプルに暮らしたいご夫婦と愛犬の 2...",
+            "insights": {
+              "video_views": {
+                "success": false,
+                "error": "No response or missing data key"
+              },
+              "reach": {
+                "success": true,
+                "value": 211
+              }
+            }
+          }
+        ]
+      },
+      "search_stats": {
+        "pages_searched": 1,
+        "total_media": 25,
+        "video_media": 17
+      },
+      "notes": "0件のVIDEO投稿で動画視聴数取得成功"
+    }
+  ]
+}

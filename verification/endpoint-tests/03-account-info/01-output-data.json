@@ -1,0 +1,267 @@
+{
+  "endpoint": "/{ig-user-id} (Account Basic Info)",
+  "timestamp": "2025-09-09T19:31:18.604969",
+  "検証概要": "毎日収集用アカウント基本情報テスト",
+  "account_tests": [
+    {
+      "page_name": "Ghoona",
+      "page_id": "533679183151841",
+      "ig_account_id": "17841471451691385",
+      "tests": [
+        {
+          "test_name": "basic_account_info",
+          "success": true,
+          "data": {
+            "id": "17841471451691385",
+            "username": "ghoona.ai.inc",
+            "name": "Ghoona",
+            "profile_picture_url": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/469001652_430815103404302_6752448159808730047_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=7d201b&_nc_ohc=wy0rWK7Su5wQ7kNvwH1dFAP&_nc_oc=Adln7rrU-JW8EWVXIcny__oAkne4NEhLVSYV2HmUdfFcdzFPs7vQsWcVeqVO7h_28Wc&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfadJcUxArgt-IWOPTvKNJLqjoolZiK-QWnCl2ngcy5OwQ&oe=68C5DD86",
+            "followers_count": 0,
+            "follows_count": 0,
+            "media_count": 15
+          },
+          "notes": "アカウント基本情報取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "followers_count": {
+              "available": true,
+              "value": 0
+            },
+            "follows_count": {
+              "available": true,
+              "value": 0
+            },
+            "media_count": {
+              "available": true,
+              "value": 15
+            },
+            "name": {
+              "available": true,
+              "value": "Ghoona"
+            },
+            "username": {
+              "available": true,
+              "value": "ghoona.ai.inc"
+            },
+            "profile_picture_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/469001652_430815103404302_6752448159808730047_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=7d201b&_nc_ohc=wy0rWK7Su5wQ7kNvwH1dFAP&_nc_oc=Adln7rrU-JW8EWVXIcny__oAkne4NEhLVSYV2HmUdfFcdzFPs7vQsWcVeqVO7h_28Wc&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfadJcUxArgt-IWOPTvKNJLqjoolZiK-QWnCl2ngcy5OwQ&oe=68C5DD86"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "有限会社カネタケ",
+      "page_id": "221005154431842",
+      "ig_account_id": "17841464830817178",
+      "tests": [
+        {
+          "test_name": "basic_account_info",
+          "success": true,
+          "data": {
+            "id": "17841464830817178",
+            "username": "kanetake_net",
+            "name": "(有)カネタケ/北九州【住宅リフォーム専門店】",
+            "profile_picture_url": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/425408939_939858344500055_1881862555334592370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=7d201b&_nc_ohc=AVtWOHg8LPcQ7kNvwHkpYOr&_nc_oc=Adm_K2LTYPMzvIaGt7S67c6r63JwDuszgOjz8rSTQbvWH9Ow3YROqa0HXW_74oPdsmU&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfZSzNMI9gopg8Bk-rgMNbphm93Xvk06KmkLMFLuvfO-HQ&oe=68C5D01A",
+            "followers_count": 150,
+            "follows_count": 23,
+            "media_count": 127
+          },
+          "notes": "アカウント基本情報取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "followers_count": {
+              "available": true,
+              "value": 150
+            },
+            "follows_count": {
+              "available": true,
+              "value": 23
+            },
+            "media_count": {
+              "available": true,
+              "value": 127
+            },
+            "name": {
+              "available": true,
+              "value": "(有)カネタケ/北九州【住宅リフォーム専門店】"
+            },
+            "username": {
+              "available": true,
+              "value": "kanetake_net"
+            },
+            "profile_picture_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/425408939_939858344500055_1881862555334592370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=7d201b&_nc_ohc=AVtWOHg8LPcQ7kNvwHkpYOr&_nc_oc=Adm_K2LTYPMzvIaGt7S67c6r63JwDuszgOjz8rSTQbvWH9Ow3YROqa0HXW_74oPdsmU&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfZSzNMI9gopg8Bk-rgMNbphm93Xvk06KmkLMFLuvfO-HQ&oe=68C5D01A"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "Shota Yamashita",
+      "page_id": "109494364279579",
+      "ig_account_id": "17841408533767014",
+      "tests": [
+        {
+          "test_name": "basic_account_info",
+          "success": true,
+          "data": {
+            "id": "17841408533767014",
+            "username": "____syota_01",
+            "name": "山下翔大｜Shota Yamashita",
+            "profile_picture_url": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/405511775_6385285394906126_8827825003200632100_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=7d201b&_nc_ohc=Q3BIduIBFRwQ7kNvwGQ6GUV&_nc_oc=Adk9cSmkqzWYX4cYuoXO-2SD3EhUxWcdsJe4jDIjuBFigtL5ao07_G54nPTmPatv2XI&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfZW0QYYcdNqd6uDJ-7yEqTsTLbw79FvEbdiRufk0ugycQ&oe=68C5DD3B",
+            "followers_count": 1368,
+            "follows_count": 1347,
+            "media_count": 27
+          },
+          "notes": "アカウント基本情報取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "followers_count": {
+              "available": true,
+              "value": 1368
+            },
+            "follows_count": {
+              "available": true,
+              "value": 1347
+            },
+            "media_count": {
+              "available": true,
+              "value": 27
+            },
+            "name": {
+              "available": true,
+              "value": "山下翔大｜Shota Yamashita"
+            },
+            "username": {
+              "available": true,
+              "value": "____syota_01"
+            },
+            "profile_picture_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/405511775_6385285394906126_8827825003200632100_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=7d201b&_nc_ohc=Q3BIduIBFRwQ7kNvwGQ6GUV&_nc_oc=Adk9cSmkqzWYX4cYuoXO-2SD3EhUxWcdsJe4jDIjuBFigtL5ao07_G54nPTmPatv2XI&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfZW0QYYcdNqd6uDJ-7yEqTsTLbw79FvEbdiRufk0ugycQ&oe=68C5DD3B"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "ヤマサリノベ",
+      "page_id": "103295771313100",
+      "ig_account_id": "17841455808057230",
+      "tests": [
+        {
+          "test_name": "basic_account_info",
+          "success": true,
+          "data": {
+            "id": "17841455808057230",
+            "username": "yamasa_renovation",
+            "name": "ヤマサリノベ | 鹿児島市 / 姶良市 / 日置市 | リノベーション / リフォーム",
+            "profile_picture_url": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/412183010_1206013827022784_7469412081947786505_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=7d201b&_nc_ohc=QvKFaTi-J0kQ7kNvwHaYFJ3&_nc_oc=Adl8TG3xUPplFKYwLhlAdi-M46h2se4IkI3zaY_s2HSVYLL2baKd7XDCqFub5blLTQE&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_Afahg87TYjnhTukBdSuqgsJpC4QscJUu9EOguTYM5A5LUg&oe=68C5CF06",
+            "followers_count": 509,
+            "follows_count": 17,
+            "media_count": 421
+          },
+          "notes": "アカウント基本情報取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "followers_count": {
+              "available": true,
+              "value": 509
+            },
+            "follows_count": {
+              "available": true,
+              "value": 17
+            },
+            "media_count": {
+              "available": true,
+              "value": 421
+            },
+            "name": {
+              "available": true,
+              "value": "ヤマサリノベ | 鹿児島市 / 姶良市 / 日置市 | リノベーション / リフォーム"
+            },
+            "username": {
+              "available": true,
+              "value": "yamasa_renovation"
+            },
+            "profile_picture_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/412183010_1206013827022784_7469412081947786505_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=7d201b&_nc_ohc=QvKFaTi-J0kQ7kNvwHaYFJ3&_nc_oc=Adl8TG3xUPplFKYwLhlAdi-M46h2se4IkI3zaY_s2HSVYLL2baKd7XDCqFub5blLTQE&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_Afahg87TYjnhTukBdSuqgsJpC4QscJUu9EOguTYM5A5LUg&oe=68C5CF06"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    },
+    {
+      "page_name": "時と共に価値の出る家づくり ホルツバウハウス",
+      "page_id": "726815370789294",
+      "ig_account_id": "17841402015304577",
+      "tests": [
+        {
+          "test_name": "basic_account_info",
+          "success": true,
+          "data": {
+            "id": "17841402015304577",
+            "username": "holz_bauhaus",
+            "name": "ホルツバウハウス　広島の注文住宅/リフォーム",
+            "profile_picture_url": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/417978705_267392332787112_7990561465286480358_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=7d201b&_nc_ohc=3t_0rQRe1_QQ7kNvwGk5eM5&_nc_oc=Adn_vuiTI2kyedVDHRXzWjViWrBXxSvGZKzJmiga8oiBHjhEG17g0lwj2jMIlHkUld8&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfZ4WROCAMwuInWJ6rRO0kQoEtkwSpgOcVJRcQJuFTMwRQ&oe=68C5C02F",
+            "followers_count": 842,
+            "follows_count": 1404,
+            "media_count": 419
+          },
+          "notes": "アカウント基本情報取得成功"
+        },
+        {
+          "test_name": "individual_fields",
+          "success": true,
+          "data": {
+            "followers_count": {
+              "available": true,
+              "value": 842
+            },
+            "follows_count": {
+              "available": true,
+              "value": 1404
+            },
+            "media_count": {
+              "available": true,
+              "value": 419
+            },
+            "name": {
+              "available": true,
+              "value": "ホルツバウハウス　広島の注文住宅/リフォーム"
+            },
+            "username": {
+              "available": true,
+              "value": "holz_bauhaus"
+            },
+            "profile_picture_url": {
+              "available": true,
+              "value": "https://scontent-itm1-1.xx.fbcdn.net/v/t51.2885-15/417978705_267392332787112_7990561465286480358_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=7d201b&_nc_ohc=3t_0rQRe1_QQ7kNvwGk5eM5&_nc_oc=Adn_vuiTI2kyedVDHRXzWjViWrBXxSvGZKzJmiga8oiBHjhEG17g0lwj2jMIlHkUld8&_nc_zt=23&_nc_ht=scontent-itm1-1.xx&edm=AL-3X8kEAAAA&oh=00_AfZ4WROCAMwuInWJ6rRO0kQoEtkwSpgOcVJRcQJuFTMwRQ&oe=68C5C02F"
+            }
+          },
+          "notes": "個別フィールド検証完了"
+        }
+      ]
+    }
+  ]
+}

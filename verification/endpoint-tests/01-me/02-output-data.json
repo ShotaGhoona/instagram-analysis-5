@@ -1,6 +1,6 @@
 {
   "endpoint": "/debug_token",
-  "timestamp": "2025-09-09T18:31:06.370247",
+  "timestamp": "2025-09-09T18:43:57.321193",
   "検証概要": "Page Access Token有効期限確認",
   "token_checks": [
     {

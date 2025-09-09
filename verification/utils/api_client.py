@@ -43,5 +43,7 @@ class InstagramAPIClient:
             params = {}
         params['access_token'] = self.access_token
         
+        # Remove leading slash from endpoint to avoid double slashes
+        endpoint = endpoint.lstrip('/')
         url = f"{self.graph_api_url}/{endpoint}"
         return self.make_request(url, params)

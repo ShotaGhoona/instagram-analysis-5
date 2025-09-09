@@ -75,7 +75,7 @@ def test_instagram_insights():
     try:
         ig_user_url = f"https://graph.facebook.com/v23.0/{ig_account_id}"
         ig_user_params = {
-            'fields': 'id,username,account_type,media_count,followers_count',
+            'fields': 'id,username,media_count,followers_count',
             'access_token': page_token
         }
         
@@ -176,11 +176,12 @@ def test_instagram_insights():
         media_type = media_list[0].get('media_type', 'UNKNOWN')
         
         try:
-            # Insights metrics vary by media type
-            if media_type == 'VIDEO':
-                metrics = 'reach,impressions,likes,comments,shares,saved,video_views'
-            else:
-                metrics = 'reach,impressions,likes,comments,shares,saved'
+            # Check media age - insights may not be available for very recent posts
+            media_timestamp = media_list[0].get('timestamp', '')
+            print(f"   📅 投稿日時: {media_timestamp}")
+            
+            # Try basic insights first (supported in v22.0+)
+            metrics = 'reach'  # Start with single most reliable metric
             
             insights_url = f"https://graph.facebook.com/v23.0/{test_media_id}/insights"
             insights_params = {
@@ -188,37 +189,66 @@ def test_instagram_insights():
                 'access_token': page_token
             }
             
+            print(f"   🔍 リクエストURL: {insights_url}?metric={metrics}")
+            
             response = requests.get(insights_url, params=insights_params)
-            response.raise_for_status()
-            insights_data = response.json()
             
-            insights_list = insights_data.get('data', [])
+            if response.status_code == 200:
+                insights_data = response.json()
+                insights_list = insights_data.get('data', [])
+                
+                test_result = {
+                    "test_name": "media_insights",
+                    "success": True,
+                    "data": insights_data,
+                    "test_media_id": test_media_id,
+                    "notes": f"メディアインサイト{len(insights_list)}件を取得成功"
+                }
+            else:
+                # Handle specific error cases
+                error_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {"error": response.text}
+                
+                test_result = {
+                    "test_name": "media_insights",
+                    "success": False,
+                    "error": error_data,
+                    "status_code": response.status_code,
+                    "test_media_id": test_media_id,
+                    "notes": f"メディアインサイト取得失敗 (ステータス: {response.status_code})"
+                }
+                
+                print(f"❌ エラー: メディアインサイトの取得に失敗")
+                print(f"   🔍 ステータス: {response.status_code}")
+                
+                error_message = error_data.get('error', {}).get('message', 'Unknown error')
+                error_code = error_data.get('error', {}).get('code', 'Unknown')
+                print(f"   🔍 エラー: {error_message} (コード: {error_code})")
+                
+                # Provide specific guidance based on error
+                if response.status_code == 400:
+                    print(f"   💡 ヒント: 投稿が新しすぎる場合、インサイトデータはまだ利用できません（24-48時間後に再試行）")
             
-            test_result = {
-                "test_name": "media_insights",
-                "success": True,
-                "data": insights_data,
-                "test_media_id": test_media_id,
-                "notes": f"メディアインサイト{len(insights_list)}件を取得成功"
-            }
-            
-            print(f"✅ 成功: メディアインサイトを取得しました")
-            print(f"   🎯 対象メディア: {test_media_id} ({media_type})")
-            
-            # Display key metrics for dashboard
-            for insight in insights_list:
-                metric_name = insight.get('name', '')
-                values = insight.get('values', [])
-                if values:
-                    value = values[0].get('value', 0)
+            # Only show success message if actually successful
+            if test_result.get("success"):
+                print(f"✅ 成功: メディアインサイトを取得しました")
+                print(f"   🎯 対象メディア: {test_media_id} ({media_type})")
+                
+                # Display key metrics for dashboard
+                for insight in insights_list:
+                    metric_name = insight.get('name', '')
+                    values = insight.get('values', [])
+                    if values:
+                        value = values[0].get('value', 0)
                     if metric_name == 'reach':
                         print(f"   📈 リーチ: {value}")
-                    elif metric_name == 'impressions':
-                        print(f"   👀 インプレッション: {value}")  
-                    elif metric_name == 'likes':
-                        print(f"   ❤️ いいね: {value}")
-                    elif metric_name == 'video_views':
-                        print(f"   🎥 動画視聴数: {value}")
+                    elif metric_name == 'engagement':
+                        print(f"   💬 エンゲージメント: {value}")
+                    elif metric_name == 'total_interactions':
+                        print(f"   🤝 総インタラクション: {value}")
+                    elif metric_name == 'plays':
+                        print(f"   ▶️ 再生数: {value}")
+                    else:
+                        print(f"   📊 {metric_name}: {value}")
             
         except Exception as e:
             test_result = {
