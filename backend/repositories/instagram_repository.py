@@ -1,5 +1,6 @@
-from typing import Optional, List
-from models.instagram import InstagramAccount
+from typing import Optional, List, Dict
+from datetime import datetime
+from models.instagram import InstagramAccount, MediaPost
 from repositories.base import BaseRepository
 
 class InstagramAccountRepository(BaseRepository[InstagramAccount]):
@@ -98,6 +99,94 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
         except Exception as e:
             print(f"Error upserting Instagram account: {e}")
             return None
+    
+    async def save_media_posts(self, media_posts: List[Dict]) -> int:
+        """Save media posts to database (UPSERT)"""
+        try:
+            saved_count = 0
+            for media_data in media_posts:
+                # Check if media already exists
+                existing = self.client.table('media_posts').select('id').eq('ig_media_id', media_data['id']).execute()
+                
+                post_data = {
+                    'ig_media_id': media_data['id'],
+                    'ig_user_id': media_data.get('ig_user_id', ''),  # Will be set by caller
+                    'timestamp': media_data['timestamp'],
+                    'media_type': media_data['media_type'],
+                    'caption': media_data.get('caption'),
+                    'media_url': media_data['media_url'],
+                    'thumbnail_url': media_data.get('thumbnail_url'),
+                    'permalink': media_data['permalink']
+                }
+                
+                if existing.data:
+                    # Update existing post
+                    self.client.table('media_posts').update(post_data).eq('ig_media_id', media_data['id']).execute()
+                else:
+                    # Insert new post
+                    self.client.table('media_posts').insert(post_data).execute()
+                
+                saved_count += 1
+            
+            return saved_count
+        except Exception as e:
+            print(f"Error saving media posts: {e}")
+            return 0
+    
+    async def get_media_posts(self, ig_user_id: str, limit: int = 25) -> List[Dict]:
+        """Get media posts from database"""
+        try:
+            result = self.client.table('media_posts').select('*').eq('ig_user_id', ig_user_id).order('timestamp', desc=True).limit(limit).execute()
+            return result.data
+        except Exception as e:
+            print(f"Error getting media posts: {e}")
+            return []
+    
+    async def get_media_posts_with_stats(self, ig_user_id: str, start_date: Optional[datetime] = None, end_date: Optional[datetime] = None, media_type: Optional[str] = None, limit: int = 25) -> List[Dict]:
+        """Get media posts with latest stats for posts analysis page"""
+        try:
+            query = self.client.table('media_posts').select('''
+                *,
+                daily_media_stats(date, like_count, comments_count, reach, views, shares, saved)
+            ''').eq('ig_user_id', ig_user_id)
+            
+            if media_type:
+                query = query.eq('media_type', media_type)
+            if start_date:
+                query = query.gte('timestamp', start_date.isoformat())
+            if end_date:
+                query = query.lte('timestamp', end_date.isoformat())
+                
+            result = query.order('timestamp', desc=True).limit(limit).execute()
+            
+            # Process data to get latest stats for each post
+            processed_data = []
+            for post in result.data:
+                # Get latest stats if available
+                latest_stats = None
+                if post.get('daily_media_stats'):
+                    # Sort by date and get latest
+                    stats_sorted = sorted(post['daily_media_stats'], key=lambda x: x['date'], reverse=True)
+                    if stats_sorted:
+                        latest_stats = stats_sorted[0]
+                
+                post_with_stats = {
+                    **post,
+                    'like_count': latest_stats['like_count'] if latest_stats else 0,
+                    'comments_count': latest_stats['comments_count'] if latest_stats else 0,
+                    'reach': latest_stats.get('reach') if latest_stats else None,
+                    'views': latest_stats.get('views') if latest_stats else None,
+                    'shares': latest_stats.get('shares') if latest_stats else None,
+                    'saved': latest_stats.get('saved') if latest_stats else None
+                }
+                del post_with_stats['daily_media_stats']  # Clean up
+                processed_data.append(post_with_stats)
+            
+            return processed_data
+            
+        except Exception as e:
+            print(f"Error getting media posts with stats: {e}")
+            return []
 
 # Repository instance
 instagram_repository = InstagramAccountRepository()

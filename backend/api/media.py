@@ -53,8 +53,24 @@ async def get_media_posts(
             detail="Instagram account not found"
         )
     
-    # TODO: Implement actual media posts retrieval
-    return []
+    # Get media posts from database
+    media_posts = await instagram_repository.get_media_posts(account_id, limit)
+    
+    # Convert to response model
+    result = []
+    for post in media_posts:
+        result.append(MediaPostDetail(
+            ig_media_id=post['ig_media_id'],
+            ig_user_id=post['ig_user_id'],
+            timestamp=datetime.fromisoformat(post['timestamp'].replace('Z', '+00:00')),
+            media_type=post['media_type'],
+            caption=post.get('caption'),
+            media_url=post['media_url'],
+            thumbnail_url=post.get('thumbnail_url'),
+            permalink=post['permalink']
+        ))
+    
+    return result
 
 @router.get("/{media_id}/insights", response_model=List[MediaInsight])
 async def get_media_insights(
@@ -62,7 +78,7 @@ async def get_media_insights(
     current_user: User = Depends(get_current_user)
 ):
     """特定投稿のインサイトデータを取得"""
-    # TODO: Implement actual insights retrieval
+    # TODO: B0204 インサイトデータ取得後に実装
     return []
 
 @router.get("/stats/{account_id}", response_model=List[MediaPostWithStats])
@@ -82,5 +98,29 @@ async def get_media_with_stats(
             detail="Instagram account not found"
         )
     
-    # TODO: Implement actual media posts with stats retrieval
-    return []
+    # Get media posts with stats from database
+    media_posts = await instagram_repository.get_media_posts_with_stats(
+        account_id, start_date, end_date, media_type
+    )
+    
+    # Convert to response model
+    result = []
+    for post in media_posts:
+        result.append(MediaPostWithStats(
+            ig_media_id=post['ig_media_id'],
+            ig_user_id=post['ig_user_id'],
+            timestamp=datetime.fromisoformat(post['timestamp'].replace('Z', '+00:00')),
+            media_type=post['media_type'],
+            caption=post.get('caption'),
+            media_url=post['media_url'],
+            thumbnail_url=post.get('thumbnail_url'),
+            permalink=post['permalink'],
+            like_count=post.get('like_count', 0),
+            comments_count=post.get('comments_count', 0),
+            reach=post.get('reach'),
+            views=post.get('views'),
+            shares=post.get('shares'),
+            saved=post.get('saved')
+        ))
+    
+    return result

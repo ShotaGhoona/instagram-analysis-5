@@ -205,6 +205,29 @@ class InstagramAPIClient:
         except Exception as e:
             print(f"   ⚠️ Instagram account info取得例外: {str(e)}")
             return {}
+    
+    def get_user_media(self, ig_user_id: str, access_token: str, limit: int = 25) -> Dict[str, Any]:
+        """Get Instagram media posts for an account"""
+        try:
+            # 検証済みフィールド構成を使用
+            fields = 'id,timestamp,media_type,caption,like_count,comments_count,media_url,thumbnail_url,permalink'
+            params = {
+                'fields': fields,
+                'limit': limit,
+                'access_token': access_token
+            }
+            
+            result = self.graph_api_request(f'/{ig_user_id}/media', params)
+            
+            if result["success"]:
+                return result["data"]
+            else:
+                print(f"   ⚠️ Media posts取得失敗: {result.get('error', 'Unknown error')}")
+                return {"success": False, "error": result.get("error", "Unknown error")}
+                
+        except Exception as e:
+            print(f"   ⚠️ Media posts取得例外: {str(e)}")
+            return {"success": False, "error": str(e)}
 
 # Create instance for easy import
 instagram_client = InstagramAPIClient()
