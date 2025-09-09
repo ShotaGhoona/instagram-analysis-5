@@ -26,6 +26,9 @@ frontend/
 │   ├── page.tsx                 # トップページ (リダイレクト)
 │   ├── login/
 │   │   └── page.tsx            # ログインページ
+│   ├── settings/
+│   │   └── setup/
+│   │       └── page.tsx        # セットアップページ（トークン管理）
 │   └── analytics/
 │       └── account/
 │           └── [accountId]/
@@ -52,6 +55,8 @@ frontend/
 │   │   ├── yearly-charts.tsx    # 年間分析グラフ
 │   │   ├── monthly-charts.tsx   # 月間分析グラフ
 │   │   └── posts-table.tsx      # 投稿分析テーブル
+│   ├── setup/
+│   │   └── token-refresh-form.tsx # トークンリフレッシュフォーム
 │   └── filters/
 │       ├── date-filter.tsx      # 日付フィルター
 │       └── media-type-filter.tsx # 投稿タイプフィルター
@@ -70,6 +75,7 @@ frontend/
 ### URL構造
 ```
 /login                                    # ログイン
+/settings/setup                           # セットアップ（トークン管理）
 /analytics/account/{accountId}/yearly     # 年間分析
 /analytics/account/{accountId}/monthly    # 月間分析  
 /analytics/account/{accountId}/posts      # 投稿分析

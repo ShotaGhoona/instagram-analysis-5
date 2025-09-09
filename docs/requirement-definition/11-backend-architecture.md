@@ -70,13 +70,15 @@ backend/
 │   ├── __init__.py
 │   ├── accounts.py      # アカウント管理API
 │   ├── analytics.py     # 分析データAPI
-│   └── media.py         # 投稿データAPI
+│   ├── media.py         # 投稿データAPI
+│   └── setup.py         # セットアップ・トークン管理API
 ├── models/
 │   ├── __init__.py
 │   └── database.py      # Supabaseモデル
 └── utils/
     ├── __init__.py
-    └── supabase_client.py # Supabase接続
+    ├── supabase_client.py # Supabase接続
+    └── instagram_client.py # Instagram API統合
 ```
 
 ### 主要API エンドポイント
@@ -84,6 +86,9 @@ backend/
 # 認証
 POST /auth/login
 POST /auth/logout
+
+# セットアップ（トークン管理）
+POST /setup/refresh-tokens    # 全アカウントのトークンリフレッシュ・新規追加
 
 # アカウント管理
 GET  /accounts          # 全Instagramアカウント一覧
