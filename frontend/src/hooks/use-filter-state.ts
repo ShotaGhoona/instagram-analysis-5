@@ -1,49 +1,61 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { DateRange } from 'react-day-picker'
 import { MediaPost, MediaType } from '@/lib/types'
-import { isDateInRange } from '@/lib/utils'
+import { apiClient } from '@/lib/api'
 
-interface FilterState {
-  dateRange: DateRange | undefined
-  mediaTypes: MediaType[]
-}
-
-export function useFilterState(initialPosts: MediaPost[]) {
+export function useFilterState(accountId: string) {
   const [dateRange, setDateRange] = useState<DateRange | undefined>()
   const [mediaTypes, setMediaTypes] = useState<MediaType[]>([])
+  const [posts, setPosts] = useState<MediaPost[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  // フィルタリング済みのデータを計算
-  const filteredPosts = useMemo(() => {
-    return initialPosts.filter(post => {
-      // 日付フィルター
-      if (dateRange?.from || dateRange?.to) {
-        const postDate = new Date(post.timestamp)
-        
-        if (dateRange.from && postDate < dateRange.from) {
-          return false
-        }
-        if (dateRange.to) {
-          // 終了日は当日を含むため、翌日の開始時刻と比較
-          const endOfDay = new Date(dateRange.to)
-          endOfDay.setHours(23, 59, 59, 999)
-          if (postDate > endOfDay) {
-            return false
-          }
-        }
-      }
+  // API呼び出しでフィルタリング済みデータを取得
+  const fetchFilteredPosts = async () => {
+    if (!accountId) return
+    
+    setLoading(true)
+    setError(null)
+    
+    try {
+      const params: any = {}
       
-      // メディアタイプフィルター（空配列の場合は全て表示）
+      if (dateRange?.from) {
+        params.start_date = dateRange.from.toISOString().split('T')[0]
+      }
+      if (dateRange?.to) {
+        params.end_date = dateRange.to.toISOString().split('T')[0]
+      }
       if (mediaTypes.length > 0) {
-        if (!mediaTypes.includes(post.media_type)) {
-          return false
-        }
+        params.media_type = mediaTypes
       }
       
-      return true
-    })
-  }, [initialPosts, dateRange, mediaTypes])
+      // APIからデータ取得
+      const result = await apiClient.getPostsAnalytics(accountId, params)
+      setPosts(result as MediaPost[])
+      
+    } catch (err) {
+      console.error('Failed to fetch posts:', err)
+      setError(err instanceof Error ? err.message : 'Failed to fetch posts')
+      setPosts([])
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // 初回読み込み
+  useEffect(() => {
+    fetchFilteredPosts()
+  }, [accountId])
+
+  // フィルター変更時の自動再取得
+  useEffect(() => {
+    if (accountId) {
+      fetchFilteredPosts()
+    }
+  }, [dateRange, mediaTypes, accountId])
 
   // フィルター状態をリセット
   const resetFilters = () => {
@@ -56,20 +68,22 @@ export function useFilterState(initialPosts: MediaPost[]) {
     return (dateRange?.from || dateRange?.to) || mediaTypes.length > 0
   }, [dateRange, mediaTypes])
 
-  // フィルター結果の統計
+  // フィルター結果の統計（mockデータとの互換性のため）
   const filterStats = useMemo(() => {
     return {
-      total: initialPosts.length,
-      filtered: filteredPosts.length,
-      hidden: initialPosts.length - filteredPosts.length
+      total: posts.length, // APIから取得したデータ数
+      filtered: posts.length, // フィルタリング済み
+      hidden: 0 // APIレベルでフィルタリング済みなので隠れているものはなし
     }
-  }, [initialPosts.length, filteredPosts.length])
+  }, [posts.length])
 
   return {
     // 状態
     dateRange,
     mediaTypes,
-    filteredPosts,
+    filteredPosts: posts, // API取得データ
+    loading,
+    error,
     
     // 統計
     filterStats,
@@ -78,6 +92,7 @@ export function useFilterState(initialPosts: MediaPost[]) {
     // アクション
     setDateRange,
     setMediaTypes,
-    resetFilters
+    resetFilters,
+    refetch: fetchFilteredPosts
   }
 }

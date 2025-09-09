@@ -11,7 +11,6 @@ export function Thumbnail({ src, alt, size = 48 }: ThumbnailProps) {
   const [hasError, setHasError] = useState(false)
   
   const fallbackSrc = 'https://picsum.photos/400/400?random=999'
-  
   return (
     <div className="relative">
       <Image

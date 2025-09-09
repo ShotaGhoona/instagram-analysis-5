@@ -4,7 +4,6 @@ import { PostsTable } from '@/components/analytics/posts-table'
 import { PostsPerformanceChart } from '@/components/analytics/posts-performance-chart'
 import { DateFilter } from '@/components/filters/date-filter'
 import { MediaTypeFilter } from '@/components/filters/media-type-filter'
-import { mockPostsData } from '@/lib/mock-data'
 import { useFilterState } from '@/hooks/use-filter-state'
 import { Button } from '@/components/ui/button'
 
@@ -19,10 +18,27 @@ export default function PostsAnalyticsPage({ params }: PostsAnalyticsPageProps) 
     filteredPosts,
     filterStats,
     hasActiveFilters,
+    loading,
+    error,
     setDateRange,
     setMediaTypes,
     resetFilters
-  } = useFilterState(mockPostsData)
+  } = useFilterState(params.accountId)
+
+  // エラー状態の表示
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+          <h2 className="text-lg font-semibold text-red-800 mb-2">データの取得に失敗しました</h2>
+          <p className="text-red-600 mb-4">{error}</p>
+          <Button onClick={() => window.location.reload()}>
+            ページを再読み込み
+          </Button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -66,15 +82,12 @@ export default function PostsAnalyticsPage({ params }: PostsAnalyticsPageProps) 
       {/* 投稿一覧テーブル */}
       <div className="bg-white rounded-lg border p-6">
         <h2 className="text-xl font-semibold mb-4">投稿一覧テーブル</h2>
-        <PostsTable posts={filteredPosts} />
-        
-        {/* さらに読み込むボタン */}
-        {filteredPosts.length > 0 && (
-          <div className="mt-6 flex justify-center">
-            <button className="px-6 py-2 border rounded-md hover:bg-gray-50 transition-colors">
-              さらに読み込む
-            </button>
+        {loading ? (
+          <div className="flex items-center justify-center py-8">
+            <div className="text-gray-500">データを読み込み中...</div>
           </div>
+        ) : (
+          <PostsTable posts={filteredPosts} />
         )}
         
         {filteredPosts.length === 0 && (
@@ -93,33 +106,12 @@ export default function PostsAnalyticsPage({ params }: PostsAnalyticsPageProps) 
       
       {/* パフォーマンス推移グラフ */}
       <div className="bg-white rounded-lg border p-6">
-        <h2 className="text-xl font-semibold mb-4">パフォーマンス推移グラフ</h2>
-        <p className="text-sm text-gray-600 mb-4">エンゲージメント率 (%)</p>
-        
-        {filteredPosts.length > 0 ? (
-          <>
-            <PostsPerformanceChart posts={filteredPosts} />
-            <div className="mt-4 flex justify-center">
-              <div className="flex items-center gap-6 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-[#8884d8] opacity-80"></div>
-                  <span>いいね</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-[#82ca9d] opacity-80"></div>
-                  <span>リーチ</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-[#ffc658] opacity-80"></div>
-                  <span>視聴数</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-[#ff7300] rounded-full"></div>
-                  <span>EG率</span>
-                </div>
-              </div>
-            </div>
-          </>
+        {loading ? (
+          <div className="h-80 flex items-center justify-center">
+            <div className="text-gray-500">グラフを読み込み中...</div>
+          </div>
+        ) : filteredPosts.length > 0 ? (
+          <PostsPerformanceChart posts={filteredPosts} />
         ) : (
           <div className="h-80 flex items-center justify-center text-gray-500 bg-gray-50 rounded border-2 border-dashed border-gray-300">
             <div className="text-center">
