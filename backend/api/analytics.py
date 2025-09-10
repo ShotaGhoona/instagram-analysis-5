@@ -178,22 +178,25 @@ async def get_posts_analytics(
 @router.get("/yearly/{account_id}", response_model=YearlyAnalytics)
 async def get_yearly_analytics(
     account_id: str,
-    year: Optional[int] = Query(None, description="対象年（未指定時は全期間）"),
+    year: Optional[int] = Query(None, description="対象年（未指定時は現在年）"),
     current_user: User = Depends(get_current_user)
 ):
     """年間分析データを取得"""
+    # Set default year if not provided
+    if year is None:
+        year = datetime.now().year
+    
     # Validate year parameter
-    if year is not None:
-        if not isinstance(year, int):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="年は整数で指定してください"
-            )
-        if year < 2020 or year > 2030:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="年は2020年から2030年の範囲で指定してください"
-            )
+    if not isinstance(year, int):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="年は整数で指定してください"
+        )
+    if year < 2020 or year > 2030:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="年は2020年から2030年の範囲で指定してください"
+        )
     
     # Verify account exists
     account = await instagram_repository.get_by_id(account_id)
@@ -271,6 +274,15 @@ async def get_yearly_analytics(
             monthly_stats.append(MonthlyStats(**month_data))
             prev_followers = current_followers
         
+        # Handle empty data case
+        if not monthly_stats:
+            return YearlyAnalytics(
+                account_id=account_id,
+                monthly_stats=[],
+                total_posts=0,
+                avg_engagement_rate=0.0
+            )
+        
         # Calculate average engagement rate
         total_engagements = sum(stat.total_likes + stat.total_comments + stat.total_shares + stat.total_saved for stat in monthly_stats)
         avg_engagement_rate = 0.0
@@ -294,11 +306,18 @@ async def get_yearly_analytics(
 @router.get("/monthly/{account_id}", response_model=MonthlyAnalytics)
 async def get_monthly_analytics(
     account_id: str,
-    year: int = Query(..., description="対象年"),
-    month: int = Query(..., ge=1, le=12, description="対象月（1-12）"),
+    year: Optional[int] = Query(None, description="対象年（未指定時は現在年）"),
+    month: Optional[int] = Query(None, ge=1, le=12, description="対象月（未指定時は現在月）"),
     current_user: User = Depends(get_current_user)
 ):
     """月間分析データを取得"""
+    # Set default year and month if not provided
+    now = datetime.now()
+    if year is None:
+        year = now.year
+    if month is None:
+        month = now.month
+    
     # Validate year parameter
     if not isinstance(year, int):
         raise HTTPException(
@@ -384,6 +403,7 @@ async def get_monthly_analytics(
                 website_clicks=day_data['website_clicks']
             ))
         
+        # Handle empty data case - return empty daily_stats instead of error
         return MonthlyAnalytics(
             account_id=account_id,
             month=f"{year}-{month:02d}",
