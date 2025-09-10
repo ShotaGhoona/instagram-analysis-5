@@ -76,8 +76,12 @@ class ApiClient {
   }
 
   // Analytics endpoints
-  async getYearlyAnalytics(accountId: string) {
-    return this.request(`/analytics/yearly/${accountId}`)
+  async getYearlyAnalytics(accountId: string, year?: number) {
+    const params = new URLSearchParams()
+    if (year) params.set('year', year.toString())
+    
+    const url = `/analytics/yearly/${accountId}${params.toString() ? `?${params}` : ''}`
+    return this.request(url)
   }
 
   async getMonthlyAnalytics(accountId: string, year: number, month: number) {
