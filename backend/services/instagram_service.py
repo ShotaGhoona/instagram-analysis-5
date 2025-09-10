@@ -55,9 +55,9 @@ class InstagramService:
                     db_errors.append(error_msg)
                     print(f"   ❌ DB保存失敗: @{account_data['username']}")
             except Exception as e:
-                error_msg = f"Database error for {account_data['username']}: {str(e)}"
+                error_msg = f"データベースエラー（アカウント: {account_data['username']}）: {str(e)}"
                 db_errors.append(error_msg)
-                print(f"   ❌ DB例外: @{account_data['username']} - {str(e)}")
+                self._log_service_error("upsert_account", e, account_data)
         
         # Combine errors
         all_errors = refresh_data.get("errors", []) + db_errors
@@ -119,7 +119,7 @@ class InstagramService:
             }
             
         except Exception as e:
-            print(f"❌ Media Posts Collection失敗: {str(e)}")
+            self._log_service_error("collect_media_posts", e, {"ig_user_id": ig_user_id})
             return {
                 "success": False,
                 "error": str(e),
@@ -356,6 +356,27 @@ class InstagramService:
                 "error": str(e),
                 "processed_accounts": 0
             }
+
+    def _log_service_error(self, operation: str, error: Exception, context_data: dict = None):
+        """Log service error in structured format"""
+        error_type = type(error).__name__
+        print(f"❌ Service Error: {operation}")
+        print(f"   🔧 Operation: {operation}")
+        print(f"   ⚠️ Type: {error_type}")
+        print(f"   💬 Message: {str(error)}")
+        if context_data:
+            print(f"   📋 Context: {context_data}")
+        
+        # Classify service-level errors
+        error_str = str(error).lower()
+        if "token" in error_str or "auth" in error_str:
+            print(f"   📊 Classification: AUTHENTICATION_ERROR")
+        elif "database" in error_str or "connection" in error_str:
+            print(f"   📊 Classification: DATABASE_ERROR")
+        elif "api" in error_str or "request" in error_str:
+            print(f"   📊 Classification: API_ERROR")
+        else:
+            print(f"   📊 Classification: UNKNOWN_SERVICE_ERROR")
 
 # Service instance
 instagram_service = InstagramService()

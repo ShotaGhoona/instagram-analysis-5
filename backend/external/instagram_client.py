@@ -17,25 +17,80 @@ class InstagramAPIClient:
         self.oauth_url = "https://graph.facebook.com/v23.0/oauth/access_token"
     
     def make_request(self, url: str, params: Dict[str, Any]) -> Dict[str, Any]:
-        """Make API request and return JSON response"""
+        """Make API request and return JSON response with enhanced error handling"""
         try:
             response = requests.get(url, params=params)
             response.raise_for_status()
             return {"success": True, "data": response.json()}
         except requests.exceptions.RequestException as e:
             error_data = None
+            status_code = getattr(e.response, 'status_code', None)
+            
+            # Parse error response
             if hasattr(e, 'response') and e.response:
                 try:
                     error_data = e.response.json()
                 except:
                     error_data = {"error": e.response.text}
             
-            return {
+            # Classify Instagram API errors
+            error_message = self._classify_instagram_error(status_code, error_data)
+            
+            # Structure error response
+            error_response = {
                 "success": False, 
-                "error": str(e),
-                "status_code": getattr(e.response, 'status_code', None),
-                "error_data": error_data
+                "error": error_message,
+                "status_code": status_code,
+                "error_data": error_data,
+                "error_type": self._get_error_type(status_code)
             }
+            
+            # Log structured error
+            self._log_api_error(url, params, error_response)
+            
+            return error_response
+    
+    def _classify_instagram_error(self, status_code: int, error_data: dict) -> str:
+        """Classify Instagram API errors and return Japanese message"""
+        if status_code == 401:
+            return "アクセストークンが無効または期限切れです。トークンを更新してください。"
+        elif status_code == 403:
+            return "このリソースにアクセスする権限がありません。アカウント設定を確認してください。"
+        elif status_code == 429:
+            return "API呼び出し制限に達しました。しばらく待ってから再試行してください。"
+        elif status_code == 400:
+            error_msg = "リクエストパラメータが不正です。"
+            if error_data and 'error' in error_data:
+                error_msg += f" 詳細: {error_data['error']}"
+            return error_msg
+        elif status_code and 500 <= status_code < 600:
+            return "Instagram APIサーバーで一時的な問題が発生しています。しばらく待ってから再試行してください。"
+        else:
+            return f"Instagram API呼び出しに失敗しました（ステータス: {status_code}）"
+    
+    def _get_error_type(self, status_code: int) -> str:
+        """Get error type for structured logging"""
+        if status_code == 401:
+            return "TOKEN_EXPIRED"
+        elif status_code == 403:
+            return "PERMISSION_DENIED"
+        elif status_code == 429:
+            return "RATE_LIMIT"
+        elif status_code == 400:
+            return "BAD_REQUEST"
+        elif status_code and 500 <= status_code < 600:
+            return "SERVER_ERROR"
+        else:
+            return "UNKNOWN_ERROR"
+    
+    def _log_api_error(self, url: str, params: dict, error_response: dict):
+        """Log API error in structured format"""
+        print(f"❌ Instagram API Error: {error_response['error_type']}")
+        print(f"   🔗 URL: {url}")
+        print(f"   📊 Status: {error_response['status_code']}")
+        print(f"   💬 Message: {error_response['error']}")
+        if error_response.get('error_data'):
+            print(f"   📋 Details: {error_response['error_data']}")
     
     def graph_api_request(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Make request to Facebook Graph API"""

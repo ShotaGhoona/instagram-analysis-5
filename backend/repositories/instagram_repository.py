@@ -2,6 +2,7 @@ from typing import Optional, List, Dict
 from datetime import datetime
 from models.instagram import InstagramAccount, MediaPost
 from repositories.base import BaseRepository
+from core.exceptions import DatabaseConnectionError
 
 class InstagramAccountRepository(BaseRepository[InstagramAccount]):
     """Instagram account data access repository"""
@@ -21,7 +22,7 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
             }).execute()
             return InstagramAccount(**result.data[0]) if result.data else None
         except Exception as e:
-            print(f"Error creating Instagram account: {e}")
+            self._log_database_error("create", e)
             return None
     
     async def get_by_id(self, ig_user_id: str) -> Optional[InstagramAccount]:
@@ -30,7 +31,7 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
             result = self.client.table(self.table_name).select('*').eq('ig_user_id', ig_user_id).execute()
             return InstagramAccount(**result.data[0]) if result.data else None
         except Exception as e:
-            print(f"Error getting Instagram account: {e}")
+            self._log_database_error("get_by_id", e)
             return None
     
     async def get_all(self) -> List[InstagramAccount]:
@@ -39,7 +40,7 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
             result = self.client.table(self.table_name).select('*').execute()
             return [InstagramAccount(**account) for account in result.data]
         except Exception as e:
-            print(f"Error getting Instagram accounts: {e}")
+            self._log_database_error("get_all", e)
             return []
     
     async def update(self, ig_user_id: str, update_data: dict) -> Optional[InstagramAccount]:
@@ -48,8 +49,27 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
             result = self.client.table(self.table_name).update(update_data).eq('ig_user_id', ig_user_id).execute()
             return InstagramAccount(**result.data[0]) if result.data else None
         except Exception as e:
-            print(f"Error updating Instagram account: {e}")
+            self._log_database_error("update", e)
             return None
+    
+    def _log_database_error(self, operation: str, error: Exception):
+        """Log database error in structured format"""
+        error_type = type(error).__name__
+        print(f"❌ Database Error: {operation}")
+        print(f"   🔧 Operation: {operation}")
+        print(f"   ⚠️ Type: {error_type}")
+        print(f"   💬 Message: {str(error)}")
+        
+        # Classify common Supabase errors
+        error_str = str(error).lower()
+        if "connection" in error_str or "network" in error_str:
+            print(f"   📊 Classification: CONNECTION_ERROR")
+        elif "unique" in error_str or "duplicate" in error_str:
+            print(f"   📊 Classification: DUPLICATE_KEY_ERROR")
+        elif "auth" in error_str or "permission" in error_str:
+            print(f"   📊 Classification: PERMISSION_ERROR")
+        else:
+            print(f"   📊 Classification: UNKNOWN_DATABASE_ERROR")
     
     async def update_token(self, ig_user_id: str, access_token: str) -> bool:
         """Update access token for Instagram account"""
