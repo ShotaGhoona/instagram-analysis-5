@@ -4,7 +4,9 @@ import { use } from 'react'
 import { YearlyTable } from '@/components/analytics/yearly-table'
 import { YearlyFollowerChart } from '@/components/analytics/yearly-follower-chart'
 import { YearlyEngagementChart } from '@/components/analytics/yearly-engagement-chart'
+import { YearFilter } from '@/components/analytics/year-filter'
 import { useYearlyAnalytics } from '@/hooks/use-yearly-analytics'
+import { useYearFilter } from '@/hooks/use-year-filter'
 import { YearlyPageSkeleton, ErrorDisplay, NoDataDisplay } from '@/components/ui/loading-skeleton'
 
 interface YearlyAnalyticsPageProps {
@@ -13,7 +15,11 @@ interface YearlyAnalyticsPageProps {
 
 export default function YearlyAnalyticsPage({ params }: YearlyAnalyticsPageProps) {
   const resolvedParams = use(params)
-  const { data, loading, error, refetch } = useYearlyAnalytics(resolvedParams.accountId)
+  
+  // フィルター状態管理
+  const { selectedYear, handleYearChange } = useYearFilter()
+  
+  const { data, loading, error, refetch } = useYearlyAnalytics(resolvedParams.accountId, selectedYear)
 
   if (loading) return <YearlyPageSkeleton />
   if (error) return <ErrorDisplay error={error} onRetry={refetch} />
@@ -38,7 +44,13 @@ export default function YearlyAnalyticsPage({ params }: YearlyAnalyticsPageProps
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">年間Instagramデータ</h1>
-        <p className="text-gray-600">2022/01/01 - 2025/08/31</p>
+        <div className="flex items-center gap-4">
+          <YearFilter 
+            selectedYear={selectedYear}
+            onYearChange={handleYearChange}
+          />
+          <p className="text-gray-600">{selectedYear}年</p>
+        </div>
       </div>
       
       {/* 月別データテーブル */}
