@@ -1,4 +1,7 @@
 import { use } from 'react'
+import { MonthlyTable } from '@/components/analytics/monthly-table'
+import { MonthlyCharts } from '@/components/analytics/monthly-charts'
+import { mockMonthlyData, mockMonthlyChartData } from '@/lib/mock-data-monthly'
 
 interface MonthlyAnalyticsPageProps {
   params: Promise<{ accountId: string }>
@@ -9,47 +12,21 @@ export default function MonthlyAnalyticsPage({ params }: MonthlyAnalyticsPagePro
   
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-4">月間分析</h1>
-      <p className="text-gray-600 mb-6">アカウント ID: {resolvedParams.accountId}</p>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">月間 Instagram データ</h1>
+        <p className="text-gray-600">2025/03/01 - 2025/03/31</p>
+      </div>
       
-      <div className="grid gap-6">
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* 左：日別データテーブル */}
         <div className="bg-white rounded-lg shadow border p-6">
-          <h2 className="text-xl font-semibold mb-4">日別データテーブル</h2>
-          <p className="text-gray-500 mb-4">月間の日別統計データ</p>
-          {/* TODO: F0401-F0403 月間分析コンポーネント実装後に統合 */}
-          <div className="h-64 bg-gray-100 rounded flex items-center justify-center">
-            <span className="text-gray-400">テーブルプレースホルダー</span>
-          </div>
+          <MonthlyTable data={mockMonthlyData} />
         </div>
         
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="bg-white rounded-lg shadow border p-6">
-            <h3 className="text-lg font-semibold mb-2">新規フォロワー数</h3>
-            <div className="h-32 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-gray-400">グラフ</span>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow border p-6">
-            <h3 className="text-lg font-semibold mb-2">リーチ</h3>
-            <div className="h-32 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-gray-400">グラフ</span>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow border p-6">
-            <h3 className="text-lg font-semibold mb-2">プロフィールアクセス</h3>
-            <div className="h-32 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-gray-400">グラフ</span>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow border p-6">
-            <h3 className="text-lg font-semibold mb-2">ウェブサイトタップ</h3>
-            <div className="h-32 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-gray-400">グラフ</span>
-            </div>
-          </div>
+        {/* 右：4つの推移グラフ */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">グラフエリア</h3>
+          <MonthlyCharts data={mockMonthlyChartData} />
         </div>
       </div>
     </div>
