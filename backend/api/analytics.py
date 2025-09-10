@@ -178,6 +178,7 @@ async def get_posts_analytics(
 @router.get("/yearly/{account_id}", response_model=YearlyAnalytics)
 async def get_yearly_analytics(
     account_id: str,
+    year: Optional[int] = Query(None, description="対象年（未指定時は全期間）"),
     current_user: User = Depends(get_current_user)
 ):
     """年間分析データを取得"""
@@ -189,13 +190,93 @@ async def get_yearly_analytics(
             detail="Instagram account not found"
         )
     
-    # TODO: Implement actual yearly analytics aggregation
-    return YearlyAnalytics(
-        account_id=account_id,
-        monthly_stats=[],
-        total_posts=0,
-        avg_engagement_rate=0.0
-    )
+    try:
+        # Get monthly account stats and media aggregation
+        account_stats = await instagram_repository.get_monthly_account_stats(account_id, year)
+        media_stats = await instagram_repository.get_monthly_media_aggregation(account_id, year)
+        total_posts = await instagram_repository.get_total_posts_count(account_id, year)
+        
+        # Merge data by month and calculate metrics
+        monthly_data = {}
+        
+        # Process account stats
+        for stat in account_stats:
+            month = stat['month']
+            monthly_data[month] = {
+                'month': month,
+                'followers_count': stat['followers_count'],
+                'follows_count': 0,  # Will be calculated as difference
+                'media_count': 0,
+                'profile_views': stat['profile_views'],
+                'website_clicks': stat['website_clicks'],
+                'total_likes': 0,
+                'total_comments': 0,
+                'total_shares': 0,
+                'total_saved': 0
+            }
+        
+        # Process media stats
+        for stat in media_stats:
+            month = stat['month']
+            if month in monthly_data:
+                monthly_data[month].update({
+                    'media_count': stat['media_count'],
+                    'total_likes': stat['total_likes'],
+                    'total_comments': stat['total_comments'],
+                    'total_shares': stat['total_shares'],
+                    'total_saved': stat['total_saved']
+                })
+            else:
+                monthly_data[month] = {
+                    'month': month,
+                    'followers_count': 0,
+                    'follows_count': 0,
+                    'media_count': stat['media_count'],
+                    'profile_views': 0,
+                    'website_clicks': 0,
+                    'total_likes': stat['total_likes'],
+                    'total_comments': stat['total_comments'],
+                    'total_shares': stat['total_shares'],
+                    'total_saved': stat['total_saved']
+                }
+        
+        # Sort by month and calculate follows_count (new followers)
+        sorted_months = sorted(monthly_data.keys())
+        monthly_stats = []
+        prev_followers = 0
+        
+        for month in sorted_months:
+            month_data = monthly_data[month]
+            current_followers = month_data['followers_count']
+            
+            # Calculate new followers as difference from previous month
+            if prev_followers > 0:
+                month_data['follows_count'] = current_followers - prev_followers
+            else:
+                month_data['follows_count'] = current_followers
+            
+            monthly_stats.append(MonthlyStats(**month_data))
+            prev_followers = current_followers
+        
+        # Calculate average engagement rate
+        total_engagements = sum(stat.total_likes + stat.total_comments + stat.total_shares + stat.total_saved for stat in monthly_stats)
+        avg_engagement_rate = 0.0
+        if total_posts > 0:
+            # Simple approximation for avg engagement rate
+            avg_engagement_rate = round((total_engagements / total_posts) * 0.1, 1)  # Rough estimation
+        
+        return YearlyAnalytics(
+            account_id=account_id,
+            monthly_stats=monthly_stats,
+            total_posts=total_posts,
+            avg_engagement_rate=avg_engagement_rate
+        )
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to fetch yearly analytics: {str(e)}"
+        )
 
 @router.get("/monthly/{account_id}", response_model=MonthlyAnalytics)
 async def get_monthly_analytics(

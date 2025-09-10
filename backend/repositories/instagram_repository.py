@@ -308,6 +308,129 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
             print(f"Error saving daily account insights: {e}")
             return 0
     
+    async def get_monthly_account_stats(self, ig_user_id: str, year: Optional[int] = None) -> List[Dict]:
+        """Get monthly aggregated account statistics"""
+        try:
+            # Use Supabase table query with date operations
+            query = self.client.table('daily_account_stats').select('*').eq('ig_user_id', ig_user_id)
+            
+            if year:
+                start_date = f"{year}-01-01"
+                end_date = f"{year}-12-31"
+                query = query.gte('date', start_date).lte('date', end_date)
+            
+            result = query.execute()
+            
+            # Group by month manually
+            monthly_data = {}
+            for row in result.data:
+                date_str = row['date']
+                month = date_str[:7]  # "2023-04"
+                
+                if month not in monthly_data:
+                    monthly_data[month] = {
+                        'month': month,
+                        'followers_count': 0,
+                        'profile_views': 0,
+                        'website_clicks': 0,
+                        '_count': 0
+                    }
+                
+                monthly_data[month]['followers_count'] += row.get('followers_count', 0)
+                monthly_data[month]['profile_views'] += row.get('profile_views', 0)
+                monthly_data[month]['website_clicks'] += row.get('website_clicks', 0)
+                monthly_data[month]['_count'] += 1
+            
+            # Calculate averages for followers_count
+            result_data = []
+            for month_data in sorted(monthly_data.values(), key=lambda x: x['month']):
+                if month_data['_count'] > 0:
+                    month_data['followers_count'] = month_data['followers_count'] // month_data['_count']
+                del month_data['_count']
+                result_data.append(month_data)
+            
+            return result_data
+            
+        except Exception as e:
+            print(f"Error getting monthly account stats: {e}")
+            return []
+    
+    async def get_monthly_media_aggregation(self, ig_user_id: str, year: Optional[int] = None) -> List[Dict]:
+        """Get monthly aggregated media statistics"""
+        try:
+            # Get media posts first
+            posts_query = self.client.table('media_posts').select('*').eq('ig_user_id', ig_user_id)
+            
+            if year:
+                start_date = f"{year}-01-01T00:00:00Z"
+                end_date = f"{year}-12-31T23:59:59Z"
+                posts_query = posts_query.gte('timestamp', start_date).lte('timestamp', end_date)
+            
+            posts_result = posts_query.execute()
+            
+            # Get all media stats
+            stats_result = self.client.table('daily_media_stats').select('*').execute()
+            
+            # Create lookup for stats
+            stats_lookup = {}
+            for stat in stats_result.data:
+                media_id = stat['ig_media_id']
+                if media_id not in stats_lookup:
+                    stats_lookup[media_id] = stat
+                # Use latest stats if multiple entries
+                elif stat['date'] > stats_lookup[media_id]['date']:
+                    stats_lookup[media_id] = stat
+            
+            # Group by month
+            monthly_data = {}
+            for post in posts_result.data:
+                timestamp = post['timestamp']
+                month = timestamp[:7]  # "2023-04"
+                
+                if month not in monthly_data:
+                    monthly_data[month] = {
+                        'month': month,
+                        'media_count': 0,
+                        'total_likes': 0,
+                        'total_comments': 0,
+                        'total_shares': 0,
+                        'total_saved': 0
+                    }
+                
+                monthly_data[month]['media_count'] += 1
+                
+                # Add stats if available
+                media_id = post['ig_media_id']
+                if media_id in stats_lookup:
+                    stats = stats_lookup[media_id]
+                    monthly_data[month]['total_likes'] += stats.get('like_count', 0)
+                    monthly_data[month]['total_comments'] += stats.get('comments_count', 0)
+                    monthly_data[month]['total_shares'] += stats.get('shares', 0)
+                    monthly_data[month]['total_saved'] += stats.get('saved', 0)
+            
+            return sorted(monthly_data.values(), key=lambda x: x['month'])
+            
+        except Exception as e:
+            print(f"Error getting monthly media aggregation: {e}")
+            return []
+    
+    async def get_total_posts_count(self, ig_user_id: str, year: Optional[int] = None) -> int:
+        """Get total posts count for the account"""
+        try:
+            query = self.client.table('media_posts').select('ig_media_id', count='exact').eq('ig_user_id', ig_user_id)
+            
+            if year:
+                start_date = f"{year}-01-01T00:00:00Z"
+                end_date = f"{year}-12-31T23:59:59Z"
+                query = query.gte('timestamp', start_date).lte('timestamp', end_date)
+            
+            result = query.execute()
+            return result.count if result.count else 0
+            
+        except Exception as e:
+            print(f"Error getting total posts count: {e}")
+            return 0
+    
     async def get_latest_account_insights(self, ig_user_ids: List[str]) -> Dict[str, Dict]:
         """Get latest account insights for multiple accounts"""
         try:
