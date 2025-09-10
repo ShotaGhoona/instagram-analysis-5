@@ -182,6 +182,19 @@ async def get_yearly_analytics(
     current_user: User = Depends(get_current_user)
 ):
     """年間分析データを取得"""
+    # Validate year parameter
+    if year is not None:
+        if not isinstance(year, int):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="年は整数で指定してください"
+            )
+        if year < 2020 or year > 2030:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="年は2020年から2030年の範囲で指定してください"
+            )
+    
     # Verify account exists
     account = await instagram_repository.get_by_id(account_id)
     if not account:
@@ -286,19 +299,36 @@ async def get_monthly_analytics(
     current_user: User = Depends(get_current_user)
 ):
     """月間分析データを取得"""
+    # Validate year parameter
+    if not isinstance(year, int):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="年は整数で指定してください"
+        )
+    if year < 2020 or year > 2030:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="年は2020年から2030年の範囲で指定してください"
+        )
+    
+    # Validate month parameter
+    if not isinstance(month, int):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="月は整数で指定してください"
+        )
+    if month < 1 or month > 12:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="月は1から12の範囲で指定してください"
+        )
+    
     # Verify account exists
     account = await instagram_repository.get_by_id(account_id)
     if not account:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Instagram account not found"
-        )
-    
-    # Validate month parameter
-    if month < 1 or month > 12:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Month must be between 1 and 12"
         )
     
     try:
