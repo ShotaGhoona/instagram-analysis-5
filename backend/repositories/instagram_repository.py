@@ -455,6 +455,139 @@ class InstagramAccountRepository(BaseRepository[InstagramAccount]):
         except Exception as e:
             print(f"Error getting latest account insights: {e}")
             return {}
+    
+    async def get_daily_account_stats(self, ig_user_id: str, year: int, month: int) -> List[Dict]:
+        """Get daily account statistics for a specific month"""
+        try:
+            from calendar import monthrange
+            
+            # Calculate date range for the month
+            start_date = f"{year}-{month:02d}-01"
+            days_in_month = monthrange(year, month)[1]
+            end_date = f"{year}-{month:02d}-{days_in_month:02d}"
+            
+            # Get daily account stats for the month
+            query = self.client.table('daily_account_stats').select('*')
+            query = query.eq('ig_user_id', ig_user_id)
+            query = query.gte('date', start_date).lte('date', end_date)
+            result = query.order('date').execute()
+            
+            # Fill missing days with zero data
+            return self._fill_missing_account_days(result.data, year, month)
+            
+        except Exception as e:
+            print(f"Error getting daily account stats: {e}")
+            return []
+    
+    async def get_daily_media_stats_aggregation(self, ig_user_id: str, year: int, month: int) -> List[Dict]:
+        """Get daily media statistics aggregation for a specific month"""
+        try:
+            from calendar import monthrange
+            
+            # Calculate date range for the month
+            start_date = f"{year}-{month:02d}-01T00:00:00Z"
+            days_in_month = monthrange(year, month)[1]
+            end_date = f"{year}-{month:02d}-{days_in_month:02d}T23:59:59Z"
+            
+            # Get media posts for the month
+            posts_query = self.client.table('media_posts').select('*').eq('ig_user_id', ig_user_id)
+            posts_query = posts_query.gte('timestamp', start_date).lte('timestamp', end_date)
+            posts_result = posts_query.execute()
+            
+            # Get all media stats
+            stats_result = self.client.table('daily_media_stats').select('*').execute()
+            
+            # Create lookup for stats
+            stats_lookup = {}
+            for stat in stats_result.data:
+                media_id = stat['ig_media_id']
+                if media_id not in stats_lookup:
+                    stats_lookup[media_id] = stat
+                elif stat['date'] > stats_lookup[media_id]['date']:
+                    stats_lookup[media_id] = stat
+            
+            # Group posts by day and calculate daily totals
+            daily_data = {}
+            for post in posts_result.data:
+                timestamp = post['timestamp']
+                date = timestamp[:10]  # "2025-03-01"
+                
+                if date not in daily_data:
+                    daily_data[date] = {
+                        'date': date,
+                        'posts_count': 0,
+                        'reach': 0
+                    }
+                
+                daily_data[date]['posts_count'] += 1
+                
+                # Add stats if available
+                media_id = post['ig_media_id']
+                if media_id in stats_lookup:
+                    stats = stats_lookup[media_id]
+                    daily_data[date]['reach'] += stats.get('reach', 0)
+            
+            # Fill missing days and sort
+            return self._fill_missing_media_days(list(daily_data.values()), year, month)
+            
+        except Exception as e:
+            print(f"Error getting daily media stats aggregation: {e}")
+            return []
+    
+    def _fill_missing_account_days(self, data: List[Dict], year: int, month: int) -> List[Dict]:
+        """Fill missing days with zero data for account stats"""
+        from calendar import monthrange
+        
+        days_in_month = monthrange(year, month)[1]
+        filled_data = []
+        
+        # Create lookup for existing data
+        data_lookup = {d['date']: d for d in data}
+        
+        for day in range(1, days_in_month + 1):
+            date_str = f"{year}-{month:02d}-{day:02d}"
+            
+            if date_str in data_lookup:
+                # Use existing data
+                filled_data.append(data_lookup[date_str])
+            else:
+                # Zero-fill missing data
+                filled_data.append({
+                    'date': date_str,
+                    'posts_count': 0,
+                    'new_followers': 0,
+                    'reach': 0,
+                    'profile_views': 0,
+                    'website_clicks': 0
+                })
+        
+        return filled_data
+    
+    def _fill_missing_media_days(self, data: List[Dict], year: int, month: int) -> List[Dict]:
+        """Fill missing days with zero data for media stats"""
+        from calendar import monthrange
+        
+        days_in_month = monthrange(year, month)[1]
+        filled_data = []
+        
+        # Create lookup for existing data
+        data_lookup = {d['date']: d for d in data}
+        
+        for day in range(1, days_in_month + 1):
+            date_str = f"{year}-{month:02d}-{day:02d}"
+            
+            if date_str in data_lookup:
+                # Use existing data
+                filled_data.append(data_lookup[date_str])
+            else:
+                # Zero-fill missing data
+                filled_data.append({
+                    'date': date_str,
+                    'posts_count': 0,
+                    'reach': 0
+                })
+        
+        return filled_data
 
 # Repository instance
 instagram_repository = InstagramAccountRepository()

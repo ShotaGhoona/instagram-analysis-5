@@ -281,8 +281,8 @@ async def get_yearly_analytics(
 @router.get("/monthly/{account_id}", response_model=MonthlyAnalytics)
 async def get_monthly_analytics(
     account_id: str,
-    year: int = Query(...),
-    month: int = Query(...),
+    year: int = Query(..., description="対象年"),
+    month: int = Query(..., ge=1, le=12, description="対象月（1-12）"),
     current_user: User = Depends(get_current_user)
 ):
     """月間分析データを取得"""
@@ -294,9 +294,74 @@ async def get_monthly_analytics(
             detail="Instagram account not found"
         )
     
-    # TODO: Implement actual monthly analytics aggregation
-    return MonthlyAnalytics(
-        account_id=account_id,
-        month=f"{year}-{month:02d}",
-        daily_stats=[]
-    )
+    # Validate month parameter
+    if month < 1 or month > 12:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Month must be between 1 and 12"
+        )
+    
+    try:
+        # Get daily account stats and media aggregation
+        account_stats = await instagram_repository.get_daily_account_stats(account_id, year, month)
+        media_stats = await instagram_repository.get_daily_media_stats_aggregation(account_id, year, month)
+        
+        # Merge account and media data by date
+        daily_data = {}
+        
+        # Process account stats (includes profile_views, website_clicks, new_followers)
+        for stat in account_stats:
+            date = stat['date']
+            daily_data[date] = {
+                'date': date,
+                'posts_count': stat.get('posts_count', 0),
+                'new_followers': stat.get('new_followers', 0),
+                'reach': stat.get('reach', 0),
+                'profile_views': stat.get('profile_views', 0),
+                'website_clicks': stat.get('website_clicks', 0)
+            }
+        
+        # Process media stats (includes posts_count, reach)
+        for stat in media_stats:
+            date = stat['date']
+            if date in daily_data:
+                # Update posts_count and reach from media data
+                daily_data[date]['posts_count'] = stat.get('posts_count', 0)
+                daily_data[date]['reach'] = stat.get('reach', 0)
+            else:
+                # Create new entry if not exists
+                daily_data[date] = {
+                    'date': date,
+                    'posts_count': stat.get('posts_count', 0),
+                    'new_followers': 0,
+                    'reach': stat.get('reach', 0),
+                    'profile_views': 0,
+                    'website_clicks': 0
+                }
+        
+        # Sort by date and convert to DailyStats
+        sorted_dates = sorted(daily_data.keys())
+        daily_stats = []
+        
+        for date in sorted_dates:
+            day_data = daily_data[date]
+            daily_stats.append(DailyStats(
+                date=day_data['date'],
+                posts_count=day_data['posts_count'],
+                new_followers=day_data['new_followers'],
+                reach=day_data['reach'],
+                profile_views=day_data['profile_views'],
+                website_clicks=day_data['website_clicks']
+            ))
+        
+        return MonthlyAnalytics(
+            account_id=account_id,
+            month=f"{year}-{month:02d}",
+            daily_stats=daily_stats
+        )
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to fetch monthly analytics: {str(e)}"
+        )
