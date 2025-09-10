@@ -6,7 +6,19 @@ import { MediaPost, MediaType } from '@/lib/types'
 import { apiClient } from '@/lib/api'
 
 export function useFilterState(accountId: string) {
-  const [dateRange, setDateRange] = useState<DateRange | undefined>()
+  // デフォルト値：先月の1ヶ月間
+  const getLastMonthRange = () => {
+    const now = new Date()
+    const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
+    const lastDayOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0)
+    
+    return {
+      from: lastMonth,
+      to: lastDayOfLastMonth
+    }
+  }
+
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(getLastMonthRange())
   const [mediaTypes, setMediaTypes] = useState<MediaType[]>([])
   const [posts, setPosts] = useState<MediaPost[]>([])
   const [loading, setLoading] = useState(false)

@@ -7,10 +7,11 @@ export function useMonthFilter() {
   const router = useRouter()
   const searchParams = useSearchParams()
   
-  // デフォルト値：現在年月
+  // デフォルト値：先月
   const now = new Date()
-  const defaultYear = now.getFullYear()
-  const defaultMonth = now.getMonth() + 1
+  const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1)
+  const defaultYear = lastMonth.getFullYear()
+  const defaultMonth = lastMonth.getMonth() + 1
   
   // URL パラメータから初期値を取得
   const [selectedYear, setSelectedYear] = useState(() => {

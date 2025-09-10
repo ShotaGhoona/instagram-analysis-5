@@ -22,9 +22,7 @@ function formatDayDate(dateStr: string): string {
 
 export function MonthlyTable({ data }: MonthlyTableProps) {
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold">日別データテーブル</h3>
-      <div className="rounded-md border max-h-[500px] overflow-y-auto">
+      <div className="">
         <Table>
           <TableHeader>
             <TableRow>
@@ -37,16 +35,16 @@ export function MonthlyTable({ data }: MonthlyTableProps) {
           <TableBody>
             {data.daily_stats.map((stat) => (
               <TableRow key={stat.date}>
-                <TableCell className="font-medium">
+                <TableCell className="font-medium py-1">
                   {formatDayDate(stat.date)}
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-right py-1">
                   {stat.posts_count}
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-right py-1">
                   {stat.new_followers > 0 ? '+' : ''}{formatNumber(stat.new_followers)}
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-right py-1">
                   {formatNumber(stat.reach)}
                 </TableCell>
               </TableRow>
@@ -54,9 +52,5 @@ export function MonthlyTable({ data }: MonthlyTableProps) {
           </TableBody>
         </Table>
       </div>
-      <div className="text-sm text-gray-500 text-center">
-        ページ: 1-{data.daily_stats.length}/{data.daily_stats.length} &nbsp; &lt; &gt;
-      </div>
-    </div>
   )
 }

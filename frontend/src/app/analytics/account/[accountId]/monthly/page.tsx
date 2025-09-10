@@ -22,15 +22,24 @@ export default function MonthlyAnalyticsPage({ params }: MonthlyAnalyticsPagePro
 
   if (loading) return <MonthlyPageSkeleton />
   if (error) return <ErrorDisplay error={error} onRetry={refetch} />
-  if (!data || !data.daily_stats.length) return <NoDataDisplay />
+  if (!data || !data.daily_stats.length) {
+    const resetToCurrentMonth = () => {
+      const now = new Date()
+      const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1)
+      handleYearChange(lastMonth.getFullYear())
+      handleMonthChange(lastMonth.getMonth() + 1)
+    }
+    return <NoDataDisplay onClearFilters={resetToCurrentMonth} />
+  }
 
   // データをグラフ用に変換
   const chartData = data.daily_stats.map(stat => ({
-    date: new Date(stat.date).getDate().toString(), // 日付を日のみに変換
-    new_followers: stat.new_followers,
-    reach: stat.reach,
-    profile_views: stat.profile_views,
-    website_clicks: stat.website_clicks
+    day: new Date(stat.date).getDate(), // 日付を日のみに変換
+    date: new Date(stat.date).getDate().toString(),
+    新規フォロワー: stat.new_followers,
+    リーチ: stat.reach,
+    プロフィールアクセス: stat.profile_views,
+    ウェブサイトタップ: stat.website_clicks
   }))
   
   return (
@@ -44,7 +53,6 @@ export default function MonthlyAnalyticsPage({ params }: MonthlyAnalyticsPagePro
             onYearChange={handleYearChange}
             onMonthChange={handleMonthChange}
           />
-          <p className="text-gray-600">{data.month}</p>
         </div>
       </div>
       
@@ -55,8 +63,7 @@ export default function MonthlyAnalyticsPage({ params }: MonthlyAnalyticsPagePro
         </div>
         
         {/* 右：4つの推移グラフ */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">グラフエリア</h3>
+        <div className="">
           <MonthlyCharts data={chartData} />
         </div>
       </div>

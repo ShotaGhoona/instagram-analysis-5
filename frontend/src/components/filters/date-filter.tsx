@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
@@ -17,52 +16,79 @@ interface DateFilterProps {
 }
 
 export function DateFilter({ value, onChange }: DateFilterProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const handleFromDateChange = (date: Date | undefined) => {
+    onChange({
+      from: date,
+      to: value?.to
+    })
+  }
 
-  const formatDateRange = (dateRange: DateRange | undefined): string => {
-    if (!dateRange) return '期間を選択'
-    
-    if (dateRange.from) {
-      if (dateRange.to) {
-        return `${format(dateRange.from, 'yyyy/MM/dd', { locale: ja })} - ${format(dateRange.to, 'yyyy/MM/dd', { locale: ja })}`
-      } else {
-        return format(dateRange.from, 'yyyy/MM/dd', { locale: ja })
-      }
-    }
-    
-    return '期間を選択'
+  const handleToDateChange = (date: Date | undefined) => {
+    onChange({
+      from: value?.from,
+      to: date
+    })
   }
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className={cn(
-            'justify-start text-left font-normal',
-            !value && 'text-muted-foreground'
-          )}
-        >
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          📅 {formatDateRange(value)}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
-        <Calendar
-          initialFocus
-          mode="range"
-          defaultMonth={value?.from}
-          selected={value}
-          onSelect={(range) => {
-            onChange(range)
-            if (range?.from && range?.to) {
-              setIsOpen(false)
-            }
-          }}
-          numberOfMonths={2}
-          locale={ja}
-        />
-      </PopoverContent>
-    </Popover>
+    <div className="flex items-center gap-2">
+      {/* 開始日 */}
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            className={cn(
+              "w-[140px] justify-start text-left font-normal",
+              !value?.from && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {value?.from ? (
+              format(value.from, "MM/dd", { locale: ja })
+            ) : (
+              <span>開始日</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={value?.from}
+            onSelect={handleFromDateChange}
+            locale={ja}
+          />
+        </PopoverContent>
+      </Popover>
+
+      <span className="text-gray-500">-</span>
+
+      {/* 終了日 */}
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            className={cn(
+              "w-[140px] justify-start text-left font-normal",
+              !value?.to && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {value?.to ? (
+              format(value.to, "MM/dd", { locale: ja })
+            ) : (
+              <span>終了日</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={value?.to}
+            onSelect={handleToDateChange}
+            locale={ja}
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
   )
 }

@@ -23,7 +23,13 @@ export default function YearlyAnalyticsPage({ params }: YearlyAnalyticsPageProps
 
   if (loading) return <YearlyPageSkeleton />
   if (error) return <ErrorDisplay error={error} onRetry={refetch} />
-  if (!data || !data.monthly_stats.length) return <NoDataDisplay />
+  if (!data || !data.monthly_stats.length) {
+    const resetToCurrentYear = () => {
+      const currentYear = new Date().getFullYear()
+      handleYearChange(currentYear)
+    }
+    return <NoDataDisplay onClearFilters={resetToCurrentYear} />
+  }
 
   // データをグラフ用に変換
   const followerData = data.monthly_stats.map(stat => ({
@@ -55,7 +61,6 @@ export default function YearlyAnalyticsPage({ params }: YearlyAnalyticsPageProps
       
       {/* 月別データテーブル */}
       <div className="bg-white rounded-lg shadow border p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">月別データテーブル</h2>
         <YearlyTable data={data} />
       </div>
 

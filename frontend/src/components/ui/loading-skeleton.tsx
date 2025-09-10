@@ -90,13 +90,21 @@ export function MonthlyPageSkeleton() {
   )
 }
 
-export function NoDataDisplay() {
+export function NoDataDisplay({ onClearFilters }: { onClearFilters?: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
       <div className="text-gray-500 text-lg mb-4">📊 データがありません</div>
-      <div className="text-gray-400 text-sm">
+      <div className="text-gray-400 text-sm mb-4">
         データが収集されるまでお待ちください
       </div>
+      {onClearFilters && (
+        <button 
+          onClick={onClearFilters}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm"
+        >
+          フィルターをクリア
+        </button>
+      )}
     </div>
   )
 }
