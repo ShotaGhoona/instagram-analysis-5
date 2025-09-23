@@ -24,7 +24,7 @@ env:
 jobs:
   collect-instagram-data:
     runs-on: ubuntu-latest
-    timeout-minutes: 120  # 120分(2時間)でタイムアウト - 98アカウント対応
+    timeout-minutes: 1200  # 120分(2時間)でタイムアウト - 98アカウント対応
     
     steps:
     - name: Checkout repository
