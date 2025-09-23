@@ -14,9 +14,11 @@ class DatabaseConnection:
             if not settings.SUPABASE_URL or not settings.SUPABASE_ANON_KEY:
                 print("❌ Error: Cannot create Supabase client - missing environment variables")
                 return None
+            # Use SERVICE_KEY for complex queries in production
+            key = settings.SUPABASE_SERVICE_KEY if settings.SUPABASE_SERVICE_KEY else settings.SUPABASE_ANON_KEY
             self._client = create_client(
                 settings.SUPABASE_URL,
-                settings.SUPABASE_ANON_KEY
+                key
             )
         return self._client
 
