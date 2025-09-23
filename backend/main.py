@@ -24,7 +24,10 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Next.js development server
+    allow_origins=[
+        "http://localhost:3000",  # Next.js development server
+        "https://instagram-analysis-5-asfy.vercel.app"  # Production frontend
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
