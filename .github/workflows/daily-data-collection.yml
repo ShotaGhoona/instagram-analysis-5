@@ -100,7 +100,7 @@ jobs:
     
     - name: Upload collection results
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: collection-results-${{ github.run_id }}
         path: |
@@ -109,10 +109,11 @@ jobs:
           scripts/local_test_report.md
         retention-days: 30
         if-no-files-found: warn
+        overwrite: true
     
     - name: Upload logs on failure
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: error-logs-${{ github.run_id }}
         path: |
@@ -120,6 +121,7 @@ jobs:
           logs/
         retention-days: 7
         if-no-files-found: ignore
+        overwrite: true
     
     - name: Collection summary
       if: always()
