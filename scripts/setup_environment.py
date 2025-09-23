@@ -96,10 +96,11 @@ def validate_database_connection():
         # Add backend path for imports
         sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'backend'))
         
-        from utils.supabase_client import supabase_client
+        from core.database import DatabaseConnection
         
-        # Test connection using the utility client
-        client = supabase_client.client
+        # Test connection using the database connection
+        db_connection = DatabaseConnection()
+        client = db_connection.client
         
         # Simple connectivity test
         result = client.table('instagram_accounts').select('count').execute()
