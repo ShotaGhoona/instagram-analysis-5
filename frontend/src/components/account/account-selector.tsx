@@ -60,18 +60,18 @@ export function AccountSelector() {
 
   if (loading) {
     return (
-      <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
-        <div className="w-6 h-6 rounded-full bg-gray-300 animate-pulse" />
-        <span className="text-sm">読み込み中...</span>
+      <div className="flex items-center gap-2 px-3 py-2 bg-white/20 rounded-lg">
+        <div className="w-6 h-6 rounded-full bg-white/30 animate-pulse" />
+        <span className="text-sm text-white/80">読み込み中...</span>
       </div>
     )
   }
 
   if (!currentAccount) {
     return (
-      <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
-        <User className="h-4 w-4 text-gray-500" />
-        <span className="text-sm">アカウントなし</span>
+      <div className="flex items-center gap-2 px-3 py-2 bg-white/20 rounded-lg">
+        <User className="h-4 w-4 text-white/60" />
+        <span className="text-sm text-white/80">アカウントなし</span>
       </div>
     )
   }
@@ -80,13 +80,13 @@ export function AccountSelector() {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
           role="combobox"
           aria-expanded={open}
-          className="w-auto justify-between gap-2"
+          className="w-auto max-w-60 justify-between gap-2 bg-white/20 text-white hover:bg-white/30 border border-white/30"
         >
           <AccountAvatar account={currentAccount} size="sm" />
-          <span className="text-sm">
+          <span className="text-sm truncate">
             {currentAccount.name} (@{currentAccount.username})
           </span>
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

@@ -50,13 +50,10 @@ export default function YearlyAnalyticsPage({ params }: YearlyAnalyticsPageProps
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">年間Instagramデータ</h1>
-        <div className="flex items-center gap-4">
-          <YearFilter 
-            selectedYear={selectedYear}
-            onYearChange={handleYearChange}
-          />
-          <p className="text-gray-600">{selectedYear}年</p>
-        </div>
+        <YearFilter 
+          selectedYear={selectedYear}
+          onYearChange={handleYearChange}
+        />
       </div>
       
       {/* 月別データテーブル */}
